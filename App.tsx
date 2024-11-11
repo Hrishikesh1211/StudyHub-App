@@ -66,15 +66,19 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator({
+    screens: {
+      Home: BlackThemeHomePage,
+      Profile: BlackThemeProfile
+    },
+  });
 
   return (
       <NavigationContainer>
             <Stack.Navigator>
-              <Stack.Screen name="Home" component={BlackThemeHomePage} />
-              <Stack.Screen name="Profile" component={BlackThemeProfile} />
+                <Stack.Screen name="Home" component={BlackThemeHomePage} />
             </Stack.Navigator>
-          </NavigationContainer>
+      </NavigationContainer>
   )
 }
 
