@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "662070165912",
+    "firebase_url": "https://studyhub-database-default-rtdb.firebaseio.com",
+    "project_id": "studyhub-database",
+    "storage_bucket": "studyhub-database.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662070165912:android:96bf342403cf3b28a4abed",
+        "android_client_info": {
+          "package_name": "com.example.studyhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvCajj9EhtE3wVfgffYW47e_TpevgODBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662070165912:android:848bca60b851df75a4abed",
+        "android_client_info": {
+          "package_name": "com.studyhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvCajj9EhtE3wVfgffYW47e_TpevgODBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
