@@ -9,8 +9,12 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import type {PropsWithChildren} from 'react';
-import BlackThemeHomePage from "./android/app/src/main/java/com/studyhub/HomePage.js";
-import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ProfilePage.js';
+import {
+  createStaticNavigation,
+  useNavigation,
+} from '@react-navigation/native';
+import BlackThemeHomePage from "./android/app/src/main/java/com/studyhub/ui/screensHomePage.js";
+import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ui/screens/ProfilePage.js';
 import {
   SafeAreaView,
   ScrollView,
@@ -19,6 +23,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Button
 } from 'react-native';
 
 import {
@@ -59,6 +64,13 @@ function Section({children, title}: SectionProps): React.JSX.Element {
   );
 }
 
+const Stack = createNativeStackNavigator({
+    screens: {
+        Home: BlackThemeHomePage,
+        Profile: BlackThemeProfile
+    },
+  });
+
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -66,21 +78,13 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const Stack = createNativeStackNavigator({
-    screens: {
-      Home: BlackThemeHomePage,
-      Profile: BlackThemeProfile
-    },
-  });
 
   return (
-      <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Home" component={BlackThemeHomePage} />
-            </Stack.Navigator>
-      </NavigationContainer>
+    <Navigation/>
   )
 }
+
+const Navigation = createStaticNavigation(Stack);
 
 const styles = StyleSheet.create({
   sectionContainer: {

@@ -35,17 +35,6 @@ const BlackThemeHomePage = () => {
         				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
       			</View>
 
-      			<View>
-      			    <Button
-                      onPress={ () => {
-                        navigation.navigate("Profile")
-                      }}
-                      title="Learn More"
-                      color="#841584"
-                      accessibilityLabel="Learn more about this purple button"
-                    />
-      			</View>
-
       			<Text style={[styles.webDevelopment, styles.webTypo]}>Web Development</Text>
       			<Text style={[styles.angularForBeginners, styles.angularTypo]}>Angular for beginners</Text>
       			<View style={[styles.blackThemeHomePageInner, styles.blackChildLayout]} />
@@ -77,6 +66,16 @@ const BlackThemeHomePage = () => {
       			<Text style={[styles.angularForBeginners3, styles.angularTypo]}>Angular for beginners</Text>
       			<View style={[styles.blackThemeHomePageChild8, styles.webDevelopment3Position]} />
     		</View>);
+
+    		<View>
+                <Button
+                    onPress={ () => {
+                        navigation.navigate("Profile")
+                    }}
+                    title="Profile"
+                    color="#841584"
+                />
+            </View>
 };
 
 const styles = StyleSheet.create({
