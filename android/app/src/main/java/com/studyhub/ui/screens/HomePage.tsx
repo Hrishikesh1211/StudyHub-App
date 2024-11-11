@@ -1,13 +1,7 @@
 import * as React from "react";
-import {Image, StyleSheet, Text, Pressable, View, Button} from "react-native";
-import {
-  createStaticNavigation,
-  useNavigation,
-} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {Image, StyleSheet, Text, Pressable, View} from "react-native";
 
 const BlackThemeHomePage = () => {
-    const navigation = useNavigation();
 
   	return (
     		<View style={styles.blackThemeHomePage}>
@@ -22,7 +16,7 @@ const BlackThemeHomePage = () => {
           					<Image style={styles.iconLayout} resizeMode="cover" source="chat_bubble.png" />
         				</Pressable>
         				<Text style={styles.chats}>Chats</Text>
-        				<Image style={styles.frameChild} resizeMode="cover" source="Ellipse 3.png" />
+        				<Image style={styles.greenEllipseIcon} resizeMode="cover" source="Green Ellipse.png" />
         				<Pressable style={[styles.plusCircle, styles.profileLayout]} onPress={()=>{}}>
           					<Image style={[styles.icon1, styles.iconLayout]} resizeMode="cover" source="Plus circle.png" />
         				</Pressable>
@@ -34,7 +28,6 @@ const BlackThemeHomePage = () => {
       			<View style={[styles.stateLayer, styles.stateFlexBox]}>
         				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
       			</View>
-
       			<Text style={[styles.webDevelopment, styles.webTypo]}>Web Development</Text>
       			<Text style={[styles.angularForBeginners, styles.angularTypo]}>Angular for beginners</Text>
       			<View style={[styles.blackThemeHomePageInner, styles.blackChildLayout]} />
@@ -66,16 +59,6 @@ const BlackThemeHomePage = () => {
       			<Text style={[styles.angularForBeginners3, styles.angularTypo]}>Angular for beginners</Text>
       			<View style={[styles.blackThemeHomePageChild8, styles.webDevelopment3Position]} />
     		</View>);
-
-    		<View>
-                <Button
-                    onPress={ () => {
-                        navigation.navigate("Profile")
-                    }}
-                    title="Profile"
-                    color="#841584"
-                />
-            </View>
 };
 
 const styles = StyleSheet.create({
@@ -260,7 +243,7 @@ const styles = StyleSheet.create({
     		fontSize: 14,
     		position: "absolute"
   	},
-  	frameChild: {
+  	greenEllipseIcon: {
     		left: 185,
     		width: 60,
     		height: 60,

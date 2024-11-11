@@ -1,14 +1,15 @@
 import * as React from "react";
 import {Image, StyleSheet, Text, View, Pressable} from "react-native";
 
-const BlackThemeSingleOpenChat = () => {
+const BlackThemeGroupOpenChat = () => {
 
   	return (
-    		<View style={styles.blackThemeSingleOpenChat}>
-      			<View style={[styles.ellipseParent, styles.ellipseParentPosition]}>
-        				<Image style={styles.frameChild} resizeMode="cover" source="Ellipse 11.png" />
-        				<Text style={styles.johnMan}>John Man</Text>
+    		<View style={styles.blackThemeGroupOpenChat}>
+      			<View style={[styles.grayEllipseParent, styles.grayEllipseParentPosition]}>
+        				<Image style={styles.grayEllipseIcon} resizeMode="cover" source="Gray Ellipse.png" />
+        				<Text style={styles.group}>Group</Text>
       			</View>
+      			<Image style={[styles.grayEllipseIcon1, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
       			<Pressable style={styles.arrowBack} onPress={()=>{}}>
         				<Image style={styles.icon} resizeMode="cover" source="arrow_back.png" />
       			</Pressable>
@@ -116,24 +117,44 @@ const BlackThemeSingleOpenChat = () => {
           					</View>
         				</View>
       			</View>
-      			<Image style={[styles.blackThemeSingleOpenChatChild, styles.ellipseParentPosition]} resizeMode="cover" source="Frame 13.png" />
-      			<View style={[styles.messageFromJohnManParent, styles.johnParentLayout]}>
-        				<Text style={[styles.messageFromJohn, styles.johnTypo]}>message from john man</Text>
+      			<Image style={[styles.blackThemeGroupOpenChatChild, styles.grayEllipseParentPosition]} resizeMode="cover" source="Frame 13.png" />
+      			<View style={[styles.messageParent, styles.messageParentLayout]}>
+        				<Text style={[styles.message, styles.messageTypo]}>message</Text>
         				<Text style={[styles.pm, styles.pmTypo]}>11:15pm</Text>
       			</View>
-      			<View style={[styles.responseToJohnManParent, styles.johnParentLayout]}>
-        				<Text style={[styles.responseToJohn, styles.johnTypo]}>response to john man</Text>
-        				<Text style={[styles.pm1, styles.pmTypo]}>11:15pm</Text>
+      			<Image style={[styles.grayEllipseIcon2, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+      			<View style={[styles.messageGroup, styles.messageParentLayout]}>
+        				<Text style={[styles.message, styles.messageTypo]}>message</Text>
+        				<Text style={[styles.pm, styles.pmTypo]}>11:15pm</Text>
       			</View>
+      			<Image style={[styles.grayEllipseIcon3, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+      			<View style={[styles.messageContainer, styles.messageParentLayout]}>
+        				<Text style={[styles.message, styles.messageTypo]}>message</Text>
+        				<Text style={[styles.pm, styles.pmTypo]}>11:15pm</Text>
+      			</View>
+      			<View style={[styles.responseParent, styles.messageParentLayout]}>
+        				<Text style={[styles.response, styles.messageTypo]}>{`response `}</Text>
+        				<Text style={[styles.pm3, styles.pmTypo]}>11:15pm</Text>
+      			</View>
+      			<Text style={[styles.johnMan, styles.johnTypo]}>John Man</Text>
+      			<Text style={[styles.josephine, styles.johnTypo]}>{`Josephine `}</Text>
+      			<Text style={[styles.bobJohn, styles.johnTypo]}>Bob John</Text>
+      			<Text style={[styles.you, styles.johnTypo]}>You</Text>
     		</View>);
 };
 
 const styles = StyleSheet.create({
-  	ellipseParentPosition: {
+  	grayEllipseParentPosition: {
     		width: 398,
     		left: 0,
     		position: "absolute",
     		overflow: "hidden"
+  	},
+  	grayIconLayout: {
+    		height: 30,
+    		width: 30,
+    		left: 6,
+    		position: "absolute"
   	},
   	iphoneFlexBox: {
     		alignSelf: "stretch",
@@ -289,14 +310,14 @@ const styles = StyleSheet.create({
     		width: 87,
     		position: "absolute"
   	},
-  	johnParentLayout: {
+  	messageParentLayout: {
     		height: 55,
     		width: 291,
     		borderRadius: 10,
     		position: "absolute",
     		overflow: "hidden"
   	},
-  	johnTypo: {
+  	messageTypo: {
     		textAlign: "left",
     		fontFamily: "Inter-Regular",
     		fontSize: 12,
@@ -315,17 +336,27 @@ const styles = StyleSheet.create({
     		color: "#fff",
     		position: "absolute"
   	},
-  	frameChild: {
+  	johnTypo: {
+    		height: 12,
+    		color: "#5a5858",
+    		fontFamily: "Inter-Bold",
+    		fontSize: 11,
+    		textAlign: "left",
+    		alignItems: "center",
+    		display: "flex",
+    		fontWeight: "700",
+    		position: "absolute"
+  	},
+  	grayEllipseIcon: {
     		left: 337,
     		width: 48,
     		height: 48,
     		top: 28,
     		position: "absolute"
   	},
-  	johnMan: {
+  	group: {
     		left: 75,
     		lineHeight: 22,
-    		fontWeight: "700",
     		fontFamily: "InstrumentSans-Bold",
     		width: 234,
     		height: 51,
@@ -334,14 +365,19 @@ const styles = StyleSheet.create({
     		display: "flex",
     		textAlign: "center",
     		color: "#fff",
+    		fontWeight: "700",
     		fontSize: 24,
     		top: 28,
     		position: "absolute"
   	},
-  	ellipseParent: {
+  	grayEllipseParent: {
     		top: 1,
     		height: 104,
-    		backgroundColor: "#282828"
+    		backgroundColor: "#282828",
+    		width: 398
+  	},
+  	grayEllipseIcon1: {
+    		top: 148
   	},
   	icon: {
     		height: "100%",
@@ -733,41 +769,102 @@ const styles = StyleSheet.create({
     		position: "absolute",
     		overflow: "hidden"
   	},
-  	blackThemeSingleOpenChatChild: {
+  	blackThemeGroupOpenChatChild: {
     		top: 475,
     		height: 62
   	},
-  	messageFromJohn: {
+  	message: {
     		top: 10,
-    		left: 6,
     		width: 272,
-    		height: 27
+    		height: 27,
+    		left: 6,
+    		textAlign: "left",
+    		fontFamily: "Inter-Regular",
+    		fontSize: 12
   	},
   	pm: {
     		top: 37,
     		left: 4
   	},
-  	messageFromJohnManParent: {
+  	messageParent: {
     		top: 138,
-    		left: 16,
+    		left: 44,
+    		width: 291,
+    		borderRadius: 10,
     		backgroundColor: "#282828"
   	},
-  	responseToJohn: {
+  	grayEllipseIcon2: {
+    		top: 324
+  	},
+  	messageGroup: {
+    		top: 314,
+    		left: 44,
+    		width: 291,
+    		borderRadius: 10,
+    		backgroundColor: "#282828"
+  	},
+  	grayEllipseIcon3: {
+    		top: 397
+  	},
+  	messageContainer: {
+    		top: 387,
+    		left: 44,
+    		width: 291,
+    		borderRadius: 10,
+    		backgroundColor: "#282828"
+  	},
+  	response: {
     		top: 7,
     		left: 9,
     		width: 275,
     		height: 29
   	},
-  	pm1: {
+  	pm3: {
     		top: 40,
     		left: 235
   	},
-  	responseToJohnManParent: {
+  	responseParent: {
     		top: 226,
     		left: 93,
-    		backgroundColor: "#34393e"
+    		backgroundColor: "#0cca6e"
   	},
-  	blackThemeSingleOpenChat: {
+  	johnMan: {
+    		top: 126,
+    		left: 52,
+    		width: 61,
+    		height: 12,
+    		color: "#5a5858",
+    		fontFamily: "Inter-Bold",
+    		fontSize: 11
+  	},
+  	josephine: {
+    		top: 302,
+    		left: 47,
+    		width: 61,
+    		height: 12,
+    		color: "#5a5858",
+    		fontFamily: "Inter-Bold",
+    		fontSize: 11
+  	},
+  	bobJohn: {
+    		top: 375,
+    		left: 46,
+    		width: 61,
+    		height: 12,
+    		color: "#5a5858",
+    		fontFamily: "Inter-Bold",
+    		fontSize: 11
+  	},
+  	you: {
+    		top: 214,
+    		left: 351,
+    		width: 29,
+    		height: 12,
+    		color: "#5a5858",
+    		fontFamily: "Inter-Bold",
+    		fontSize: 11
+  	},
+  	blackThemeGroupOpenChat: {
     		backgroundColor: "#141819",
     		flex: 1,
     		height: 830,
@@ -776,4 +873,4 @@ const styles = StyleSheet.create({
   	}
 });
 
-export default BlackThemeSingleOpenChat;
+export default BlackThemeGroupOpenChat;

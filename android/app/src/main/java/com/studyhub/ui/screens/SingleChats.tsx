@@ -17,22 +17,22 @@ const BlackThemeSingleChats = () => {
         				<Text style={[styles.profile, styles.profileLayout]}>Profile</Text>
         				<Image style={[styles.chatBubbleIcon, styles.iconLayout]} resizeMode="cover" source="chat_bubble.png" />
         				<Text style={[styles.chats1, styles.homeTypo]}>Chats</Text>
-        				<Image style={styles.frameChild} resizeMode="cover" source="Ellipse 3.png" />
+        				<Image style={styles.greenEllipseIcon} resizeMode="cover" source="Green Ellipse.png" />
         				<Image style={[styles.plusCircleIcon, styles.profileLayout]} resizeMode="cover" source="Plus circle.png" />
       			</View>
       			<Pressable style={[styles.johnManParent, styles.johnParentLayout]} onPress={()=>{}}>
         				<Text style={[styles.johnMan, styles.johnManTypo]}>John Man</Text>
-        				<Image style={styles.frameItem} resizeMode="cover" source="Ellipse 9.png" />
-        				<Image style={[styles.frameInner, styles.frameInnerLayout]} resizeMode="cover" source="Ellipse 10.png" />
+        				<Image style={styles.greenEllipseIcon1} resizeMode="cover" source="Green Ellipse.png" />
+        				<Image style={[styles.grayEllipseIcon, styles.grayEllipseIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
         				<Text style={[styles.lastMessageSent, styles.johnManTypo]}>last message sent by other</Text>
       			</Pressable>
       			<View style={[styles.manJohnParent, styles.johnParentLayout]}>
         				<Text style={[styles.johnMan, styles.johnManTypo]}>Man John</Text>
-        				<Image style={styles.frameItem} resizeMode="cover" source="Ellipse 9.png" />
-        				<Image style={[styles.frameInner, styles.frameInnerLayout]} resizeMode="cover" source="Ellipse 10.png" />
+        				<Image style={styles.greenEllipseIcon1} resizeMode="cover" source="Red Ellipse.png" />
+        				<Image style={[styles.grayEllipseIcon, styles.grayEllipseIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
         				<Text style={[styles.lastMessageSent, styles.johnManTypo]}>last message sent by other</Text>
       			</View>
-      			<Image style={[styles.blackThemeSingleChatsChild, styles.frameInnerLayout]} resizeMode="cover" source="Frame 11.png" />
+      			<Image style={[styles.blackThemeSingleChatsChild, styles.grayEllipseIconLayout]} resizeMode="cover" source="Frame 11.png" />
     		</View>);
 };
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     		fontWeight: "700",
     		position: "absolute"
   	},
-  	frameInnerLayout: {
+  	grayEllipseIconLayout: {
     		width: 56,
     		position: "absolute"
   	},
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     		top: 81,
     		position: "absolute"
   	},
-  	frameChild: {
+  	greenEllipseIcon: {
     		left: 185,
     		width: 60,
     		height: 60,
@@ -205,14 +205,14 @@ const styles = StyleSheet.create({
     		left: 76,
     		color: "#fff"
   	},
-  	frameItem: {
+  	greenEllipseIcon1: {
     		top: 46,
     		left: 343,
     		width: 16,
     		height: 16,
     		position: "absolute"
   	},
-  	frameInner: {
+  	grayEllipseIcon: {
     		top: 24,
     		left: 12,
     		height: 56

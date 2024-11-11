@@ -22,14 +22,14 @@ const BlackThemeCreateGroup = () => {
       			<Text style={[styles.groupInfo, styles.membersTypo]}>Group Info</Text>
       			<Image style={[styles.personIcon1, styles.iconLayout]} resizeMode="cover" source="person.png" />
       			<Text style={[styles.members, styles.membersTypo]}>Members</Text>
-      			<View style={[styles.blackThemeCreateGroupChild2, styles.blackGroupLayout2]} />
-      			<View style={[styles.blackThemeCreateGroupChild3, styles.blackGroupLayout2]} />
-      			<View style={[styles.blackThemeCreateGroupChild4, styles.blackGroupLayout1]} />
-      			<View style={[styles.blackThemeCreateGroupChild5, styles.blackGroupLayout1]} />
-      			<Image style={[styles.ellipseIcon, styles.blackGroupLayout]} resizeMode="cover" source="Ellipse 5.png" />
-      			<Image style={[styles.blackThemeCreateGroupChild6, styles.blackGroupLayout]} resizeMode="cover" source="Ellipse 6.png" />
-      			<Image style={[styles.blackThemeCreateGroupChild7, styles.blackGroupLayout]} resizeMode="cover" source="Ellipse 7.png" />
-      			<Image style={[styles.blackThemeCreateGroupChild8, styles.blackGroupLayout]} resizeMode="cover" source="Ellipse 8.png" />
+      			<View style={[styles.blackThemeCreateGroupChild2, styles.blackGroupLayout1]} />
+      			<View style={[styles.blackThemeCreateGroupChild3, styles.blackGroupLayout1]} />
+      			<View style={[styles.blackThemeCreateGroupChild4, styles.blackGroupLayout]} />
+      			<View style={[styles.blackThemeCreateGroupChild5, styles.blackGroupLayout]} />
+      			<Image style={[styles.grayEllipseIcon, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+      			<Image style={[styles.grayEllipseIcon1, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+      			<Image style={[styles.grayEllipseIcon2, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+      			<Image style={[styles.grayEllipseIcon3, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
       			<Text style={[styles.name, styles.nameTypo]}>Name</Text>
       			<Text style={[styles.name1, styles.nameTypo]}>Name</Text>
       			<Text style={[styles.name2, styles.nameTypo]}>Name</Text>
@@ -37,13 +37,13 @@ const BlackThemeCreateGroup = () => {
       			<Text style={[styles.invited, styles.invitedTypo]}>Invited!!</Text>
       			<Text style={[styles.invited1, styles.invitedTypo]}>Invited!!</Text>
       			<Text style={[styles.inviteFailed, styles.inviteTypo]}>Invite Failed!</Text>
-      			<View style={[styles.blackThemeCreateGroupChild9, styles.blackGroupBg1]} />
+      			<View style={[styles.blackThemeCreateGroupChild6, styles.blackGroupBg1]} />
       			<Pressable style={[styles.create, styles.createPosition]} onPress={()=>{}}>
         				<Text style={[styles.create1, styles.fileTypo]}>Create</Text>
       			</Pressable>
-      			<View style={[styles.blackThemeCreateGroupChild10, styles.blackGroupBg]} />
+      			<View style={[styles.blackThemeCreateGroupChild7, styles.blackGroupBg]} />
       			<Text style={styles.groupNameHere}>Group Name Here</Text>
-      			<View style={[styles.blackThemeCreateGroupChild11, styles.blackGroupBg1]} />
+      			<View style={[styles.blackThemeCreateGroupChild8, styles.blackGroupBg1]} />
       			<Text style={[styles.invite, styles.createPosition]}>Invite</Text>
       			<Image style={styles.rectangleIcon} resizeMode="cover" source="Rectangle 46.png" />
       			<Text style={styles.description}>Description</Text>
@@ -61,7 +61,7 @@ const BlackThemeCreateGroup = () => {
           					<Image style={styles.icon} resizeMode="cover" source="chat_bubble.png" />
         				</Pressable>
         				<Text style={[styles.chats, styles.homeTypo]}>Chats</Text>
-        				<Image style={styles.frameChild} resizeMode="cover" source="Ellipse 3.png" />
+        				<Image style={styles.greenEllipseIcon} resizeMode="cover" source="Green Ellipse.png" />
         				<Image style={[styles.plusCircleIcon, styles.iconLayout]} resizeMode="cover" source="Plus circle.png" />
       			</View>
     		</View>);
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     		fontFamily: "Inter-Regular",
     		position: "absolute"
   	},
-  	blackGroupLayout2: {
+  	blackGroupLayout1: {
     		height: 71,
     		width: 454,
     		borderRadius: 16,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     		backgroundColor: "#1e1c1d",
     		position: "absolute"
   	},
-  	blackGroupLayout1: {
+  	blackGroupLayout: {
     		left: 12,
     		height: 71,
     		width: 454,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     		backgroundColor: "#1e1c1d",
     		position: "absolute"
   	},
-  	blackGroupLayout: {
+  	grayIconLayout: {
     		height: 50,
     		width: 54,
     		left: 34,
@@ -314,16 +314,16 @@ const styles = StyleSheet.create({
   	blackThemeCreateGroupChild5: {
     		top: 832
   	},
-  	ellipseIcon: {
+  	grayEllipseIcon: {
     		top: 609
   	},
-  	blackThemeCreateGroupChild6: {
+  	grayEllipseIcon1: {
     		top: 682
   	},
-  	blackThemeCreateGroupChild7: {
+  	grayEllipseIcon2: {
     		top: 765
   	},
-  	blackThemeCreateGroupChild8: {
+  	grayEllipseIcon3: {
     		top: 842
   	},
   	name: {
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
     		color: "#ff0105",
     		position: "absolute"
   	},
-  	blackThemeCreateGroupChild9: {
+  	blackThemeCreateGroupChild6: {
     		top: 17,
     		left: 377,
     		borderRadius: 20,
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
   	create: {
     		top: 26
   	},
-  	blackThemeCreateGroupChild10: {
+  	blackThemeCreateGroupChild7: {
     		top: 188,
     		left: 77,
     		borderRadius: 13,
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
     		fontFamily: "Inter-Regular",
     		position: "absolute"
   	},
-  	blackThemeCreateGroupChild11: {
+  	blackThemeCreateGroupChild8: {
     		top: 857,
     		left: 382,
     		borderRadius: 7,
@@ -480,7 +480,7 @@ const styles = StyleSheet.create({
     		height: 21,
     		top: 81
   	},
-  	frameChild: {
+  	greenEllipseIcon: {
     		left: 236,
     		width: 60,
     		height: 60,

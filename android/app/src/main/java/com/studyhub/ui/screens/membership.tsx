@@ -11,25 +11,25 @@ const BlackThemeMembership = () => {
       			<Text style={[styles.chooseYourPlan, styles.basic5moFlexBox]}>{`Choose Your
 
       			Plan`}</Text>
-    		<Pressable style={styles.arrowBack} onPress={()=>{}}>
-      			<Image style={styles.icon} resizeMode="cover" source="arrow_back.png" />
+    		<Pressable style={styles.whiteBackArrow} onPress={()=>{}}>
+      			<Image style={styles.icon} resizeMode="cover" source="white back arrow.png" />
     		</Pressable>
-    		<View style={[styles.ellipseParent, styles.ellipseLayout]}>
-      			<Image style={[styles.frameChild, styles.frameLayout]} resizeMode="cover" source="Ellipse 15.png" />
+    		<View style={[styles.greenEllipseParent, styles.greenLayout]}>
+      			<Image style={[styles.greenEllipseIcon, styles.greenIconLayout]} resizeMode="cover" source="Green Ellipse.png" />
       			<Text style={[styles.text, styles.textLayout]}>1</Text>
-      			<View style={[styles.frameItem, styles.frameItemLayout]} />
+      			<View style={[styles.frameChild, styles.frameLayout]} />
       			<Text style={[styles.basic5mo, styles.basic5moTypo]}>Basic - $5/mo</Text>
       			<Text style={[styles.removedPopupAds, styles.removedLayout]}>{`removed popup ads
         				more file space`}</Text>
     		</View>
-    		<View style={[styles.ellipseGroup, styles.ellipseLayout]}>
-      			<Image style={[styles.frameInner, styles.frameLayout]} resizeMode="cover" source="Ellipse 16.png" />
+    		<View style={[styles.greenEllipseGroup, styles.greenLayout]}>
+      			<Image style={[styles.greenEllipseIcon1, styles.greenIconLayout]} resizeMode="cover" source="Green Ellipse.png" />
       			<Text style={[styles.text1, styles.textLayout]}>2</Text>
-      			<View style={[styles.rectangleView, styles.frameItemLayout]} />
+      			<View style={[styles.frameItem, styles.frameLayout]} />
       			<Text style={[styles.intermediate10mo, styles.intermediate10moTypo]}>Intermediate  - $10/mo</Text>
       			<Text style={[styles.removedPopupAds1, styles.intermediate10moTypo]}>{`removed popup ads
         				even more file space`}</Text>
-      			<Image style={[styles.checkIcon, styles.textLayout]} resizeMode="cover" source="check.png" />
+      			<Image style={[styles.whiteCheckIcon, styles.textLayout]} resizeMode="cover" source="white check.png" />
     		</View>
   	</View>);
 };
@@ -44,7 +44,7 @@ basic5moFlexBox: {
   	display: "flex",
   	color: "#fff"
 },
-ellipseLayout: {
+greenLayout: {
   	height: 101,
   	width: 316,
   	backgroundColor: "#5a5858",
@@ -53,7 +53,7 @@ ellipseLayout: {
   	position: "absolute",
   	overflow: "hidden"
 },
-frameLayout: {
+greenIconLayout: {
   	height: 40,
   	width: 40,
   	top: 31,
@@ -65,7 +65,7 @@ textLayout: {
   	top: 40,
   	position: "absolute"
 },
-frameItemLayout: {
+frameLayout: {
   	height: 20,
   	width: 20,
   	borderWidth: 1,
@@ -146,14 +146,14 @@ icon: {
   	height: "100%",
   	width: "100%"
 },
-arrowBack: {
+whiteBackArrow: {
   	left: 29,
   	top: 72,
   	width: 24,
   	height: 24,
   	position: "absolute"
 },
-frameChild: {
+greenEllipseIcon: {
   	left: 14
 },
 text: {
@@ -169,7 +169,7 @@ text: {
   	width: 22,
   	top: 40
 },
-frameItem: {
+frameChild: {
   	top: 42,
   	left: 263
 },
@@ -193,10 +193,10 @@ removedPopupAds: {
   	letterSpacing: 0,
   	position: "absolute"
 },
-ellipseParent: {
+greenEllipseParent: {
   	top: 227
 },
-frameInner: {
+greenEllipseIcon1: {
   	left: 18
 },
 text1: {
@@ -212,7 +212,7 @@ text1: {
   	width: 22,
   	top: 40
 },
-rectangleView: {
+frameItem: {
   	top: 41,
   	left: 264,
   	backgroundColor: "#0cca6e"
@@ -234,10 +234,10 @@ removedPopupAds1: {
   	top: 31,
   	left: 65
 },
-checkIcon: {
+whiteCheckIcon: {
   	left: 263
 },
-ellipseGroup: {
+greenEllipseGroup: {
   	top: 399
 },
 blackThemeMembership: {

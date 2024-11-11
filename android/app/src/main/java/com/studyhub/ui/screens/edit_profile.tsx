@@ -7,7 +7,7 @@ const BlackThemeEditProfile = () => {
     		<ScrollView style={styles.blackThemeEditProfile}>
       			<View style={[styles.arrowBackParent, styles.atSignIconPosition]}>
         				<Image style={[styles.arrowBackIcon, styles.listIconLayout]} resizeMode="cover" source="arrow_back.png" />
-        				<Image style={styles.frameChild} resizeMode="cover" source="Ellipse 4.png" />
+        				<Image style={styles.grayEllipseIcon} resizeMode="cover" source="Gray Ellipse.png" />
         				<Text style={[styles.profileName, styles.profileTypo]}>Profile Name</Text>
         				<Image style={styles.plusIcon} resizeMode="cover" source="Plus.png" />
       			</View>
@@ -15,7 +15,7 @@ const BlackThemeEditProfile = () => {
         				<Pressable style={[styles.arrowBackIcon, styles.listIconLayout]} onPress={()=>{}}>
           					<Image style={styles.icon} resizeMode="cover" source="arrow_back.png" />
         				</Pressable>
-        				<Image style={styles.frameChild} resizeMode="cover" source="Ellipse 4.png" />
+        				<Image style={styles.grayEllipseIcon} resizeMode="cover" source="Ellipse 4.png" />
         				<Text style={[styles.profileName, styles.profileTypo]}>Profile Name</Text>
         				<Image style={styles.plusIcon} resizeMode="cover" source="Plus.png" />
       			</View>
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     		position: "absolute",
     		top: 32
   	},
-  	frameChild: {
+  	grayEllipseIcon: {
     		top: 13,
     		left: 79,
     		width: 60,
