@@ -1,7 +1,13 @@
 import * as React from "react";
-import {Image, StyleSheet, Text, Pressable, View} from "react-native";
+import {Image, StyleSheet, Text, Pressable, View, Button} from "react-native";
+import {
+  createStaticNavigation,
+  useNavigation,
+} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const BlackThemeHomePage = () => {
+    const navigation = useNavigation();
 
   	return (
     		<View style={styles.blackThemeHomePage}>
@@ -28,6 +34,7 @@ const BlackThemeHomePage = () => {
       			<View style={[styles.stateLayer, styles.stateFlexBox]}>
         				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
       			</View>
+
       			<Text style={[styles.webDevelopment, styles.webTypo]}>Web Development</Text>
       			<Text style={[styles.angularForBeginners, styles.angularTypo]}>Angular for beginners</Text>
       			<View style={[styles.blackThemeHomePageInner, styles.blackChildLayout]} />
@@ -59,6 +66,16 @@ const BlackThemeHomePage = () => {
       			<Text style={[styles.angularForBeginners3, styles.angularTypo]}>Angular for beginners</Text>
       			<View style={[styles.blackThemeHomePageChild8, styles.webDevelopment3Position]} />
     		</View>);
+
+    		<View>
+                <Button
+                    onPress={ () => {
+                        navigation.navigate("Profile")
+                    }}
+                    title="Profile"
+                    color="#841584"
+                />
+            </View>
 };
 
 const styles = StyleSheet.create({
