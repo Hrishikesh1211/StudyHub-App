@@ -27,9 +27,9 @@
       "runtimeFiles": [
         "/home/Ifryx/AndroidStudioProjects/test/StudyHub/android/app/build/intermediates/cxx/Debug/2l3156r2/obj/x86_64/libreact_codegen_safeareacontext.so",
         "/home/Ifryx/AndroidStudioProjects/test/StudyHub/android/app/build/intermediates/cxx/Debug/2l3156r2/obj/x86_64/libreact_codegen_rnscreens.so",
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/eb4b98dea289284ca2b26e9265bd49ab/transformed/fbjni-0.6.0/prefab/modules/fbjni/libs/android.x86_64/libfbjni.so",
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/53ca3ec166779873078450fc2e43b919/transformed/react-android-0.76.1-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/53ca3ec166779873078450fc2e43b919/transformed/react-android-0.76.1-debug/prefab/modules/reactnative/libs/android.x86_64/libreactnative.so"
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/c85bd084d165cfbc0b28c6243cd0e365/transformed/fbjni-0.6.0/prefab/modules/fbjni/libs/android.x86_64/libfbjni.so",
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/fb4ffc4ffe990bedb67f94481708cff7/transformed/react-android-0.76.1-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/fb4ffc4ffe990bedb67f94481708cff7/transformed/react-android-0.76.1-debug/prefab/modules/reactnative/libs/android.x86_64/libreactnative.so"
       ]
     },
     "react_codegen_rnscreens::@25bcbd507e98d3a854ad": {
@@ -38,9 +38,9 @@
       "artifactName": "react_codegen_rnscreens",
       "output": "/home/Ifryx/AndroidStudioProjects/test/StudyHub/android/app/build/intermediates/cxx/Debug/2l3156r2/obj/x86_64/libreact_codegen_rnscreens.so",
       "runtimeFiles": [
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/53ca3ec166779873078450fc2e43b919/transformed/react-android-0.76.1-debug/prefab/modules/reactnative/libs/android.x86_64/libreactnative.so",
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/53ca3ec166779873078450fc2e43b919/transformed/react-android-0.76.1-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/eb4b98dea289284ca2b26e9265bd49ab/transformed/fbjni-0.6.0/prefab/modules/fbjni/libs/android.x86_64/libfbjni.so"
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/fb4ffc4ffe990bedb67f94481708cff7/transformed/react-android-0.76.1-debug/prefab/modules/reactnative/libs/android.x86_64/libreactnative.so",
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/fb4ffc4ffe990bedb67f94481708cff7/transformed/react-android-0.76.1-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/c85bd084d165cfbc0b28c6243cd0e365/transformed/fbjni-0.6.0/prefab/modules/fbjni/libs/android.x86_64/libfbjni.so"
       ]
     },
     "react_codegen_safeareacontext::@7984cd80db47aa7b952a": {
@@ -49,9 +49,9 @@
       "artifactName": "react_codegen_safeareacontext",
       "output": "/home/Ifryx/AndroidStudioProjects/test/StudyHub/android/app/build/intermediates/cxx/Debug/2l3156r2/obj/x86_64/libreact_codegen_safeareacontext.so",
       "runtimeFiles": [
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/eb4b98dea289284ca2b26e9265bd49ab/transformed/fbjni-0.6.0/prefab/modules/fbjni/libs/android.x86_64/libfbjni.so",
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/53ca3ec166779873078450fc2e43b919/transformed/react-android-0.76.1-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
-        "/home/Ifryx/.gradle/caches/8.10.2/transforms/53ca3ec166779873078450fc2e43b919/transformed/react-android-0.76.1-debug/prefab/modules/reactnative/libs/android.x86_64/libreactnative.so"
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/c85bd084d165cfbc0b28c6243cd0e365/transformed/fbjni-0.6.0/prefab/modules/fbjni/libs/android.x86_64/libfbjni.so",
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/fb4ffc4ffe990bedb67f94481708cff7/transformed/react-android-0.76.1-debug/prefab/modules/jsi/libs/android.x86_64/libjsi.so",
+        "/home/Ifryx/.gradle/caches/8.10.2/transforms/fb4ffc4ffe990bedb67f94481708cff7/transformed/react-android-0.76.1-debug/prefab/modules/reactnative/libs/android.x86_64/libreactnative.so"
       ]
     }
   },

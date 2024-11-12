@@ -13,8 +13,8 @@ import {
   createStaticNavigation,
   useNavigation,
 } from '@react-navigation/native';
-import BlackThemeHomePage from "./android/app/src/main/java/com/studyhub/ui/screensHomePage.js";
-import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ui/screens/ProfilePage.js';
+import BlackThemeHomePage from "./android/app/src/main/java/com/studyhub/ui/screens/HomePage.tsx";
+import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ui/screens/ProfilePage.tsx';
 import {
   SafeAreaView,
   ScrollView,
