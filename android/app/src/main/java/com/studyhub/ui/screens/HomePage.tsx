@@ -1,65 +1,112 @@
 import * as React from "react";
-import {Image, StyleSheet, Text, Pressable, View} from "react-native";
+import {Image, StyleSheet, Text, Pressable, View, FlatList} from "react-native";
+import {BlackThemeCreateGroup} from "./CreateGroup.tsx"
+import { useNavigation, } from '@react-navigation/native';
 
 const BlackThemeHomePage = () => {
 
-  	return (
-    		<View style={styles.blackThemeHomePage}>
-      			<View style={styles.homeParent}>
-        				<Image style={[styles.homeIcon, styles.iconLayout1]} resizeMode="cover" source="Home.png" />
-        				<Text style={[styles.home, styles.homeFlexBox]}>Home</Text>
-        				<Text style={[styles.games, styles.gamesTypo]}>Games</Text>
-        				<Image style={[styles.boxIcon, styles.iconLayout1]} resizeMode="cover" source="Box.png" />
-        				<Image style={[styles.personIcon, styles.iconLayout1]} resizeMode="cover" source="person.png" />
-        				<Text style={[styles.profile, styles.profileLayout]}>Profile</Text>
-        				<Pressable style={styles.chatBubble} onPress={()=>{}}>
-          					<Image style={styles.iconLayout} resizeMode="cover" source="chat_bubble.png" />
-        				</Pressable>
-        				<Text style={styles.chats}>Chats</Text>
-        				<Image style={styles.greenEllipseIcon} resizeMode="cover" source="Green Ellipse.png" />
-        				<Pressable style={[styles.plusCircle, styles.profileLayout]} onPress={()=>{}}>
-          					<Image style={[styles.icon1, styles.iconLayout]} resizeMode="cover" source="Plus circle.png" />
-        				</Pressable>
-      			</View>
-      			<Pressable style={[styles.blackThemeHomePageChild, styles.blackChildLayout2]} onPress={()=>{}} />
-      			<Text style={styles.myGroups}>My Groups</Text>
-      			<View style={[styles.blackThemeHomePageItem, styles.blackChildLayout1]} />
-      			<Text style={[styles.addFavorite, styles.addTypo]}>Add Favorite</Text>
-      			<View style={[styles.stateLayer, styles.stateFlexBox]}>
-        				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
-      			</View>
-      			<Text style={[styles.webDevelopment, styles.webTypo]}>Web Development</Text>
-      			<Text style={[styles.angularForBeginners, styles.angularTypo]}>Angular for beginners</Text>
-      			<View style={[styles.blackThemeHomePageInner, styles.blackChildLayout]} />
-      			<View style={[styles.rectangleView, styles.blackChildLayout2]} />
-      			<View style={[styles.blackThemeHomePageChild1, styles.blackChildLayout1]} />
-      			<Text style={[styles.addFavorite1, styles.addTypo]}>Add Favorite</Text>
-      			<View style={[styles.stateLayer1, styles.stateFlexBox]}>
-        				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
-      			</View>
-      			<Text style={[styles.webDevelopment1, styles.webDevelopment1Position]}>Web Development</Text>
-      			<Text style={[styles.angularForBeginners1, styles.angularTypo]}>Angular for beginners</Text>
-      			<View style={[styles.blackThemeHomePageChild2, styles.webDevelopment1Position]} />
-      			<View style={[styles.blackThemeHomePageChild3, styles.blackChildLayout2]} />
-      			<View style={[styles.blackThemeHomePageChild4, styles.blackChildLayout1]} />
-      			<Text style={[styles.addFavorite2, styles.addTypo]}>Add Favorite</Text>
-      			<View style={[styles.stateLayer2, styles.stateFlexBox]}>
-        				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
-      			</View>
-      			<Text style={[styles.webDevelopment2, styles.webDevelopment2Position]}>Web Development</Text>
-      			<Text style={[styles.angularForBeginners2, styles.angularTypo]}>Angular for beginners</Text>
-      			<View style={[styles.blackThemeHomePageChild5, styles.webDevelopment2Position]} />
-      			<View style={[styles.blackThemeHomePageChild6, styles.blackChildLayout2]} />
-      			<View style={[styles.blackThemeHomePageChild7, styles.blackChildLayout1]} />
-      			<Text style={[styles.addFavorite3, styles.addTypo]}>Add Favorite</Text>
-      			<View style={[styles.stateLayer3, styles.stateFlexBox]}>
-        				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
-      			</View>
-      			<Text style={[styles.webDevelopment3, styles.webDevelopment3Position]}>Web Development</Text>
-      			<Text style={[styles.angularForBeginners3, styles.angularTypo]}>Angular for beginners</Text>
-      			<View style={[styles.blackThemeHomePageChild8, styles.webDevelopment3Position]} />
-    		</View>);
+    return (
+        <FlatList
+            data={DATA}
+            renderItem={({ item }) => (
+                <View>
+                    <GroupButton/>
+                    <GroupButton/>
+                </View>
+            )}
+        />
+    )
 };
+
+const DATA: object[] = [
+   {
+       "title": "test"
+   },
+   {
+       "title": "test"
+   },
+   {
+        "title": "test"
+   },
+   {
+        "title": "test"
+   },
+   {
+        "title": "test"
+   },
+]
+
+const GroupButton = () => {
+
+    return (
+        <View>
+            <Text>test</Text>
+        </View>
+   )
+}
+
+const oldpage = () => {
+    const nav = useNavigation();
+
+      	return (
+        		<View style={styles.blackThemeHomePage}>
+          			<View style={styles.homeParent}>
+            				<Image style={[styles.homeIcon, styles.iconLayout1]} resizeMode="cover" source="Home.png" />
+            				<Text style={[styles.home, styles.homeFlexBox]}>Home</Text>
+            				<Text style={[styles.games, styles.gamesTypo]}>Games</Text>
+            				<Image style={[styles.boxIcon, styles.iconLayout1]} resizeMode="cover" source="Box.png" />
+            				<Image style={[styles.personIcon, styles.iconLayout1]} resizeMode="cover" source="person.png" />
+            				<Text style={[styles.profile, styles.profileLayout]}>Profile</Text>
+            				<Pressable style={styles.chatBubble} onPress={()=>{}}>
+              					<Image style={styles.iconLayout} resizeMode="cover" source="chat_bubble.png" />
+            				</Pressable>
+            				<Text style={styles.chats}>Chats</Text>
+            				<Image style={styles.greenEllipseIcon} resizeMode="cover" source="Green Ellipse.png" />
+            				<Pressable style={[styles.plusCircle, styles.profileLayout]} onPress={()=>{}}>
+              					<Image style={[styles.icon1, styles.iconLayout]} resizeMode="cover" source="Plus circle.png" />
+            				</Pressable>
+          			</View>
+          			<Pressable style={[styles.blackThemeHomePageChild, styles.blackChildLayout2]} onPress={()=>{
+                            nav.navigate("Profile");
+                          }} />
+          			<Text style={styles.myGroups}>My Groups</Text>
+          			<View style={[styles.blackThemeHomePageItem, styles.blackChildLayout1]} />
+          			<Text style={[styles.addFavorite, styles.addTypo]}>Add Favorite</Text>
+          			<View style={[styles.stateLayer, styles.stateFlexBox]}>
+            				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
+          			</View>
+          			<Text style={[styles.webDevelopment, styles.webTypo]}>Web Development</Text>
+          			<Text style={[styles.angularForBeginners, styles.angularTypo]}>Angular for beginners</Text>
+          			<View style={[styles.blackThemeHomePageInner, styles.blackChildLayout]} />
+          			<View style={[styles.rectangleView, styles.blackChildLayout2]} />
+          			<View style={[styles.blackThemeHomePageChild1, styles.blackChildLayout1]} />
+          			<Text style={[styles.addFavorite1, styles.addTypo]}>Add Favorite</Text>
+          			<View style={[styles.stateLayer1, styles.stateFlexBox]}>
+            				<Image style={styles.icon2} resizeMode="cover" source="../images/black_icon.png" />
+          			</View>
+          			<Text style={[styles.webDevelopment1, styles.webDevelopment1Position]}>Web Development</Text>
+          			<Text style={[styles.angularForBeginners1, styles.angularTypo]}>Angular for beginners</Text>
+          			<View style={[styles.blackThemeHomePageChild2, styles.webDevelopment1Position]} />
+          			<View style={[styles.blackThemeHomePageChild3, styles.blackChildLayout2]} />
+          			<View style={[styles.blackThemeHomePageChild4, styles.blackChildLayout1]} />
+          			<Text style={[styles.addFavorite2, styles.addTypo]}>Add Favorite</Text>
+          			<View style={[styles.stateLayer2, styles.stateFlexBox]}>
+            				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
+          			</View>
+          			<Text style={[styles.webDevelopment2, styles.webDevelopment2Position]}>Web Development</Text>
+          			<Text style={[styles.angularForBeginners2, styles.angularTypo]}>Angular for beginners</Text>
+          			<View style={[styles.blackThemeHomePageChild5, styles.webDevelopment2Position]} />
+          			<View style={[styles.blackThemeHomePageChild6, styles.blackChildLayout2]} />
+          			<View style={[styles.blackThemeHomePageChild7, styles.blackChildLayout1]} />
+          			<Text style={[styles.addFavorite3, styles.addTypo]}>Add Favorite</Text>
+          			<View style={[styles.stateLayer3, styles.stateFlexBox]}>
+            				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
+          			</View>
+          			<Text style={[styles.webDevelopment3, styles.webDevelopment3Position]}>Web Development</Text>
+          			<Text style={[styles.angularForBeginners3, styles.angularTypo]}>Angular for beginners</Text>
+          			<View style={[styles.blackThemeHomePageChild8, styles.webDevelopment3Position]} />
+        		</View>);
+}
 
 const styles = StyleSheet.create({
   	iconLayout1: {
