@@ -12,7 +12,9 @@ import type {PropsWithChildren} from 'react';
 import { createStaticNavigation, useNavigation, } from '@react-navigation/native';
 import BlackThemeHomePage from "./android/app/src/main/java/com/studyhub/ui/screens/HomePage.tsx";
 import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ui/screens/ProfilePage.tsx';
-import TestScreen from './android/app/src/main/java/com/studyhub/ui/screens/testscreen.tsx';
+import BlackThemeCreateGroup from './android/app/src/main/java/com/studyhub/ui/screens/CreateGroup.tsx';
+import BlackThemeSingleChats from './android/app/src/main/java/com/studyhub/ui/screens/SingleChats.tsx';
+
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button } from 'react-native';
 
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
@@ -50,7 +52,10 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 const Stack = createNativeStackNavigator({
     screens: {
         Home: BlackThemeHomePage,
-        Profile: BlackThemeProfile
+        Profile: BlackThemeProfile,
+        CreateGroup: BlackThemeCreateGroup,
+        Chats: BlackThemeSingleChats,
+
     },
   });
 

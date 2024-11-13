@@ -1,46 +1,38 @@
 import * as React from "react";
-import {Image, StyleSheet, Text, Pressable, View, FlatList} from "react-native";
+import {Image, StyleSheet, Text, Pressable, View, ScrollView, Button, Alert} from "react-native";
 import {BlackThemeCreateGroup} from "./CreateGroup.tsx"
 import { useNavigation, } from '@react-navigation/native';
+import {MenuBar} from "../components/MenuBar.tsx"
 
 const BlackThemeHomePage = () => {
 
     return (
-        <FlatList
-            data={DATA}
-            renderItem={({ item }) => (
-                <View>
-                    <GroupButton/>
-                    <GroupButton/>
-                </View>
-            )}
-        />
+        <View>
+
+
+            <MenuBar/>
+        </View>
     )
 };
 
-const DATA: object[] = [
-   {
-       "title": "test"
-   },
-   {
-       "title": "test"
-   },
-   {
-        "title": "test"
-   },
-   {
-        "title": "test"
-   },
-   {
-        "title": "test"
-   },
-]
+class GroupData {
+    constructor(name, category, id) {
+        this.name = name;
+        this.category = category;
+        this.id = id;
+    }
+}
 
 const GroupButton = () => {
+    const nav = useNavigation()
 
+    let data = new GroupData("Angular for beginners", "Web Development", 0);
     return (
         <View>
-            <Text>test</Text>
+            <Button title={`${data.name}`} onPress={() => {
+                nav.navigate("Profile")
+            }}
+            ></Button>
         </View>
    )
 }
