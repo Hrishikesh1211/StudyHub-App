@@ -3,14 +3,21 @@ import {Image, StyleSheet, Text, Pressable, View, ScrollView, Button, Alert} fro
 import {BlackThemeCreateGroup} from "./CreateGroup.tsx"
 import { useNavigation, } from '@react-navigation/native';
 import {MenuBar} from "../components/MenuBar.tsx"
+const favorite_icon = require("../../../../../res/icons-mdpi/black_icon.png");
 
 const BlackThemeHomePage = () => {
 
     return (
-        <View>
-
-
+        <View style={styles.blackThemeHomePage}>
+            <Text style={styles.myGroups}>My Groups</Text>
+            <ScrollView>
+                <GroupButton/>
+                <GroupButton/>
+                <GroupButton/>
+                <GroupButton/>
+            </ScrollView>
             <MenuBar/>
+
         </View>
     )
 };
@@ -28,20 +35,114 @@ const GroupButton = () => {
 
     let data = new GroupData("Angular for beginners", "Web Development", 0);
     return (
-        <View>
-            <Button title={`${data.name}`} onPress={() => {
-                nav.navigate("Profile")
-            }}
-            ></Button>
+        <View style={newStyles.groupButton}>
+            <Pressable onPress={ () => {
+                Alert.alert("Clicked group button")
+            }}>
+                <View style={newStyles.buttonContainer}>
+                    <Text style={newStyles.courseCategory}>Web Development</Text>
+                    <Text style={newStyles.courseName}>Angular for beginners</Text>
+                    <View style={newStyles.groupPicture} />
+                    <Pressable onPress={ () => {
+                        Alert.alert("Clicked favorite button")
+                    }}>
+                        <View style={newStyles.favoriteContainer}>
+                            <Text style={newStyles.favoriteText}>Add Favorite</Text>
+                            <Image style={newStyles.favoriteIcon} resizeMode="cover" source={favorite_icon} />
+                        </View>
+                    </Pressable>
+                </View>
+            </Pressable>
         </View>
    )
 }
+
+const newStyles = StyleSheet.create({
+    groupButton: {
+        left: 25,
+        top: 100,
+        paddingVertical: 5,
+    },
+    buttonContainer: {
+        height: 143,
+        width: 363,
+        borderRadius: 20,
+        backgroundColor: "#282828",
+        position: "relative"
+    },
+    groupPicture: {
+        height: 70,
+        width: 70,
+        backgroundColor: "#d9d9d9",
+        left: 12,
+        top: 12,
+        borderRadius: 20,
+        position: "absolute"
+    },
+    courseCategory: {
+        width: 112,
+        textAlign: "left",
+    	fontSize: 12,
+   		left: 93,
+   		top: 17,
+   		height: 21,
+   		color: "#fff",
+   	    fontFamily: "InstrumentSans-Bold",
+   		fontWeight: "700",
+    	lineHeight: 22,
+    	position: "absolute"
+    },
+    courseName: {
+        height: 48,
+        width: 214,
+        textAlign: "left",
+        left: 93,
+        top: 38,
+        fontSize: 20,
+        color: "#fff",
+        fontFamily: "InstrumentSans-Bold",
+        fontWeight: "700",
+        lineHeight: 22,
+        position: "absolute"
+    },
+    favoriteContainer: {
+        height: 25,
+        width: 100,
+        backgroundColor: "#1b1b1b",
+        borderRadius: 10,
+        left: 245,
+        top: 105,
+        position: "absolute"
+    },
+    favoriteIcon: {
+        width: 20,
+        height: 20,
+        left: 2,
+        top: 3,
+        position: "absolute"
+    },
+    favoriteText: {
+        height: 22,
+        width: 85,
+        color: "#595959",
+        fontSize: 10,
+        left: 15,
+        top: 2,
+        textAlign: "center",
+        fontFamily: "InstrumentSans-Bold",
+        fontWeight: "700",
+        lineHeight: 22,
+        position: "absolute"
+    }
+
+})
 
 const oldpage = () => {
     const nav = useNavigation();
 
       	return (
-        		<View style={styles.blackThemeHomePage}>
+        		<View>
+
           			<View style={styles.homeParent}>
             				<Image style={[styles.homeIcon, styles.iconLayout1]} resizeMode="cover" source="Home.png" />
             				<Text style={[styles.home, styles.homeFlexBox]}>Home</Text>
@@ -67,6 +168,7 @@ const oldpage = () => {
           			<View style={[styles.stateLayer, styles.stateFlexBox]}>
             				<Image style={styles.icon2} resizeMode="cover" source="Icon.png" />
           			</View>
+
           			<Text style={[styles.webDevelopment, styles.webTypo]}>Web Development</Text>
           			<Text style={[styles.angularForBeginners, styles.angularTypo]}>Angular for beginners</Text>
           			<View style={[styles.blackThemeHomePageInner, styles.blackChildLayout]} />
@@ -75,6 +177,7 @@ const oldpage = () => {
           			<Text style={[styles.addFavorite1, styles.addTypo]}>Add Favorite</Text>
           			<View style={[styles.stateLayer1, styles.stateFlexBox]}>
             				<Image style={styles.icon2} resizeMode="cover" source="../images/black_icon.png" />
+
           			</View>
           			<Text style={[styles.webDevelopment1, styles.webDevelopment1Position]}>Web Development</Text>
           			<Text style={[styles.angularForBeginners1, styles.angularTypo]}>Angular for beginners</Text>
@@ -310,7 +413,7 @@ const styles = StyleSheet.create({
     		top: 163
   	},
   	myGroups: {
-    		top: 119,
+    		top: 50,
     		left: 25,
     		width: 119,
     		height: 23,
