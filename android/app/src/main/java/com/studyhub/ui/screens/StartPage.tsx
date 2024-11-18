@@ -4,7 +4,7 @@ import { useNavigation, } from '@react-navigation/native';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
-// const appleIcon = require("../../../../../res/icons-mdpi/white_apple.png");
+const appleIcon = require("../../../../../res/icons-mdpi/white_apple.png");
 const atIcon = require("../../../../../res/icons-mdpi/green_at_sign.png");
 const lockIcon = require("../../../../../res/icons-mdpi/green_lock.png");
 
@@ -40,7 +40,7 @@ const BlackThemeStartPage = () => {
                 <Pressable style={[newStyles.socialButton, newStyles.appleButton]} onPress={() => {
                     Alert.alert("apple");
                 }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={googleIcon} />
+                    <Image style={newStyles.socialIcon} resizeMode="cover" source={appleIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
                     Alert.alert("google");
