@@ -2,35 +2,52 @@ import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image} from "react-native";
 
 const BlackThemeStartPage = () => {
-
   	return (
-    		<View style={styles.blackThemeStartPage}>
-      			<Pressable style={[styles.signUpWrapper, styles.wrapperLayout]} onPress={()=>{}}>
-        				<Text style={styles.signUp}>Sign Up</Text>
-      			</Pressable>
-      			<View style={[styles.iHaveAnAccountWrapper, styles.wrapperLayout]}>
-        				<Text style={styles.signUp}>I have an account</Text>
-      			</View>
-      			<View style={[styles.atSignParent, styles.parentLayout]}>
-        				<Image style={[styles.atSignIcon, styles.iconPosition]} resizeMode="cover" source="At sign.png" />
-        				<Text style={[styles.username, styles.usernameTypo]}>Username</Text>
-      			</View>
-      			<View style={[styles.lockParent, styles.parentLayout]}>
-        				<Image style={[styles.lockIcon, styles.iconPosition]} resizeMode="cover" source="Lock.png" />
-        				<Text style={[styles.password, styles.usernameTypo]}>Password</Text>
-      			</View>
-      			<Text style={styles.logInWith}>Log In With Social Media</Text>
-      			<Text style={styles.studyhub}>StudyHub</Text>
-      			<View style={[styles.blackThemeStartPageChild, styles.rectangleViewLayout]} />
-      			<View style={[styles.blackThemeStartPageItem, styles.blackLayout]} />
-      			<View style={[styles.blackThemeStartPageInner, styles.blackLayout]} />
-      			<View style={[styles.rectangleView, styles.rectangleViewLayout]} />
-      			<Image style={[styles.socialIcons, styles.socialLayout]} resizeMode="cover" source="Social Icons.png" />
-      			<Image style={[styles.socialIcons1, styles.socialLayout]} resizeMode="cover" source="Social Icons.png" />
-      			<Image style={[styles.socialIcons2, styles.socialLayout]} resizeMode="cover" source="Social Icons.png" />
-      			<Image style={[styles.facebookIcon, styles.socialLayout]} resizeMode="cover" source="Facebook.png" />
-    		</View>);
+        <OldPage/>
+    )
+
 };
+
+const newStyles = StyleSheet.create({
+    background: {
+        backgroundColor: "#000000cc",
+//         flex: 1,
+        width: "100%",
+        height: 932,
+        overflow: "hidden",
+    },
+});
+
+const OldPage = () => {
+    return (
+        <View style={styles.blackThemeStartPage}>
+            <Pressable style={[styles.signUpWrapper, styles.wrapperLayout]} onPress={()=>{}}>
+                <Text style={styles.signUp}>Sign Up</Text>
+            </Pressable>
+            <View style={[styles.iHaveAnAccountWrapper, styles.wrapperLayout]}>
+                <Text style={styles.signUp}>I have an account</Text>
+            </View>
+            <View style={[styles.atSignParent, styles.parentLayout]}>
+                <Image style={[styles.atSignIcon, styles.iconPosition]} resizeMode="cover" source="At sign.png" />
+                <Text style={[styles.username, styles.usernameTypo]}>Username</Text>
+            </View>
+            <View style={[styles.lockParent, styles.parentLayout]}>
+                <Image style={[styles.lockIcon, styles.iconPosition]} resizeMode="cover" source="Lock.png" />
+                <Text style={[styles.password, styles.usernameTypo]}>Password</Text>
+            </View>
+            <Text style={styles.logInWith}>Log In With Social Media</Text>
+            <Text style={styles.studyhub}>StudyHub</Text>
+            <View style={[styles.blackThemeStartPageChild, styles.rectangleViewLayout]} />
+            <View style={[styles.blackThemeStartPageItem, styles.blackLayout]} />
+            <View style={[styles.blackThemeStartPageInner, styles.blackLayout]} />
+            <View style={[styles.rectangleView, styles.rectangleViewLayout]} />
+            <Image style={[styles.socialIcons, styles.socialLayout]} resizeMode="cover" source="Social Icons.png" />
+            <Image style={[styles.socialIcons1, styles.socialLayout]} resizeMode="cover" source="Social Icons.png" />
+            <Image style={[styles.socialIcons2, styles.socialLayout]} resizeMode="cover" source="Social Icons.png" />
+            <Image style={[styles.facebookIcon, styles.socialLayout]} resizeMode="cover" source="Facebook.png" />
+        </View>
+    )
+}
 
 const styles = StyleSheet.create({
   	wrapperLayout: {
