@@ -4,15 +4,13 @@ import {Text, StyleSheet, View, Image, Pressable} from "react-native";
 const BlackThemeMembership = () => {
 
   	return (
-    		<View style={styles.blackThemeMembership}>
+    		<Scrollview style={styles.blackThemeMembership}>
       			<View style={styles.getStartedWrapper}>
         				<Text style={[styles.getStarted, styles.basic5moLayout]}>Get Started</Text>
       			</View>
-      			<Text style={[styles.chooseYourPlan, styles.basic5moFlexBox]}>{`Choose Your
-
-      			Plan`}</Text>
+      			<Text style={[styles.chooseYourPlan, styles.basic5moFlexBox]}>{`Choose Your Plan`}</Text>
     		<Pressable style={styles.whiteBackArrow} onPress={()=>{}}>
-      			<Image style={styles.icon} resizeMode="cover" source="white back arrow.png" />
+      			<Image style={styles.icon} resizeMode="cover"  source={require('./assets/white_back_arrow.png')} />
     		</Pressable>
     		<View style={[styles.greenEllipseParent, styles.greenLayout]}>
       			<Image style={[styles.greenEllipseIcon, styles.greenIconLayout]} resizeMode="cover" source="Green Ellipse.png" />
@@ -31,7 +29,7 @@ const BlackThemeMembership = () => {
         				even more file space`}</Text>
       			<Image style={[styles.whiteCheckIcon, styles.textLayout]} resizeMode="cover" source="white check.png" />
     		</View>
-  	</View>);
+  	</Scrollview>);
 };
 
 const styles = StyleSheet.create({
@@ -114,8 +112,8 @@ getStartedWrapper: {
   	left: 100,
   	shadowColor: "rgba(0, 0, 0, 0.25)",
   	shadowOffset: {
-    		width: 0,
-    		height: 4
+          width: 0,
+    	  height: 4
   	},
   	shadowRadius: 4,
   	elevation: 4,
@@ -126,6 +124,10 @@ getStartedWrapper: {
   	height: 58,
   	position: "absolute",
   	overflow: "hidden"
+  	paddingVertical: 15,
+    paddingHorizontal: 40,
+    alignItems: "center",
+    marginBottom: 40,
 },
 chooseYourPlan: {
   	top: 20,
