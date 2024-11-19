@@ -1,13 +1,17 @@
 import React from "react";
 import { ScrollView, View, Text, Image, Pressable, StyleSheet } from "react-native";
 
+const arrow = require("../../../../../res/icons-mdpi/white_arrow_back.png")
+const ellipse = require("../../../../../res/icons-mdpi/gray_ellipse.png")
+const plus = require("../../../../../res/icons-mdpi/white_plus_circle.png")
+
 // Header Component
 const Header = () => (
   <View style={headerStyles.container}>
-    <Image style={headerStyles.backIcon} source={require("arrow_back.png")} resizeMode="cover" />
-    <Image style={headerStyles.avatarIcon} source={require("Gray Ellipse.png")} resizeMode="cover" />
+    <Image style={headerStyles.backIcon} source={arrow} resizeMode="cover" />
+    <Image style={headerStyles.avatarIcon} source={ellipse} resizeMode="cover" />
     <Text style={headerStyles.profileName}>Profile Name</Text>
-    <Image style={headerStyles.addIcon} source={require("Plus.png")} resizeMode="cover" />
+    <Image style={headerStyles.addIcon} source={plus} resizeMode="cover" />
   </View>
 );
 

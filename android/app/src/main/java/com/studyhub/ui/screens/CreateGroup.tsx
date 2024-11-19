@@ -5,17 +5,21 @@ const BlackThemeCreateGroup = () => {
     return (
         <View style={newStyles.background}>
       			<View style={newStyles.screenContainer} />
-      			<View style={newStyles.groupIcon} />
+      			<View style={newStyles.groupIcon}>
+      			    <Image style={[styles.addIcon1, styles.iconPosition1]} resizeMode="cover" source="add.png" />
+      			</View>
       			<Image style={newStyles.addIcon} resizeMode="cover" source="add.png" />
 
-      			<View style={newStyles.addButton} />
-      			<View style={newStyles.addButton} />
-      			<View style={newStyles.addButton} />
-      			<Text style={[styles.people, styles.fileTypo]}>People</Text>
-      			<Text style={[styles.video, styles.fileTypo]}>Video</Text>
-      			<Text style={[styles.file, styles.fileTypo]}>File</Text>
+      			<View style={newStyles.addButton}>
+      			    <Text style={newStyles.addButtonText}>People</Text>
+      			</View>
+      			<View style={newStyles.addButton}>
+      			    <Text style={newStyles.addButtonText}>Video</Text>
+      			</View>
+      			<View style={newStyles.addButton}>
+      			    <Text style={newStyles.addButtonText}>File</Text>
+      			</View>
 
-      			<Image style={[styles.addIcon1, styles.iconPosition1]} resizeMode="cover" source="add.png" />
       			<Image style={[styles.addIcon2, styles.iconLayout]} resizeMode="cover" source="add.png" />
       			<Image style={[styles.personIcon, styles.iconPosition1]} resizeMode="cover" source="person.png" />
       			<Image style={[styles.playArrowFilledIcon, styles.iconLayout]} resizeMode="cover" source="play_arrow_filled.png" />
@@ -111,10 +115,14 @@ const newStyles = StyleSheet.create({
     addButton: {
         left: 192,
         borderRadius: 22,
-        top: 328,
+        top: 28,
         backgroundColor: "#1e1c1d",
         height: 100,
         width: 100
+    },
+    addButtonText: {
+        textAlign: "left",
+    	fontFamily: "Inter-Regular"
     },
     title: {
         left: 141,
