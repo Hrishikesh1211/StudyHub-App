@@ -1,6 +1,9 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert} from "react-native";
 import { useNavigation, } from '@react-navigation/native';
+import auth from '@react-native=firebase/auth';
+import { useState }  from 'react';
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -10,6 +13,37 @@ const lockIcon = require("../../../../../res/icons-mdpi/green_lock.png");
 
 const BlackThemeStartPage = () => {
     const nav = useNavigation();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState('');
+    const auth = FIREBASE.auth();
+
+    const signIn = async () => {
+        setLoading(true);
+        try {
+            const response = await signInWithEmailAndPassword(auth,username,password);
+            console.log(response);
+        } catch (error: any) {
+            console.log(error);
+            alert('Sign in failed: ' + error.message);
+            } finally {
+                    setLoading(false);
+                }
+       }
+
+   const signUp = async () => {
+           setLoading(true);
+           try {
+               const response = await createUserWithEmailAndPassword(auth,username,password);
+               console.log(response);
+               alert('Check your emails!');
+           } catch (error: any) {
+               console.log(error);
+               alert('User info taken: ' + error.message);
+               } finally {
+                       setLoading(false);
+                   }
+          }
 
   	return (
         <View style={newStyles.background}>
@@ -17,11 +51,13 @@ const BlackThemeStartPage = () => {
 
             <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
                 <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
-                <TextInput style={newStyles.credentialText} placeholder="Username"></TextInput>
+                <TextInput value={username} style={newStyles.credentialText} placeholder="Username"
+                onChangeText={(text) => setUsername(text)}></TextInput>
             </View>
             <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
                 <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
-                <TextInput style={newStyles.credentialText} placeholder="Password"></TextInput>
+                <TextInput secureTextEntry={true} value={password} style={newStyles.credentialText} placeholder="Password"
+                onChangeText={(text) => setPassword(text)}></TextInput>
             </View>
 
             <Text style={newStyles.socialText}>Log In With Social Media</Text>
@@ -49,17 +85,26 @@ const BlackThemeStartPage = () => {
                 </Pressable>
             </View>
 
-            <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                nav.navigate("Home");
-            }}>
-                <Text style={newStyles.buttonText}>Sign Up</Text>
-            </Pressable>
+            <KeyboardAvoidingView behavior="padding">
+                { loading ? <ActivityIndicator size="large" color="#0000ff" />
+                               : <>
+                                <Pressable style={[newStyles.signUpContainer,
+                                    newStyles.confirmButtonContainer]} onPress={()=>{
+                                                signUp();
+                                                //nav.navigate("Home");
+                                            }}>
+                                                <Text style={newStyles.buttonText}>Create Account</Text>
+                                            </Pressable>
 
-            <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                nav.navigate("Home");
-            }}>
-                <Text style={newStyles.buttonText}>I Have an Account</Text>
-            </Pressable>
+                                            <Pressable style={[newStyles.signInContainer,
+                                                newStyles.confirmButtonContainer]} onPress={()=>{
+                                                signIn()
+                                                //nav.navigate("Home");
+                                            }}>
+                                                <Text style={newStyles.buttonText}> Sign In</Text>
+                                            </Pressable>
+                                }
+            </KeyboardAvoidingView>
         </View>
     )
 

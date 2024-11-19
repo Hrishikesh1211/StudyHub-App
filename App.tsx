@@ -19,6 +19,9 @@ import BlackThemeStartPage from './android/app/src/main/java/com/studyhub/ui/scr
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button } from 'react-native';
 
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
+import { User } from 'firebase/auth';
+import auth from '@react-native=firebase/auth';
+import { useState }  from 'react';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -62,6 +65,15 @@ const Stack = createNativeStackNavigator({
   });
 
 function App(): React.JSX.Element {
+  const auth = FIREBASE.auth();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+                console.log('user',user);
+            });
+      }, [])
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
