@@ -6,14 +6,14 @@ const BlackThemeHomePage = () => {
   	return (
     		<View style={styles.blackThemeHomePage}>
       			<View style={styles.homeParent}>
-        				<Image style={[styles.homeIcon, styles.iconLayout1]} resizeMode="cover" source="Home.png" />
+        				<Image style={[styles.homeIcon, styles.iconLayout1]} resizeMode="cover" source={require("Home.png")} />
         				<Text style={[styles.home, styles.homeFlexBox]}>Home</Text>
         				<Text style={[styles.games, styles.gamesTypo]}>Games</Text>
-        				<Image style={[styles.boxIcon, styles.iconLayout1]} resizeMode="cover" source="Box.png" />
-        				<Image style={[styles.personIcon, styles.iconLayout1]} resizeMode="cover" source="person.png" />
+        				<Image style={[styles.boxIcon, styles.iconLayout1]} resizeMode="cover" source={require("Box.png")} />
+        				<Image style={[styles.personIcon, styles.iconLayout1]} resizeMode="cover" source={require("person.png")} />
         				<Text style={[styles.profile, styles.profileLayout]}>Profile</Text>
         				<Pressable style={styles.chatBubble} onPress={()=>{}}>
-          					<Image style={styles.iconLayout} resizeMode="cover" source="chat_bubble.png" />
+          					<Image style={styles.iconLayout} resizeMode="cover" source={require("chat_bubble.png")} />
         				</Pressable>
         				<Text style={styles.chats}>Chats</Text>
         				<Image style={styles.greenEllipseIcon} resizeMode="cover" source="Green Ellipse.png" />

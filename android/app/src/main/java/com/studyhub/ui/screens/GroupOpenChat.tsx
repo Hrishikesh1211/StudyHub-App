@@ -1,7 +1,30 @@
 import * as React from "react";
 import {Image, StyleSheet, Text, View, Pressable} from "react-native";
 
+
 const BlackThemeGroupOpenChat = () => {
+    const [message, setMessage] = React.useState('');
+    const [messages, setMessages] = React.useState([]);
+
+    const sendMessage = () => {
+        if (message.trim()) {
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            { id: String(prevMessages.length + 1), text: message },
+          ]);
+          setMessage('');
+        }
+      };
+
+    const renderMessage = ({ item }) => (
+        <View style={styles.messageContainer}>
+            <Image style={styles.userIcon} source={require('./path/to/Gray Ellipse.png')} />
+            <View style={styles.messageContent}>
+                <Text style={styles.message}>{item.text}</Text>
+                <Text style={styles.pm}>{item.time}</Text>
+            </View>
+        </View>
+    );
 
   	return (
     		<View style={styles.blackThemeGroupOpenChat}>
@@ -140,7 +163,11 @@ const BlackThemeGroupOpenChat = () => {
       			<Text style={[styles.josephine, styles.johnTypo]}>{`Josephine `}</Text>
       			<Text style={[styles.bobJohn, styles.johnTypo]}>Bob John</Text>
       			<Text style={[styles.you, styles.johnTypo]}>You</Text>
-    		</View>);
+    		</View>
+    		<Image style={[styles.grayEllipseIcon1, styles.grayIconLayout]} resizeMode="cover" source={require("./assets/Gray Ellipse.png")} />
+                  <Image style={[styles.blackThemeGroupOpenChatChild, styles.grayEllipseParentPosition]} resizeMode="cover" source={require("./assets/Frame 13.png")} />
+                </View>
+            );
 };
 
 const styles = StyleSheet.create({
