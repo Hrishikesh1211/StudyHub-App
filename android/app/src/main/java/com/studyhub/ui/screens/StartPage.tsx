@@ -3,7 +3,6 @@ import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoi
 import { useNavigation, } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import { useState }  from 'react';
-import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -16,12 +15,11 @@ const BlackThemeStartPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
-//     const auth = FIREBASE.auth();
 
     const signIn = async () => {
         setLoading(true);
         try {
-            const response = await signInWithEmailAndPassword(username,password);
+            const response = await auth().signInWithEmailAndPassword(username,password);
             console.log(response);
         } catch (error: any) {
             console.log(error);
@@ -34,7 +32,7 @@ const BlackThemeStartPage = () => {
    const signUp = async () => {
            setLoading(true);
            try {
-               const response = await createUserWithEmailAndPassword(username,password);
+               const response = await auth().createUserWithEmailAndPassword(username,password);
                console.log(response);
                alert('Check your emails!');
            } catch (error: any) {

@@ -9,7 +9,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import type {PropsWithChildren} from 'react';
-import {useEffect} from "react";
+import {useEffect} from 'react';
 import { createStaticNavigation, useNavigation, } from '@react-navigation/native';
 import BlackThemeHomePage from "./android/app/src/main/java/com/studyhub/ui/screens/HomePage.tsx";
 import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ui/screens/ProfilePage.tsx';
@@ -68,7 +68,6 @@ const Stack = createNativeStackNavigator({
   });
 
 function App(): React.JSX.Element {
-//   const auth = FIREBASE.auth();
   const [user, setUser] = useState<User | null>(null);
 
 //   useEffect(() => {
