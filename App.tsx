@@ -9,6 +9,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import type {PropsWithChildren} from 'react';
+import {useEffect} from "react";
 import { createStaticNavigation, useNavigation, } from '@react-navigation/native';
 import BlackThemeHomePage from "./android/app/src/main/java/com/studyhub/ui/screens/HomePage.tsx";
 import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ui/screens/ProfilePage.tsx';
@@ -21,7 +22,7 @@ import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, 
 
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
 import { User } from 'firebase/auth';
-import auth from '@react-native=firebase/auth';
+import {auth, onAuthStateChanged} from '@react-native-firebase/auth';
 import { useState }  from 'react';
 
 type SectionProps = PropsWithChildren<{
@@ -67,14 +68,14 @@ const Stack = createNativeStackNavigator({
   });
 
 function App(): React.JSX.Element {
-  const auth = FIREBASE.auth();
+//   const auth = FIREBASE.auth();
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-                console.log('user',user);
-            });
-      }, [])
+//   useEffect(() => {
+//         onAuthStateChanged(auth, (user) => {
+//                 console.log('user',user);
+//             });
+//       }, [])
 
   const isDarkMode = useColorScheme() === 'dark';
 
