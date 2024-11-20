@@ -16,7 +16,7 @@ import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ui/scree
 import BlackThemeCreateGroup from './android/app/src/main/java/com/studyhub/ui/screens/CreateGroup.tsx';
 import BlackThemeSingleChats from './android/app/src/main/java/com/studyhub/ui/screens/SingleChats.tsx';
 import BlackThemeStartPage from './android/app/src/main/java/com/studyhub/ui/screens/StartPage.tsx';
-// import BlackThemeEditProfile from './android/app/src/main/java/com/studyhub/ui/screens/edit_profile.tsx';
+import BlackThemeEditProfile from './android/app/src/main/java/com/studyhub/ui/screens/edit_profile.tsx';
 
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button } from 'react-native';
 
@@ -62,7 +62,7 @@ const Stack = createNativeStackNavigator({
         CreateGroup: BlackThemeCreateGroup,
         Chats: BlackThemeSingleChats,
         Start: BlackThemeStartPage,
-//         EditProfile: BlackThemeEditProfile
+        EditProfile: BlackThemeEditProfile
     },
     initialRouteName: "Start"
   });
