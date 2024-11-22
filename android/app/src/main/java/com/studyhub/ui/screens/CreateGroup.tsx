@@ -1,143 +1,190 @@
 import * as React from "react";
-import {StyleSheet, View, Image, Text, Pressable} from "react-native";
+import {StyleSheet, View, Image, Text, Pressable, Alert, TextInput, ScrollView} from "react-native";
+import {MenuBar} from "../components/MenuBar.tsx"
+const greenPlus = require("../../../../../res/icons-mdpi/green_plus.png");
+const greenPlay = require("../../../../../res/icons-mdpi/green_play_arrow_filled.png");
+const greenPerson = require("../../../../../res/icons-mdpi/green_person.png");
 
 const BlackThemeCreateGroup = () => {
     return (
         <View style={newStyles.background}>
-      			<View style={newStyles.screenContainer} />
-      			<View style={newStyles.groupIcon}>
-      			    <Image style={[styles.addIcon1, styles.iconPosition1]} resizeMode="cover" source="add.png" />
-      			</View>
-      			<Image style={newStyles.addIcon} resizeMode="cover" source="add.png" />
+            <Text style={newStyles.title}>Community Group</Text>
+            <Pressable style={newStyles.createButtonContainer} onPress={()=>{
+                Alert.alert("create group")
+            }}>
+                <Text style={newStyles.createButtonText}>Create</Text>
+            </Pressable>
+      		<View style={newStyles.screenContainer}>
+                    <View style={newStyles.groupIcon}>
+                        {//<Image style={[styles.addIcon1, styles.iconPosition1]} resizeMode="cover" source="add.png" />
+                        }
+                    </View>
 
-      			<View style={newStyles.addButton}>
-      			    <Text style={newStyles.addButtonText}>People</Text>
-      			</View>
-      			<View style={newStyles.addButton}>
-      			    <Text style={newStyles.addButtonText}>Video</Text>
-      			</View>
-      			<View style={newStyles.addButton}>
-      			    <Text style={newStyles.addButtonText}>File</Text>
-      			</View>
+                    <View style={newStyles.groupNameContainer}>
+                        <TextInput placeholder="Group Name Here" placeholderTextColor="#868686" style={newStyles.groupNameText}></TextInput>
+                    </View>
 
-      			<Image style={[styles.addIcon2, styles.iconLayout]} resizeMode="cover" source="add.png" />
-      			<Image style={[styles.personIcon, styles.iconPosition1]} resizeMode="cover" source="person.png" />
-      			<Image style={[styles.playArrowFilledIcon, styles.iconLayout]} resizeMode="cover" source="play_arrow_filled.png" />
+                    <View style={newStyles.descriptionContainer}>
+                        <TextInput placeholder="Description" placeholderTextColor="#868686" style={newStyles.descriptionText}></TextInput>
+                    </View>
 
-      			<Text style={styles.communityGroup}>Community Group</Text>
-      			<Text style={[styles.groupInfo, styles.membersTypo]}>Group Info</Text>
-      			<Image style={[styles.personIcon1, styles.iconLayout]} resizeMode="cover" source="person.png" />
-      			<Text style={[styles.members, styles.membersTypo]}>Members</Text>
+                    <View style={[{justifyContent: "space-evenly"}, {flexDirection: "row"}]}>
+                        <Pressable style={newStyles.addButton} onPress={() => {
+                            Alert.alert("add file");
+                        }}>
+                            <Text style={newStyles.addButtonText}>File</Text>
+                            <Image style={newStyles.addIcon} source={greenPlus}/>
+                        </Pressable>
 
-      			<View style={[styles.blackThemeCreateGroupChild2, styles.blackGroupLayout1]} />
-      			<View style={[styles.blackThemeCreateGroupChild3, styles.blackGroupLayout1]} />
-      			<View style={[styles.blackThemeCreateGroupChild4, styles.blackGroupLayout]} />
-      			<View style={[styles.blackThemeCreateGroupChild5, styles.blackGroupLayout]} />
-      			<Image style={[styles.grayEllipseIcon, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
-      			<Image style={[styles.grayEllipseIcon1, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
-      			<Image style={[styles.grayEllipseIcon2, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
-      			<Image style={[styles.grayEllipseIcon3, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
-      			<Text style={[styles.name, styles.nameTypo]}>Name</Text>
-      			<Text style={[styles.name1, styles.nameTypo]}>Name</Text>
-      			<Text style={[styles.name2, styles.nameTypo]}>Name</Text>
-      			<Text style={[styles.name3, styles.nameTypo]}>Name</Text>
-      			<Text style={[styles.invited, styles.invitedTypo]}>Invited!!</Text>
-      			<Text style={[styles.invited1, styles.invitedTypo]}>Invited!!</Text>
-      			<Text style={[styles.inviteFailed, styles.inviteTypo]}>Invite Failed!</Text>
-      			<View style={[styles.blackThemeCreateGroupChild6, styles.blackGroupBg1]} />
+                        <Pressable style={newStyles.addButton} onPress={() => {
+                            Alert.alert("add video");
+                        }}>
+                            <Text style={newStyles.addButtonText}>Video</Text>
+                            <Image style={newStyles.addIcon} source={greenPlay}/>
+                        </Pressable>
 
-      			<Pressable style={[styles.create, styles.createPosition]} onPress={()=>{}}>
-        				<Text style={[styles.create1, styles.fileTypo]}>Create</Text>
-      			</Pressable>
+                        <Pressable style={newStyles.addButton} onPress={() => {
+                            Alert.alert("add user");
+                        }}>
+                            <Text style={newStyles.addButtonText}>People</Text>
+                            <Image style={newStyles.addIcon} source={greenPerson}/>
+                        </Pressable>
+                    </View>
 
-      			<View style={[styles.blackThemeCreateGroupChild7, styles.blackGroupBg]} />
-      			<Text style={styles.groupNameHere}>Group Name Here</Text>
+                    <Text style={newStyles.onlineText}>419 members, 23 online</Text>
+                    <Text style={newStyles.groupInfoText}>Group Info</Text>
 
-      			<View style={[styles.blackThemeCreateGroupChild8, styles.blackGroupBg1]} />
-      			<Text style={[styles.invite, styles.createPosition]}>Invite</Text>
+                    <Image style={newStyles.membersListIcon} resizeMode="cover" source={greenPerson} />
+                    <Text style={newStyles.membersListText}>Members</Text>
 
-      			<Image style={styles.rectangleIcon} resizeMode="cover" source="Rectangle 46.png" />
-      			<Text style={styles.description}>Description</Text>
-      			<Text style={[styles.members23Online, styles.fileTypo]}>419 members, 23 online</Text>
+                    <View style={newStyles.memberButtonContainer}>
+                        <ScrollView>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                        </ScrollView>
+                    </View>
+                    {/*
+                    <View style={[styles.blackThemeCreateGroupChild2, styles.blackGroupLayout1]} />
+                    <View style={[styles.blackThemeCreateGroupChild3, styles.blackGroupLayout1]} />
+                    <View style={[styles.blackThemeCreateGroupChild4, styles.blackGroupLayout]} />
+                    <View style={[styles.blackThemeCreateGroupChild5, styles.blackGroupLayout]} />
+                    <Image style={[styles.grayEllipseIcon, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+                    <Image style={[styles.grayEllipseIcon1, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+                    <Image style={[styles.grayEllipseIcon2, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+                    <Image style={[styles.grayEllipseIcon3, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+                    <Text style={[styles.name, styles.nameTypo]}>Name</Text>
+                    <Text style={[styles.name1, styles.nameTypo]}>Name</Text>
+                    <Text style={[styles.name2, styles.nameTypo]}>Name</Text>
+                    <Text style={[styles.name3, styles.nameTypo]}>Name</Text>
+                    <Text style={[styles.invited, styles.invitedTypo]}>Invited!!</Text>
+                    <Text style={[styles.invited1, styles.invitedTypo]}>Invited!!</Text>
+                    <Text style={[styles.inviteFailed, styles.inviteTypo]}>Invite Failed!</Text>
+                    <View style={[styles.blackThemeCreateGroupChild6, styles.blackGroupBg1]} />
+                    */}
 
-      			<View style={styles.homeParent}>
-        				<Image style={[styles.homeIcon, styles.homeIconLayout]} resizeMode="cover" source="Home.png" />
-        				<Text style={[styles.home, styles.homeFlexBox]}>Home</Text>
-        				<Text style={[styles.games, styles.gamesTypo]}>Games</Text>
-        				<Image style={[styles.boxIcon, styles.personPosition]} resizeMode="cover" source="Box.png" />
-        				<Pressable style={[styles.person, styles.personPosition]} onPress={()=>{}}>
-          					<Image style={styles.icon} resizeMode="cover" source="person.png" />
-        				</Pressable>
-        				<Text style={[styles.profile, styles.gamesTypo]}>Profile</Text>
-        				<Pressable style={[styles.chatBubble, styles.homeIconLayout]} onPress={()=>{}}>
-          					<Image style={styles.icon} resizeMode="cover" source="chat_bubble.png" />
-        				</Pressable>
-        				<Text style={[styles.chats, styles.homeTypo]}>Chats</Text>
-        				<Image style={styles.greenEllipseIcon} resizeMode="cover" source="Green Ellipse.png" />
-        				<Image style={[styles.plusCircleIcon, styles.iconLayout]} resizeMode="cover" source="Plus circle.png" />
+
+
+
+                    {/*
+                    <View style={newStyles.inviteButton}>
+                        <Text style={newStyles.inviteButtonText}>Invite</Text>
+                    </View>
+
+
+
+
+                    */}
       			</View>
     		</View>
     )
 };
 
+const MemberButton = () => {
+    return (
+        <View>
+            <Pressable style={newStyles.memberButton} onPress={() => {
+                    Alert.alert("member button")
+                }}>
+                <Image style={newStyles.memberButtonIcon}/>
+                <Text styles={newStyles.memberButtonText}>Name</Text>
+                <Text styles={newStyles.invitedStatusText}></Text>
+            </Pressable>
+        </View>
+    );
+}
+
 const newStyles = StyleSheet.create({
     background: {
         backgroundColor: "#000",
     	flex: 1,
-    	height: 1055,
+//     	elevation: -1,
+    	height: '100%',
     	overflow: "hidden",
     	width: "100%"
     },
     screenContainer: {
-        top: 103,
+        top: 110,
     	left: 0,
     	borderRadius: 34,
-    	width: 485,
+    	width: '100%',
     	height: 835,
     	backgroundColor: "#101010",
+    	position: "absolute"
     },
     groupIcon: {
-        left: 193,
+        left: '40%',
     	borderRadius: 17,
     	backgroundColor: "#fff",
     	height: 100,
     	width: 100,
-    	top: 81,
+    	top: -25,
     	position: "absolute"
     },
     addIcon: {
-        top: 109,
-    	left: 219,
-    	width: 50,
-    	height: 51,
-    	position: "absolute"
+    	width: 25,
+    	height: 25,
+    	top: 20,
+    	left: 25,
+    	position: "absolute",
+    	alignItems: "center"
     },
     addButton: {
-        left: 192,
         borderRadius: 22,
-        top: 28,
+        top: 250,
         backgroundColor: "#1e1c1d",
-        height: 100,
-        width: 100
+        height: 75,
+        width: 75,
+        position: "relative"
     },
     addButtonText: {
-        textAlign: "left",
-    	fontFamily: "Inter-Regular"
+        textAlign: "center",
+    	fontFamily: "Inter-Regular",
+    	width: 75,
+    	height: 75,
+        top: 45,
+        color: "#ffffff",
+        position: "absolute"
     },
     title: {
-        left: 141,
+        left: '25%',
     	width: 246,
     	height: 44,
     	fontSize: 24,
-    	top: 26,
-    	textAlign: "left",
+    	top: 25,
+    	textAlign: "center",
     	color: "#fff",
     	fontFamily: "Inter-Regular",
     	position: "absolute"
     },
     groupInfoText: {
-        top: 478,
-    	left: 143,
+        top: 410,
+    	left: 100,
     	width: 198,
     	height: 54,
     	textAlign: "center",
@@ -147,6 +194,8 @@ const newStyles = StyleSheet.create({
     	position: "absolute"
     },
     membersListText: {
+        left: 30,
+        top: 450,
         textAlign: "center",
     	fontSize: 17,
     	color: "#fff",
@@ -157,13 +206,27 @@ const newStyles = StyleSheet.create({
     	color: "#fff",
     	fontFamily: "Inter-Regular",
     },
+    membersListIcon: {
+        top: 448,
+        left: 0,
+        position: "absolute"
+    },
+    memberButtonContainer: {
+//         justifyContent: "center",
+        top: 400,
+        height: 400,
+        width: 400,
+        flex: 1,
+    },
     memberButton: {
-        height: 71,
-    	width: 454,
+//         height: 71,
+    	width: 400,
     	borderRadius: 16,
-    	left: 15,
+//     	left: 7,
     	backgroundColor: "#1e1c1d",
-    	position: "absolute"
+    	position: "relative",
+        paddingVertical: 5
+
     },
     memberButtonIcon: {
         height: 50,
@@ -175,7 +238,7 @@ const newStyles = StyleSheet.create({
         height: 12,
     	width: 63,
     	fontSize: 16,
-    	left: 99,
+    	left: 109,
     	textAlign: "center",
     	color: "#fff",
     	fontFamily: "Inter-Regular",
@@ -192,31 +255,37 @@ const newStyles = StyleSheet.create({
     inviteFailedText: {
         color: "#ff0105",
     },
+    createButtonContainer: {
+        top: 30,
+        left: 330,
+        width: 80,
+        height: 30,
+        borderRadius: 13,
+    	position: "absolute",
+    	backgroundColor: "#101010"
+    },
     createButtonText: {
-        width: 52,
-        height: 18,
         color: "#fff",
+        top: 3,
         fontSize: 15,
-        fontFamily: "Inter-Regular"
+        fontFamily: "Inter-Regular",
+        textAlign: "center",
     },
     groupNameContainer: {
-        top: 188,
-    	left: 77,
+        top: 100,
+    	left: 60,
     	borderRadius: 13,
-    	width: 324,
+    	width: 300,
     	height: 48,
-    	backgroundColor: "#101010",
+    	backgroundColor: "#1e1c1d",
+    	position: "absolute"
     },
     groupNameText: {
-        top: 197,
-    	left: 138,
-    	width: 218,
-    	height: 38,
     	color: "#868686",
     	fontSize: 24,
-    	textAlign: "left",
+    	textAlign: "center",
     	fontFamily: "Inter-Regular",
-    	position: "absolute"
+    	position: "relative"
     },
     inviteButton: {
         top: 857,
@@ -226,19 +295,43 @@ const newStyles = StyleSheet.create({
     	height: 19,
         backgroundColor: "#101010",
     },
+    inviteButtonText: {
+        top: 859,
+    	fontSize: 12,
+    	textAlign: "center",
+    	fontFamily: "Inter-Regular",
+    	color: "#fff",
+    	left: 397,
+    	position: "absolute"
+    },
     descriptionContainer: {
-        top: 435,
-    	left: 123,
+        top: 160,
+    	left: 50,
+    	fontSize: 20,
+    	backgroundColor: "#1e1c1d",
+    	width: 320,
+    	height: 70,
+    	borderRadius: 12,
+    	position: "absolute"
+    },
+    descriptionText: {
+        left: 10,
+        top: 10,
+        textAlign: "left",
+    	fontFamily: "Inter-Regular",
+    	color: "#868686"
+    },
+    onlineText: {
+        textAlign: "left",
+    	fontFamily: "Inter-Regular",
+    	top: 365,
+    	left: 100,
     	fontSize: 20,
     	color: "#808080",
     	width: 248,
     	height: 22,
     	position: "absolute"
-    },
-    descriptionText: {
-        textAlign: "left",
-    	fontFamily: "Inter-Regular"
-    },
+    }
 });
 
 const OldPage = () => {

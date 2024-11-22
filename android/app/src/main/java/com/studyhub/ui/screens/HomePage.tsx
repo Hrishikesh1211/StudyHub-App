@@ -15,6 +15,10 @@ const BlackThemeHomePage = () => {
                 <GroupButton/>
                 <GroupButton/>
                 <GroupButton/>
+                <GroupButton/>
+                <GroupButton/>
+                <GroupButton/>
+                <GroupButton/>
             </ScrollView>
             <MenuBar/>
 
@@ -33,7 +37,6 @@ class GroupData {
 const GroupButton = () => {
     const nav = useNavigation()
 
-    let data = new GroupData("Angular for beginners", "Web Development", 0);
     return (
         <View style={newStyles.groupButton}>
             <Pressable onPress={ () => {

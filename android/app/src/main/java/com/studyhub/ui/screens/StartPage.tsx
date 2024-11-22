@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoidingView, ActivityIndicator} from "react-native";
 import { useNavigation, } from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
+// import auth from '@react-native-firebase/auth';
 import { useState }  from 'react';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
