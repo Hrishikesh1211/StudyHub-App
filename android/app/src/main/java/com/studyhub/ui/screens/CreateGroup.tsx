@@ -1,9 +1,341 @@
 import * as React from "react";
-import {StyleSheet, View, Image, Text, Pressable} from "react-native";
+import {StyleSheet, View, Image, Text, Pressable, Alert, TextInput, ScrollView} from "react-native";
+import {MenuBar} from "../components/MenuBar.tsx"
+const greenPlus = require("../../../../../res/icons-mdpi/green_plus.png");
+const greenPlay = require("../../../../../res/icons-mdpi/green_play_arrow_filled.png");
+const greenPerson = require("../../../../../res/icons-mdpi/green_person.png");
 
 const BlackThemeCreateGroup = () => {
+    return (
+        <View style={newStyles.background}>
+            <Text style={newStyles.title}>Community Group</Text>
+            <Pressable style={newStyles.createButtonContainer} onPress={()=>{
+                Alert.alert("create group")
+            }}>
+                <Text style={newStyles.createButtonText}>Create</Text>
+            </Pressable>
+      		<View style={newStyles.screenContainer}>
+                    <View style={newStyles.groupIcon}>
+                        {//<Image style={[styles.addIcon1, styles.iconPosition1]} resizeMode="cover" source="add.png" />
+                        }
+                    </View>
 
-  	return (
+                    <View style={newStyles.groupNameContainer}>
+                        <TextInput placeholder="Group Name Here" placeholderTextColor="#868686" style={newStyles.groupNameText}></TextInput>
+                    </View>
+
+                    <View style={newStyles.descriptionContainer}>
+                        <TextInput placeholder="Description" placeholderTextColor="#868686" style={newStyles.descriptionText}></TextInput>
+                    </View>
+
+                    <View style={[{justifyContent: "space-evenly"}, {flexDirection: "row"}]}>
+                        <Pressable style={newStyles.addButton} onPress={() => {
+                            Alert.alert("add file");
+                        }}>
+                            <Text style={newStyles.addButtonText}>File</Text>
+                            <Image style={newStyles.addIcon} source={greenPlus}/>
+                        </Pressable>
+
+                        <Pressable style={newStyles.addButton} onPress={() => {
+                            Alert.alert("add video");
+                        }}>
+                            <Text style={newStyles.addButtonText}>Video</Text>
+                            <Image style={newStyles.addIcon} source={greenPlay}/>
+                        </Pressable>
+
+                        <Pressable style={newStyles.addButton} onPress={() => {
+                            Alert.alert("add user");
+                        }}>
+                            <Text style={newStyles.addButtonText}>People</Text>
+                            <Image style={newStyles.addIcon} source={greenPerson}/>
+                        </Pressable>
+                    </View>
+
+                    <Text style={newStyles.onlineText}>419 members, 23 online</Text>
+                    <Text style={newStyles.groupInfoText}>Group Info</Text>
+
+                    <Image style={newStyles.membersListIcon} resizeMode="cover" source={greenPerson} />
+                    <Text style={newStyles.membersListText}>Members</Text>
+
+                    <View style={newStyles.memberButtonContainer}>
+                        <ScrollView>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                            <MemberButton/>
+                        </ScrollView>
+                    </View>
+                    {/*
+                    <View style={[styles.blackThemeCreateGroupChild2, styles.blackGroupLayout1]} />
+                    <View style={[styles.blackThemeCreateGroupChild3, styles.blackGroupLayout1]} />
+                    <View style={[styles.blackThemeCreateGroupChild4, styles.blackGroupLayout]} />
+                    <View style={[styles.blackThemeCreateGroupChild5, styles.blackGroupLayout]} />
+                    <Image style={[styles.grayEllipseIcon, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+                    <Image style={[styles.grayEllipseIcon1, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+                    <Image style={[styles.grayEllipseIcon2, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+                    <Image style={[styles.grayEllipseIcon3, styles.grayIconLayout]} resizeMode="cover" source="Gray Ellipse.png" />
+                    <Text style={[styles.name, styles.nameTypo]}>Name</Text>
+                    <Text style={[styles.name1, styles.nameTypo]}>Name</Text>
+                    <Text style={[styles.name2, styles.nameTypo]}>Name</Text>
+                    <Text style={[styles.name3, styles.nameTypo]}>Name</Text>
+                    <Text style={[styles.invited, styles.invitedTypo]}>Invited!!</Text>
+                    <Text style={[styles.invited1, styles.invitedTypo]}>Invited!!</Text>
+                    <Text style={[styles.inviteFailed, styles.inviteTypo]}>Invite Failed!</Text>
+                    <View style={[styles.blackThemeCreateGroupChild6, styles.blackGroupBg1]} />
+                    */}
+
+
+
+
+                    {/*
+                    <View style={newStyles.inviteButton}>
+                        <Text style={newStyles.inviteButtonText}>Invite</Text>
+                    </View>
+
+
+
+
+                    */}
+      			</View>
+    		</View>
+    )
+};
+
+const MemberButton = () => {
+    return (
+        <View>
+            <Pressable style={newStyles.memberButton} onPress={() => {
+                    Alert.alert("member button")
+                }}>
+                <Image style={newStyles.memberButtonIcon}/>
+                <Text styles={newStyles.memberButtonText}>Name</Text>
+                <Text styles={newStyles.invitedStatusText}></Text>
+            </Pressable>
+        </View>
+    );
+}
+
+const newStyles = StyleSheet.create({
+    background: {
+        backgroundColor: "#000",
+    	flex: 1,
+//     	elevation: -1,
+    	height: '100%',
+    	overflow: "hidden",
+    	width: "100%"
+    },
+    screenContainer: {
+        top: 110,
+    	left: 0,
+    	borderRadius: 34,
+    	width: '100%',
+    	height: 835,
+    	backgroundColor: "#101010",
+    	position: "absolute"
+    },
+    groupIcon: {
+        left: '40%',
+    	borderRadius: 17,
+    	backgroundColor: "#fff",
+    	height: 100,
+    	width: 100,
+    	top: -25,
+    	position: "absolute"
+    },
+    addIcon: {
+    	width: 25,
+    	height: 25,
+    	top: 20,
+    	left: 25,
+    	position: "absolute",
+    	alignItems: "center"
+    },
+    addButton: {
+        borderRadius: 22,
+        top: 250,
+        backgroundColor: "#1e1c1d",
+        height: 75,
+        width: 75,
+        position: "relative"
+    },
+    addButtonText: {
+        textAlign: "center",
+    	fontFamily: "Inter-Regular",
+    	width: 75,
+    	height: 75,
+        top: 45,
+        color: "#ffffff",
+        position: "absolute"
+    },
+    title: {
+        left: '25%',
+    	width: 246,
+    	height: 44,
+    	fontSize: 24,
+    	top: 25,
+    	textAlign: "center",
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    	position: "absolute"
+    },
+    groupInfoText: {
+        top: 410,
+    	left: 100,
+    	width: 198,
+    	height: 54,
+    	textAlign: "center",
+    	fontSize: 17,
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    	position: "absolute"
+    },
+    membersListText: {
+        left: 30,
+        top: 450,
+        textAlign: "center",
+    	fontSize: 17,
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    	position: "absolute",
+    	textAlign: "center",
+    	fontSize: 17,
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    },
+    membersListIcon: {
+        top: 448,
+        left: 0,
+        position: "absolute"
+    },
+    memberButtonContainer: {
+//         justifyContent: "center",
+        top: 400,
+        height: 400,
+        width: 400,
+        flex: 1,
+    },
+    memberButton: {
+//         height: 71,
+    	width: 400,
+    	borderRadius: 16,
+//     	left: 7,
+    	backgroundColor: "#1e1c1d",
+    	position: "relative",
+        paddingVertical: 5
+
+    },
+    memberButtonIcon: {
+        height: 50,
+    	width: 54,
+    	left: 34,
+    	position: "absolute"
+    },
+    memberButtonText: {
+        height: 12,
+    	width: 63,
+    	fontSize: 16,
+    	left: 109,
+    	textAlign: "center",
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    	position: "absolute"
+    },
+    inviteStatusText: {
+        color: "#0cca6e",
+    	left: 385,
+    	fontSize: 12,
+    	textAlign: "center",
+    	fontFamily: "Inter-Regular",
+    	position: "absolute"
+    },
+    inviteFailedText: {
+        color: "#ff0105",
+    },
+    createButtonContainer: {
+        top: 30,
+        left: 330,
+        width: 80,
+        height: 30,
+        borderRadius: 13,
+    	position: "absolute",
+    	backgroundColor: "#101010"
+    },
+    createButtonText: {
+        color: "#fff",
+        top: 3,
+        fontSize: 15,
+        fontFamily: "Inter-Regular",
+        textAlign: "center",
+    },
+    groupNameContainer: {
+        top: 100,
+    	left: 60,
+    	borderRadius: 13,
+    	width: 300,
+    	height: 48,
+    	backgroundColor: "#1e1c1d",
+    	position: "absolute"
+    },
+    groupNameText: {
+    	color: "#868686",
+    	fontSize: 24,
+    	textAlign: "center",
+    	fontFamily: "Inter-Regular",
+    	position: "relative"
+    },
+    inviteButton: {
+        top: 857,
+    	left: 382,
+    	borderRadius: 7,
+    	width: 61,
+    	height: 19,
+        backgroundColor: "#101010",
+    },
+    inviteButtonText: {
+        top: 859,
+    	fontSize: 12,
+    	textAlign: "center",
+    	fontFamily: "Inter-Regular",
+    	color: "#fff",
+    	left: 397,
+    	position: "absolute"
+    },
+    descriptionContainer: {
+        top: 160,
+    	left: 50,
+    	fontSize: 20,
+    	backgroundColor: "#1e1c1d",
+    	width: 320,
+    	height: 70,
+    	borderRadius: 12,
+    	position: "absolute"
+    },
+    descriptionText: {
+        left: 10,
+        top: 10,
+        textAlign: "left",
+    	fontFamily: "Inter-Regular",
+    	color: "#868686"
+    },
+    onlineText: {
+        textAlign: "left",
+    	fontFamily: "Inter-Regular",
+    	top: 365,
+    	left: 100,
+    	fontSize: 20,
+    	color: "#808080",
+    	width: 248,
+    	height: 22,
+    	position: "absolute"
+    }
+});
+
+const OldPage = () => {
+    return (
     		<View style={styles.blackThemeCreateGroup}>
       			<View style={[styles.blackThemeCreateGroupChild, styles.blackGroupBg1]} />
       			<View style={styles.blackThemeCreateGroupItem} />
@@ -18,10 +350,12 @@ const BlackThemeCreateGroup = () => {
       			<Image style={[styles.addIcon2, styles.iconLayout]} resizeMode="cover" source="add.png" />
       			<Image style={[styles.personIcon, styles.iconPosition1]} resizeMode="cover" source="person.png" />
       			<Image style={[styles.playArrowFilledIcon, styles.iconLayout]} resizeMode="cover" source="play_arrow_filled.png" />
+
       			<Text style={styles.communityGroup}>Community Group</Text>
       			<Text style={[styles.groupInfo, styles.membersTypo]}>Group Info</Text>
       			<Image style={[styles.personIcon1, styles.iconLayout]} resizeMode="cover" source="person.png" />
       			<Text style={[styles.members, styles.membersTypo]}>Members</Text>
+
       			<View style={[styles.blackThemeCreateGroupChild2, styles.blackGroupLayout1]} />
       			<View style={[styles.blackThemeCreateGroupChild3, styles.blackGroupLayout1]} />
       			<View style={[styles.blackThemeCreateGroupChild4, styles.blackGroupLayout]} />
@@ -65,7 +399,7 @@ const BlackThemeCreateGroup = () => {
         				<Image style={[styles.plusCircleIcon, styles.iconLayout]} resizeMode="cover" source="Plus circle.png" />
       			</View>
     		</View>);
-};
+}
 
 const styles = StyleSheet.create({
   	blackGroupBg1: {

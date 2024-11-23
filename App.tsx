@@ -9,12 +9,21 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import type {PropsWithChildren} from 'react';
+import {useEffect} from 'react';
 import { createStaticNavigation, useNavigation, } from '@react-navigation/native';
 import BlackThemeHomePage from "./android/app/src/main/java/com/studyhub/ui/screens/HomePage.tsx";
 import BlackThemeProfile from './android/app/src/main/java/com/studyhub/ui/screens/ProfilePage.tsx';
+import BlackThemeCreateGroup from './android/app/src/main/java/com/studyhub/ui/screens/CreateGroup.tsx';
+import BlackThemeSingleChats from './android/app/src/main/java/com/studyhub/ui/screens/SingleChats.tsx';
+import BlackThemeStartPage from './android/app/src/main/java/com/studyhub/ui/screens/StartPage.tsx';
+import BlackThemeEditProfile from './android/app/src/main/java/com/studyhub/ui/screens/edit_profile.tsx';
+
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button } from 'react-native';
 
 import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions, } from 'react-native/Libraries/NewAppScreen';
+import { User } from 'firebase/auth';
+import {auth, onAuthStateChanged} from '@react-native-firebase/auth';
+import { useState }  from 'react';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -49,11 +58,24 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 const Stack = createNativeStackNavigator({
     screens: {
         Home: BlackThemeHomePage,
-        Profile: BlackThemeProfile
+        Profile: BlackThemeProfile,
+        CreateGroup: BlackThemeCreateGroup,
+        Chats: BlackThemeSingleChats,
+        Start: BlackThemeStartPage,
+        EditProfile: BlackThemeEditProfile
     },
+    initialRouteName: "Start"
   });
 
 function App(): React.JSX.Element {
+  const [user, setUser] = useState<User | null>(null);
+
+//   useEffect(() => {
+//         onAuthStateChanged(auth, (user) => {
+//                 console.log('user',user);
+//             });
+//       }, [])
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
