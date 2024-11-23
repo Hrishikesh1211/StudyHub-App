@@ -1,3 +1,23 @@
+
+
+import firestore from '@react-native-firebase/firestore';
+
+const addGroupToDatabase = async (groupName, groupDescription, members) => {
+    try {
+        await firestore().collection('Groups').add({
+            name: groupName,
+            description: groupDescription,
+            members: members,
+            createdAt: firestore.FieldValue.serverTimestamp(),
+        });
+        console.log('Group added successfully!');
+    } catch (error) {
+        console.error('Error adding group:', error);
+    }
+};
+
+
+// Existing content of CreateGroup.tsx
 import * as React from "react";
 import {StyleSheet, View, Image, Text, Pressable, Alert, TextInput, ScrollView} from "react-native";
 import {MenuBar} from "../components/MenuBar.tsx"
@@ -846,3 +866,4 @@ const styles = StyleSheet.create({
 });
 
 export default BlackThemeCreateGroup;
+
