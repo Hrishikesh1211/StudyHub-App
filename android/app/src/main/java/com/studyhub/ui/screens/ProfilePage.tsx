@@ -1,9 +1,146 @@
 import * as React from "react";
 import {StyleSheet, View, Image, Text, Pressable} from "react-native";
+const greenMsg = require("../../../../../res/icons-mdpi/green_message_square.png");
+const blackPerson = require("../../../../../res/icons-mdpi/black_person.png");
 
 const BlackThemeProfile = () => {
 
-  	return (
+    return (
+        <View style={newStyles.background}>
+      		<View style={newStyles.profilePictureContainer} />
+      		<Image style={styles.personIconPosition1} resizeMode="cover" source="person.png" />
+      		<Text style={newStyles.profileNameText}>Profile Name</Text>
+      		<Text style={newStyles.usernameText}>@username</Text>
+
+      		<View style={newStyles.screenContainer} />
+      		<View style={newStyles.bioContainer} />
+
+      		<Text style={newStyles.bioText}>{`text`}</Text>
+    		<Text style={newStyles.bioDescriptionHeader}>Bio Description</Text>
+    		<Image style={newStyles.bioDescriptionIcon} resizeMode="cover" source={greenMsg} />
+    		<View style={[newStyles.buttonContainer, newStyles.deviceManagementButton]} />
+
+    		<Pressable style={[styles.person, styles.personIconLayout]} onPress={()=>{}}>
+      			<Image style={styles.iconLayout1} resizeMode="cover" source={blackPerson} />
+    		</Pressable>
+
+    		<Text style={[styles.profileSettings, styles.bioDescriptionTypo]}>Profile Settings</Text>
+    		<Text style={[styles.deviceManagement, styles.signOutTypo]}>Device Management</Text>
+    		<Text style={[styles.signOut, styles.signOutTypo]}>Sign Out</Text>
+    		<Text style={[styles.profile, styles.profileTypo]}>Profile</Text>
+    		<Image style={[styles.personIcon1, styles.personIconLayout]} resizeMode="cover" source="person.png" />
+    		<Image style={[styles.personIcon2, styles.personIconLayout]} resizeMode="cover" source="person.png" />
+    		<View style={[styles.blackThemeProfileChild1, styles.blackChildLayout1]} />
+    		<View style={[styles.blackThemeProfileChild2, styles.blackChildLayout]} />
+    		<View style={[styles.blackThemeProfileChild3, styles.blackChildLayout]} />
+    		<View style={[styles.blackThemeProfileChild4, styles.blackChildLayout1]} />
+    		<Image style={[styles.socialIcons, styles.iconLayout]} resizeMode="cover" source="Social Icons.png" />
+    		<Image style={[styles.socialIcons1, styles.iconLayout]} resizeMode="cover" source="Social Icons.png" />
+    		<Image style={[styles.socialIcons2, styles.iconLayout]} resizeMode="cover" source="Social Icons.png" />
+    		<Image style={[styles.facebookIcon, styles.iconLayout]} resizeMode="cover" source="Facebook.png" />
+  	</View>
+    );
+};
+
+const newStyles = StyleSheet.create({
+    background: {
+       backgroundColor: "#141819",
+       flex: 1,
+       height: 1018,
+       overflow: "hidden",
+       width: "100%"
+    },
+    profilePictureContainer: {
+        backgroundColor: "#fff",
+        height: 100,
+  	    width: 100,
+  	    top: 135,
+  	    left: 164,
+  	    position: "absolute"
+    },
+    profileNameText: {
+        top: 244,
+  	    left: 142,
+  	    fontSize: 24,
+  	    color: "#fff",
+  	    textAlign: "center",
+  	    fontFamily: "Inter-Medium",
+  	    fontWeight: "500",
+  	    position: "absolute"
+    },
+    usernameText: {
+        top: 273,
+  	    left: 169,
+  	    fontSize: 16,
+  	    color: "#7a7878",
+  	    fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        textAlign: "center",
+        position: "absolute"
+    },
+    screenContainer: {
+        top: 409,
+        left: 15,
+        borderRadius: 30,
+        backgroundColor: "#131718",
+        width: 400,
+        height: 497,
+        position: "absolute"
+    },
+    bioContainer: {
+        top: 423,
+        left: 30,
+        borderRadius: 17,
+        backgroundColor: "#162f29",
+        width: 367,
+        height: 180,
+        position: "absolute"
+    },
+    bioText: {
+        top: 501,
+        left: 42,
+        fontSize: 12,
+        color: "#c9c9c9",
+        textAlign: "center",
+        fontFamily: "Inter-Medium",
+        fontWeight: "500",
+        position: "absolute"
+    },
+    bioDescriptionHeader: {
+        color: "#d9d9d9",
+        fontSize: 13,
+        fontFamily: "Inter-Bold",
+        fontWeight: "700",
+        textAlign: "center",
+        position: "absolute",
+        left: 60,
+        width: 148,
+        height: 16,
+        top: 445
+    },
+    bioDescriptionIcon: {
+        left: 50,
+        width: 26,
+        height: 19,
+        top: 445,
+        position: "absolute",
+        overflow: "hidden"
+    },
+    buttonContainer: {
+        top: 693,
+        left: 46,
+        borderRadius: 9,
+        width: 351,
+        height: 59,
+        position: "absolute"
+    },
+    deviceManagementButton: {
+        backgroundColor: "#19302a",
+    }
+});
+
+const OldPage = () => {
+    return (
     		<View style={styles.blackThemeProfile}>
       			<View style={[styles.blackThemeProfileChild, styles.personIconPosition1]} />
       			<Image style={styles.personIconPosition1} resizeMode="cover" source="person.png" />
@@ -11,17 +148,15 @@ const BlackThemeProfile = () => {
       			<Text style={[styles.username, styles.profileTypo]}>@username</Text>
       			<View style={styles.blackThemeProfileItem} />
       			<View style={styles.blackThemeProfileInner} />
-      			<Text style={[styles.dfasdfhlskajdfhJskdhfLskjadf, styles.profileNameTypo]}>{`dfasdfhlskajdfh jskdhf lskjadfh ljksdfh lkjasdfh ljaskdfh ljkh
-askljdfh laskjdfh lakjsdfh lajskdfh laskjdfh laksjfh lakjsfh
-skdjfh lkjsadfh lasjkdfh lkajsdfh lkjasdfh lsakjdfh laskjf
-lasdkjfh alsdkjfh lakjsdfh lskajdfh aslkjdfh
-      			lasdhflkjsadhf ls.`}</Text>
+      			<Text style={[styles.dfasdfhlskajdfhJskdhfLskjadf, styles.profileNameTypo]}>{`text`}</Text>
     		<Text style={[styles.bioDescription, styles.bioDescriptionTypo]}>Bio Description</Text>
     		<Image style={styles.messageSquareIcon} resizeMode="cover" source="Message square.png" />
     		<View style={styles.rectangleView} />
+
     		<Pressable style={[styles.person, styles.personIconLayout]} onPress={()=>{}}>
       			<Image style={styles.iconLayout1} resizeMode="cover" source="person.png" />
     		</Pressable>
+
     		<Text style={[styles.profileSettings, styles.bioDescriptionTypo]}>Profile Settings</Text>
     		<Text style={[styles.deviceManagement, styles.signOutTypo]}>Device Management</Text>
     		<Text style={[styles.signOut, styles.signOutTypo]}>Sign Out</Text>
@@ -51,7 +186,7 @@ lasdkjfh alsdkjfh lakjsdfh lskajdfh aslkjdfh
       			<Image style={[styles.plusCircleIcon, styles.personIconLayout]} resizeMode="cover" source="Plus circle.png" />
     		</View>
   	</View>);
-};
+}
 
 const styles = StyleSheet.create({
 personIconPosition1: {
