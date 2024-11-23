@@ -1,3 +1,6 @@
 android/build/
 android/app/build
+android/app/.cxx/
+.idea/
+android/.idea/
 node_modules
