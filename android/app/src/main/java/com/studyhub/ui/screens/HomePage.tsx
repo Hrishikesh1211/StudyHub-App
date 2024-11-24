@@ -2,6 +2,7 @@ import * as React from "react";
 import {Image, StyleSheet, Text, Pressable, View, ScrollView, Button, Alert} from "react-native";
 import {BlackThemeCreateGroup} from "./CreateGroup.tsx"
 import { useNavigation, } from '@react-navigation/native';
+import {TextStyles} from "../styles/text.tsx"
 import {MenuBar} from "../components/MenuBar.tsx"
 const favorite_icon = require("../../../../../res/icons-mdpi/black_icon.png");
 
@@ -9,7 +10,7 @@ const BlackThemeHomePage = () => {
 
     return (
         <View style={styles.blackThemeHomePage}>
-            <Text style={styles.myGroups}>My Groups</Text>
+            <Text style={[newStyles.pageTitle, TextStyles.pageTitle]}>My Groups</Text>
             <ScrollView>
                 <GroupButton/>
                 <GroupButton/>
@@ -43,15 +44,15 @@ const GroupButton = () => {
                 Alert.alert("Clicked group button")
             }}>
                 <View style={newStyles.buttonContainer}>
-                    <Text style={newStyles.courseCategory}>Web Development</Text>
-                    <Text style={newStyles.courseName}>Angular for beginners</Text>
+                    <Text style={[newStyles.courseCategory, TextStyles.whiteText2]}>Web Development</Text>
+                    <Text style={[TextStyles.header2, newStyles.courseName]}>Angular for beginners</Text>
                     <View style={newStyles.groupPicture} />
                     <Pressable onPress={ () => {
                         Alert.alert("Clicked favorite button")
                     }}>
                         <View style={newStyles.favoriteContainer}>
-                            <Text style={newStyles.favoriteText}>Add Favorite</Text>
                             <Image style={newStyles.favoriteIcon} resizeMode="cover" source={favorite_icon} />
+                            <Text style={[TextStyles.grayText2, newStyles.favoriteText]}>Add Favorite</Text>
                         </View>
                     </Pressable>
                 </View>
@@ -61,6 +62,19 @@ const GroupButton = () => {
 }
 
 const newStyles = StyleSheet.create({
+    pageTitle: {
+        top: 50,
+    	left: 25,
+    	width: 119,
+//     	height: 23,
+//     	fontSize: 20,
+//     	color: "#fff",
+//     	textAlign: "center",
+//     	fontFamily: "InstrumentSans-Bold",
+//     	fontWeight: "700",
+//     	lineHeight: 22,
+    	position: "absolute"
+    },
     groupButton: {
         left: 25,
         top: 100,
@@ -83,59 +97,61 @@ const newStyles = StyleSheet.create({
         position: "absolute"
     },
     courseCategory: {
-        width: 112,
-        textAlign: "left",
-    	fontSize: 12,
+//         width: 112,
+//         textAlign: "left",
+//     	fontSize: 12,
    		left: 93,
    		top: 17,
-   		height: 21,
-   		color: "#fff",
-   	    fontFamily: "InstrumentSans-Bold",
+//    		height: 21,
+//    		color: "#fff",
+//    	    fontFamily: "InstrumentSans-Bold",
    		fontWeight: "700",
-    	lineHeight: 22,
+//     	lineHeight: 22,
     	position: "absolute"
     },
     courseName: {
-        height: 48,
-        width: 214,
+//         height: 48,
+//         width: 214,
         textAlign: "left",
         left: 93,
         top: 38,
-        fontSize: 20,
-        color: "#fff",
-        fontFamily: "InstrumentSans-Bold",
+//         fontSize: 20,
+//         color: "#fff",
+//         fontFamily: "InstrumentSans-Bold",
         fontWeight: "700",
-        lineHeight: 22,
+//         lineHeight: 22,
         position: "absolute"
     },
     favoriteContainer: {
         height: 25,
-        width: 100,
+        width: 110,
         backgroundColor: "#1b1b1b",
         borderRadius: 10,
-        left: 245,
+        left: 240,
         top: 105,
-        position: "absolute"
+        position: "absolute",
+        flexDirection: "row",
+        padding: 3
     },
     favoriteIcon: {
         width: 20,
         height: 20,
-        left: 2,
-        top: 3,
-        position: "absolute"
+//         left: 2,
+//         top: 3,
+        position: "relative"
     },
     favoriteText: {
-        height: 22,
-        width: 85,
-        color: "#595959",
-        fontSize: 10,
-        left: 15,
-        top: 2,
+//         height: 22,
+//         width: 85,
+//         color: "#595959",
+//         fontSize: 10,
+//         left: 15,
+//         top: 2,
         textAlign: "center",
-        fontFamily: "InstrumentSans-Bold",
-        fontWeight: "700",
-        lineHeight: 22,
-        position: "absolute"
+//         fontFamily: "InstrumentSans-Bold",
+//         fontWeight: "700",
+//         lineHeight: 22,
+        position: "relative"
     }
 
 })
