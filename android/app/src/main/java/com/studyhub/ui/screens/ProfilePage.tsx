@@ -1,43 +1,84 @@
 import * as React from "react";
-import {StyleSheet, View, Image, Text, Pressable} from "react-native";
+import {StyleSheet, View, Image, Text, Pressable, Alert} from "react-native";
+import { useNavigation} from '@react-navigation/native';
+import {TextStyles} from "../styles/text.tsx"
 const greenMsg = require("../../../../../res/icons-mdpi/green_message_square.png");
 const blackPerson = require("../../../../../res/icons-mdpi/black_person.png");
+const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
+const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
+const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
+const appleIcon = require("../../../../../res/icons-mdpi/white_apple.png");
 
 const BlackThemeProfile = () => {
 
+    const nav = useNavigation();
+
     return (
         <View style={newStyles.background}>
+    		<Text style={[styles.profile, styles.profileTypo]}>Profile</Text>
       		<View style={newStyles.profilePictureContainer} />
       		<Image style={styles.personIconPosition1} resizeMode="cover" source="person.png" />
-      		<Text style={newStyles.profileNameText}>Profile Name</Text>
-      		<Text style={newStyles.usernameText}>@username</Text>
+      		<Text style={[newStyles.profileNameText, TextStyles.header1]}>Profile Name</Text>
+      		<Text style={[newStyles.usernameText, TextStyles.grayText1]}>@username</Text>
 
-      		<View style={newStyles.screenContainer} />
-      		<View style={newStyles.bioContainer} />
+            <View style={newStyles.socialContainer}>
+                <Pressable style={newStyles.socialButton} onPress={() => {
+                    Alert.alert("facebook")
+                }}>
+                    <Image source={facebookIcon}/>
+                </Pressable>
 
-      		<Text style={newStyles.bioText}>{`text`}</Text>
-    		<Text style={newStyles.bioDescriptionHeader}>Bio Description</Text>
-    		<Image style={newStyles.bioDescriptionIcon} resizeMode="cover" source={greenMsg} />
-    		<View style={[newStyles.buttonContainer, newStyles.deviceManagementButton]} />
+                <Pressable style={newStyles.socialButton} onPress={() => {
+                    Alert.alert("twitter")
+                }}>
+                    <Image source={xIcon}/>
+                </Pressable>
 
-    		<Pressable style={[styles.person, styles.personIconLayout]} onPress={()=>{}}>
-      			<Image style={styles.iconLayout1} resizeMode="cover" source={blackPerson} />
-    		</Pressable>
+                <Pressable style={newStyles.socialButton} onPress={() => {
+                    Alert.alert("apple")
+                }}>
+                    <Image source={appleIcon}/>
+                </Pressable>
 
-    		<Text style={[styles.profileSettings, styles.bioDescriptionTypo]}>Profile Settings</Text>
-    		<Text style={[styles.deviceManagement, styles.signOutTypo]}>Device Management</Text>
-    		<Text style={[styles.signOut, styles.signOutTypo]}>Sign Out</Text>
-    		<Text style={[styles.profile, styles.profileTypo]}>Profile</Text>
-    		<Image style={[styles.personIcon1, styles.personIconLayout]} resizeMode="cover" source="person.png" />
-    		<Image style={[styles.personIcon2, styles.personIconLayout]} resizeMode="cover" source="person.png" />
-    		<View style={[styles.blackThemeProfileChild1, styles.blackChildLayout1]} />
-    		<View style={[styles.blackThemeProfileChild2, styles.blackChildLayout]} />
-    		<View style={[styles.blackThemeProfileChild3, styles.blackChildLayout]} />
-    		<View style={[styles.blackThemeProfileChild4, styles.blackChildLayout1]} />
-    		<Image style={[styles.socialIcons, styles.iconLayout]} resizeMode="cover" source="Social Icons.png" />
-    		<Image style={[styles.socialIcons1, styles.iconLayout]} resizeMode="cover" source="Social Icons.png" />
-    		<Image style={[styles.socialIcons2, styles.iconLayout]} resizeMode="cover" source="Social Icons.png" />
-    		<Image style={[styles.facebookIcon, styles.iconLayout]} resizeMode="cover" source="Facebook.png" />
+                <Pressable style={newStyles.socialButton} onPress={() => {
+                    Alert.alert("google")
+                }}>
+                    <Image source={googleIcon}/>
+                </Pressable>
+            </View>
+
+      		<View style={newStyles.screenContainer}>
+                <View style={newStyles.bioContainer}>
+                    <View style={{flexDirection: 'row'}}>
+                        <Image style={newStyles.bioDescriptionIcon} resizeMode="cover" source={greenMsg} />
+                        <Text style={[newStyles.bioDescriptionHeader, TextStyles.whiteText1]}>Bio Description</Text>
+                    </View>
+                    <View>
+                        <Text style={TextStyles.whiteText2}>{`Sample bio text.`}</Text>
+                    </View>
+                </View>
+
+                <Pressable style={[newStyles.buttonContainer, newStyles.otherButton]}onPress={() => {
+                    nav.navigate("EditProfile")
+                }}>
+                    <Image style={newStyles.personIcon} resizeMode="cover" source={blackPerson} />
+                    <Text style={[newStyles.buttonText, TextStyles.whiteText2]}>Profile Settings</Text>
+                </Pressable>
+
+                <Pressable style={[newStyles.buttonContainer, newStyles.deviceManagementButton]}onPress={() => {
+                    Alert.alert("device management")
+                }}>
+                    <Image style={newStyles.personIcon} resizeMode="cover" source={blackPerson} />
+                    <Text style={[newStyles.buttonText, TextStyles.whiteText2]}>Device Management</Text>
+                </Pressable>
+
+                <Pressable style={[newStyles.buttonContainer, newStyles.otherButton]}onPress={() => {
+                    Alert.alert("sign out")
+                }}>
+                    <Image style={newStyles.personIcon} resizeMode="cover" source={blackPerson} />
+                    <Text style={[newStyles.buttonText, TextStyles.whiteText2]}>Sign Out</Text>
+                </Pressable>
+            </View>
   	</View>
     );
 };
@@ -46,7 +87,7 @@ const newStyles = StyleSheet.create({
     background: {
        backgroundColor: "#141819",
        flex: 1,
-       height: 1018,
+       height: "100%",
        overflow: "hidden",
        width: "100%"
     },
@@ -61,82 +102,87 @@ const newStyles = StyleSheet.create({
     profileNameText: {
         top: 244,
   	    left: 142,
-  	    fontSize: 24,
-  	    color: "#fff",
-  	    textAlign: "center",
-  	    fontFamily: "Inter-Medium",
-  	    fontWeight: "500",
   	    position: "absolute"
     },
     usernameText: {
         top: 273,
   	    left: 169,
-  	    fontSize: 16,
-  	    color: "#7a7878",
-  	    fontFamily: "Inter-Bold",
-        fontWeight: "700",
         textAlign: "center",
         position: "absolute"
+    },
+    socialContainer: {
+        top: 310,
+        width: 275,
+        left: 70,
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center"
+    },
+    socialButton: {
+        height: 56,
+        width: 56,
+        backgroundColor: "#000",
+        borderRadius: 20,
+        position: "relative",
+        alignItems: "center",
+        justifyContent: "center",
     },
     screenContainer: {
-        top: 409,
-        left: 15,
+        top: 410,
         borderRadius: 30,
         backgroundColor: "#131718",
-        width: 400,
+        width: '100%',
         height: 497,
-        position: "absolute"
+        position: "absolute",
+        flexDirection: "column",
+        alignItems: "center",
+        paddingVertical: 15,
+        gap: 10
     },
     bioContainer: {
-        top: 423,
-        left: 30,
         borderRadius: 17,
         backgroundColor: "#162f29",
-        width: 367,
-        height: 180,
-        position: "absolute"
-    },
-    bioText: {
-        top: 501,
-        left: 42,
-        fontSize: 12,
-        color: "#c9c9c9",
-        textAlign: "center",
-        fontFamily: "Inter-Medium",
-        fontWeight: "500",
-        position: "absolute"
+        width: 370,
+        height: 150,
+        position: "relative",
+        padding: 20,
+        gap: 30
     },
     bioDescriptionHeader: {
-        color: "#d9d9d9",
-        fontSize: 13,
-        fontFamily: "Inter-Bold",
-        fontWeight: "700",
-        textAlign: "center",
-        position: "absolute",
-        left: 60,
-        width: 148,
-        height: 16,
-        top: 445
+        position: "relative",
+        paddingHorizontal: 15,
+        top: -3
     },
     bioDescriptionIcon: {
-        left: 50,
-        width: 26,
-        height: 19,
-        top: 445,
-        position: "absolute",
-        overflow: "hidden"
+        position: "relative",
+        overflow: "hidden",
     },
     buttonContainer: {
-        top: 693,
-        left: 46,
         borderRadius: 9,
-        width: 351,
-        height: 59,
-        position: "absolute"
+        width: 350,
+        height: 60,
+        position: "relative",
+        alignItems: "left",
+        flexDirection: "row",
+        paddingHorizontal: 5,
     },
     deviceManagementButton: {
-        backgroundColor: "#19302a",
-    }
+        backgroundColor: "#162f29",
+    },
+    otherButton: {
+        backgroundColor: "#282828"
+    },
+    buttonText: {
+        top: '33%',
+        position: "relative",
+        paddingHorizontal: 10
+    },
+    personIcon: {
+        top: '30%',
+        width: 24,
+  	    height: 24,
+    },
+
 });
 
 const OldPage = () => {
