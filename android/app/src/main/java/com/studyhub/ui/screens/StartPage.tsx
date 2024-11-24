@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoidingView, ActivityIndicator} from "react-native";
 import { useNavigation, } from '@react-navigation/native';
+import {TextStyles} from "../styles/text.tsx"
 // import auth from '@react-native-firebase/auth';
 import { useState }  from 'react';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
@@ -45,20 +46,20 @@ const BlackThemeStartPage = () => {
 
   	return (
         <View style={newStyles.background}>
-            <Text style={newStyles.titleText}>StudyHub</Text>
+            <Text style={[newStyles.titleText, TextStyles.appTitle]}>StudyHub</Text>
 
             <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
                 <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
-                <TextInput value={username} style={newStyles.credentialText} placeholder="Username"
+                <TextInput value={username} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Username"
                 onChangeText={(text) => setUsername(text)}></TextInput>
             </View>
             <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
                 <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
-                <TextInput secureTextEntry={true} value={password} style={newStyles.credentialText} placeholder="Password"
+                <TextInput secureTextEntry={true} value={password} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Password"
                 onChangeText={(text) => setPassword(text)}></TextInput>
             </View>
 
-            <Text style={newStyles.socialText}>Log In With Social Media</Text>
+            <Text style={[newStyles.socialText, TextStyles.whiteText1]}>Log In With Social Media</Text>
 
             <View>
                 <Pressable style={[newStyles.socialButton, newStyles.facebookButton]} onPress={() => {
@@ -91,14 +92,14 @@ const BlackThemeStartPage = () => {
 //                                                 signUp();
                                                 nav.navigate("Home");
                                             }}>
-                                                <Text style={newStyles.buttonText}>Create Account</Text>
+                                                <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Create Account</Text>
                                 </Pressable>
 
                                 <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
 //                                     signIn()
                                     nav.navigate("Home");
                                 }}>
-                                    <Text style={newStyles.buttonText}> Sign In</Text>
+                                    <Text style={[TextStyles.whiteText1, newStyles.buttonText]}> Sign In</Text>
                                 </Pressable>
                                 </View>
                 }
@@ -145,15 +146,15 @@ const newStyles = StyleSheet.create({
     buttonText: {
         top: 18,
     	left: 28,
-    	fontFamily: "Inter-Bold",
+//     	fontFamily: "Inter-Bold",
     	width: 173,
-    	height: 21,
-    	fontSize: 15,
+//     	height: 21,
+//     	fontSize: 15,
     	textAlign: "center",
-    	color: "#fff",
+//     	color: "#fff",
     	fontWeight: "700",
-    	lineHeight: 22,
-    	letterSpacing: 0,
+//     	lineHeight: 22,
+//     	letterSpacing: 0,
     	position: "absolute"
     },
     credentialContainer: {
@@ -175,11 +176,11 @@ const newStyles = StyleSheet.create({
 //         height: 23,
         top: 5,
         left: 45,
-    	textAlign: "left",
-    	fontFamily: "Inter-Regular",
-    	color: "#fff",
+//     	textAlign: "left",
+//     	fontFamily: "Inter-Regular",
+//     	color: "#fff",
 //     	letterSpacing: 0,
-    	fontSize: 15,
+//     	fontSize: 15,
     	position: "absolute"
     },
     credentialIcon: {
@@ -190,14 +191,14 @@ const newStyles = StyleSheet.create({
     socialText: {
         top: 480,
     	width: 255,
-    	left: 89,
+    	left: 115,
    		fontFamily: "Inter-Regular",
-   		height: 21,
+//    		height: 21,
    		textAlign: "center",
-   		color: "#fff",
+//    		color: "#fff",
 //    		lineHeight: 22,
-   		letterSpacing: 0,
-   		fontSize: 15,
+//    		letterSpacing: 0,
+//    		fontSize: 15,
    		position: "relative"
     },
     socialButton: {
@@ -230,23 +231,23 @@ const newStyles = StyleSheet.create({
     titleText: {
         top: 100,
     	left: 85,
-    	fontSize: 40,
-   		fontFamily: "InstrumentSans-Bold",
+//     	fontSize: 40,
+//    		fontFamily: "InstrumentSans-Bold",
    		display: "flex",
    		alignItems: "center",
    		justifyContent: "center",
    		width: 260,
    		height: 186,
-   		textShadowColor: "#00000040",
-   		textShadowOffset: {
-            width: 16,
-     		height: 20
-   		},
-        textShadowRadius: 1,
-    	textAlign: "center",
-   		color: "#fff",
-   		fontWeight: "700",
-   		letterSpacing: 0,
+//    		textShadowColor: "#00000040",
+//    		textShadowOffset: {
+//             width: 16,
+//      		height: 20
+//    		},
+//         textShadowRadius: 1,
+//     	textAlign: "center",
+//    		color: "#fff",
+//    		fontWeight: "700",
+//    		letterSpacing: 0,
    		position: "absolute"
     }
 });
