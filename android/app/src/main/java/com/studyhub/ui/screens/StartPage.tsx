@@ -16,6 +16,9 @@ const BlackThemeStartPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
+      GoogleSignin.configure({
+              webClientId: '662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com',
+          });
 
     async function onGoogleButtonPress() {
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
@@ -44,6 +47,9 @@ const BlackThemeStartPage = () => {
         try {
             const response = await auth().signInWithEmailAndPassword(username,password);
             console.log(response);
+            if (response.user) {
+                nav.navigate("Home");
+            }
         } catch (error: any) {
             console.log(error);
             alert('Sign in failed: ' + error.message);
@@ -58,11 +64,15 @@ const BlackThemeStartPage = () => {
                const response = await auth().createUserWithEmailAndPassword(username,password);
                console.log(response);
                alert('Check your emails!');
+               if (response.user) {
+                   nav.navigate("Home");
+               }
            } catch (error: any) {
                console.log(error);
                alert('User info taken: ' + error.message);
                } finally {
                        setLoading(false);
+
                    }
           }
 
@@ -112,14 +122,12 @@ const BlackThemeStartPage = () => {
                                <View>
                                 <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
                                                  signUp();
-                                                nav.navigate("Home");
                                             }}>
                                                 <Text style={newStyles.buttonText}>Create Account</Text>
                                 </Pressable>
 
                                 <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
                                      SignIn()
-                                    nav.navigate("Home");
                                 }}>
                                     <Text style={newStyles.buttonText}> Sign In</Text>
                                 </Pressable>
