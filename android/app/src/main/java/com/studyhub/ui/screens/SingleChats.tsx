@@ -1,3 +1,19 @@
+
+
+import firestore from '@react-native-firebase/firestore';
+
+const fetchChatList = (userId, setChatList) => {
+    return firestore()
+        .collection('Chats')
+        .where('participants', 'array-contains', userId)
+        .onSnapshot((querySnapshot) => {
+            const chatList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setChatList(chatList);
+        });
+};
+
+
+// Existing content of SingleChats.tsx
 import * as React from "react";
 import {Text, StyleSheet, Image, Pressable, View} from "react-native";
 
@@ -246,3 +262,4 @@ const styles = StyleSheet.create({
 });
 
 export default BlackThemeSingleChats;
+
