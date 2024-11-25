@@ -1,1 +1,0 @@
-/home/Ifryx/AndroidStudioProjects/test/StudyHub/android/app/build/intermediates/cxx/Debug/2l3156r2/obj/x86
