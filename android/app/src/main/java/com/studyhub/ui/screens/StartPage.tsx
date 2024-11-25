@@ -1,8 +1,9 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoidingView, ActivityIndicator} from "react-native";
 import { useNavigation, } from '@react-navigation/native';
-// import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 import { useState }  from 'react';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -16,7 +17,29 @@ const BlackThemeStartPage = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
 
-    const signIn = async () => {
+    async function onGoogleButtonPress() {
+        await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+          // Get the users ID token
+          const signInResult = await GoogleSignin.signIn();
+
+          // Try the new style of google-sign in result, from v13+ of that module
+          idToken = signInResult.data?.idToken;
+          if (!idToken) {
+            // if you are using older versions of google-signin, try old style result
+            idToken = signInResult.idToken;
+          }
+          if (!idToken) {
+            throw new Error('No ID token found');
+          }
+
+          // Create a Google credential with the token
+          const googleCredential = auth.GoogleAuthProvider.credential(signInResult.data.token);
+
+          // Sign-in the user with the credential
+          return auth().signInWithCredential(googleCredential);
+    }
+
+    const SignIn = async () => {
         setLoading(true);
         try {
             const response = await auth().signInWithEmailAndPassword(username,password);
@@ -77,7 +100,7 @@ const BlackThemeStartPage = () => {
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={appleIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
-                    Alert.alert("google");
+                    onGoogleButtonPress().then(() =>  nav.navigate("Home"))
                 }}>
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={googleIcon} />
                 </Pressable>
@@ -88,14 +111,14 @@ const BlackThemeStartPage = () => {
                                :
                                <View>
                                 <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-//                                                 signUp();
+                                                 signUp();
                                                 nav.navigate("Home");
                                             }}>
                                                 <Text style={newStyles.buttonText}>Create Account</Text>
                                 </Pressable>
 
                                 <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-//                                     signIn()
+                                     SignIn()
                                     nav.navigate("Home");
                                 }}>
                                     <Text style={newStyles.buttonText}> Sign In</Text>

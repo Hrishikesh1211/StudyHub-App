@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import type {PropsWithChildren} from 'react';
@@ -75,6 +76,10 @@ function App(): React.JSX.Element {
 //                 console.log('user',user);
 //             });
 //       }, [])
+
+  GoogleSignin.configure({
+          webClientId: '662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com',
+      });
 
   const isDarkMode = useColorScheme() === 'dark';
 
