@@ -1,3 +1,34 @@
+
+
+import firestore from '@react-native-firebase/firestore';
+
+const sendMessageToGroupChat = async (groupId, message) => {
+    try {
+        await firestore().collection('GroupChats').doc(groupId).collection('Messages').add({
+            text: message.text,
+            sender: message.sender,
+            createdAt: firestore.FieldValue.serverTimestamp(),
+        });
+        console.log('Message sent successfully!');
+    } catch (error) {
+        console.error('Error sending message:', error);
+    }
+};
+
+const fetchGroupChatMessages = (groupId, setMessages) => {
+    return firestore()
+        .collection('GroupChats')
+        .doc(groupId)
+        .collection('Messages')
+        .orderBy('createdAt', 'asc')
+        .onSnapshot((querySnapshot) => {
+            const messages = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setMessages(messages);
+        });
+};
+
+
+// Existing content of GroupOpenChat.tsx
 import * as React from "react";
 import {Image, StyleSheet, Text, View, Pressable} from "react-native";
 
@@ -874,3 +905,4 @@ const styles = StyleSheet.create({
 });
 
 export default BlackThemeGroupOpenChat;
+
