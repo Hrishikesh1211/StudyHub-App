@@ -1,10 +1,11 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoidingView, ActivityIndicator} from "react-native";
-import { useNavigation, } from '@react-navigation/native
+import { useNavigation, } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import {TextStyles} from "../styles/text.tsx"
 import { useState }  from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { appleAuth } from '@invertase/react-native-apple-authentication';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -20,6 +21,22 @@ const BlackThemeStartPage = () => {
       GoogleSignin.configure({
               webClientId: '662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com',
           });
+
+    async function onAppleButtonPress() {
+        const appleAuthRequestResponse = await appleAuth.performRequest({
+            requestedOperation: appleAuth.Operation.LOGIN,
+            requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
+        });
+
+        if(!appleAuthRequestResponse.identityToken) {
+            Alert.alert("Apple Sign-In failed - issue with token");
+        }
+
+        const { identityToken, nonce } = appleAuthRequestResponse;
+        const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
+
+        return auth().signInWithCredential(appleCredential);
+    }
 
     async function onGoogleButtonPress() {
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
@@ -101,7 +118,7 @@ const BlackThemeStartPage = () => {
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={xIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.appleButton]} onPress={() => {
-                    Alert.alert("apple");
+                    onAppleButtonPress().then(() => nav.navigate("Home"))
                 }}>
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={appleIcon} />
                 </Pressable>
