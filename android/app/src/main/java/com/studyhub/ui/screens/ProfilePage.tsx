@@ -1,3 +1,22 @@
+
+
+import firestore from '@react-native-firebase/firestore';
+
+const fetchUserProfile = async (userId, setProfileData) => {
+    try {
+        const userDoc = await firestore().collection('Users').doc(userId).get();
+        if (userDoc.exists) {
+            setProfileData(userDoc.data());
+        } else {
+            console.log('No such user profile found!');
+        }
+    } catch (error) {
+        console.error('Error fetching profile:', error);
+    }
+};
+
+
+// Existing content of ProfilePage.tsx
 import * as React from "react";
 import {StyleSheet, View, Image, Text, Pressable, Alert} from "react-native";
 import { useNavigation} from '@react-navigation/native';
@@ -560,3 +579,4 @@ blackThemeProfile: {
 });
 
 export default BlackThemeProfile;
+

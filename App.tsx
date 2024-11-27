@@ -76,6 +76,7 @@ function App(): React.JSX.Element {
 //             });
 //       }, [])
 
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {

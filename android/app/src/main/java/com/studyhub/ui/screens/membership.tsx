@@ -1,3 +1,23 @@
+
+
+import firestore from '@react-native-firebase/firestore';
+
+const fetchUserMemberships = async (userId, setMemberships) => {
+    try {
+        const querySnapshot = await firestore()
+            .collection('Memberships')
+            .where('userId', '==', userId)
+            .get();
+
+        const memberships = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setMemberships(memberships);
+    } catch (error) {
+        console.error('Error fetching memberships:', error);
+    }
+};
+
+
+// Existing content of Membership.tsx
 import * as React from "react";
 import {Text, StyleSheet, View, Image, Pressable} from "react-native";
 
@@ -250,3 +270,4 @@ blackThemeMembership: {
 });
 
 export default BlackThemeMembership;
+

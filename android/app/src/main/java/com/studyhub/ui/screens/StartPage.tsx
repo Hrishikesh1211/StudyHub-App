@@ -1,9 +1,10 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoidingView, ActivityIndicator} from "react-native";
-import { useNavigation, } from '@react-navigation/native';
+import { useNavigation, } from '@react-navigation/native
+import auth from '@react-native-firebase/auth';
 import {TextStyles} from "../styles/text.tsx"
-// import auth from '@react-native-firebase/auth';
 import { useState }  from 'react';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -16,12 +17,35 @@ const BlackThemeStartPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
+      GoogleSignin.configure({
+              webClientId: '662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com',
+          });
 
-    const signIn = async () => {
+    async function onGoogleButtonPress() {
+        await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+
+          const signInResult = await GoogleSignin.signIn();
+          idToken = signInResult.data?.idToken;
+          if (!idToken) {
+            idToken = signInResult.idToken;
+          }
+          if (!idToken) {
+            throw new Error('No ID token found');
+          }
+
+          const googleCredential = auth.GoogleAuthProvider.credential(signInResult.data.token);
+
+          return auth().signInWithCredential(googleCredential);
+    }
+
+    const SignIn = async () => {
         setLoading(true);
         try {
             const response = await auth().signInWithEmailAndPassword(username,password);
             console.log(response);
+            if (response.user) {
+                nav.navigate("Home");
+            }
         } catch (error: any) {
             console.log(error);
             alert('Sign in failed: ' + error.message);
@@ -36,11 +60,15 @@ const BlackThemeStartPage = () => {
                const response = await auth().createUserWithEmailAndPassword(username,password);
                console.log(response);
                alert('Check your emails!');
+               if (response.user) {
+                   nav.navigate("Home");
+               }
            } catch (error: any) {
                console.log(error);
                alert('User info taken: ' + error.message);
                } finally {
                        setLoading(false);
+
                    }
           }
 
@@ -78,7 +106,8 @@ const BlackThemeStartPage = () => {
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={appleIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
-                    Alert.alert("google");
+                total.innerHTML = `Total Price: \$${totalPrice}`;
+                    onGoogleButtonPress().then(() =>  nav.navigate("Home"))
                 }}>
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={googleIcon} />
                 </Pressable>
@@ -89,15 +118,13 @@ const BlackThemeStartPage = () => {
                                :
                                <View>
                                 <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-//                                                 signUp();
-                                                nav.navigate("Home");
+                                                 signUp();
                                             }}>
                                                 <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Create Account</Text>
                                 </Pressable>
 
                                 <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-//                                     signIn()
-                                    nav.navigate("Home");
+                                     SignIn()
                                 }}>
                                     <Text style={[TextStyles.whiteText1, newStyles.buttonText]}> Sign In</Text>
                                 </Pressable>

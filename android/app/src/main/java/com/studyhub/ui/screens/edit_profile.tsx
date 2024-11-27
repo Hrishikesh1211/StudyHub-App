@@ -1,3 +1,18 @@
+
+
+import firestore from '@react-native-firebase/firestore';
+
+const updateUserProfile = async (userId, profileData) => {
+    try {
+        await firestore().collection('Users').doc(userId).update(profileData);
+        console.log('Profile updated successfully!');
+    } catch (error) {
+        console.error('Error updating profile:', error);
+    }
+};
+
+
+// Existing content of EditProfile.tsx
 import * as React from "react";
 import {ScrollView, Image, StyleSheet, Text, View, Pressable} from "react-native";
 
