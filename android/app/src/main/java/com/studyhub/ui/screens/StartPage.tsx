@@ -6,6 +6,7 @@ import {TextStyles} from "../styles/text.tsx"
 import { useState }  from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
+import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -21,6 +22,25 @@ const BlackThemeStartPage = () => {
       GoogleSignin.configure({
               webClientId: '662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com',
           });
+
+    async function onFacebookButtonPress() {
+      const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+
+      if (result.isCancelled) {
+        throw 'User cancelled the login process';
+      }
+
+      const data = await AccessToken.getCurrentAccessToken();
+
+      if (!data) {
+        throw 'Something went wrong obtaining access token';
+      }
+
+      const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+
+      return auth().signInWithCredential(facebookCredential);
+    }
+
 
     async function onAppleButtonPress() {
         const appleAuthRequestResponse = await appleAuth.performRequest({
@@ -108,7 +128,7 @@ const BlackThemeStartPage = () => {
 
             <View>
                 <Pressable style={[newStyles.socialButton, newStyles.facebookButton]} onPress={() => {
-                    Alert.alert("facebook");
+                    onFacebookButtonPress().then(() => nav.navigate("Home"))
                 }}>
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={facebookIcon} />
                 </Pressable>
