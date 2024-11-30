@@ -1,5 +1,3 @@
-
-
 import firestore from '@react-native-firebase/firestore';
 
 const sendMessageToPerson = async (chatId, message) => {
@@ -27,8 +25,6 @@ const fetchSinglePersonMessages = (chatId, setMessages) => {
         });
 };
 
-
-// Existing content of SinglePersonChat.tsx
 import * as React from "react";
 import {Image, StyleSheet, Text, View, Pressable} from "react-native";
 
