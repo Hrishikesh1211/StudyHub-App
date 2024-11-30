@@ -16,8 +16,6 @@ const addGroupToDatabase = async (groupName, groupDescription, members) => {
     }
 };
 
-
-// Existing content of CreateGroup.tsx
 import * as React from "react";
 import {StyleSheet, View, Image, Text, Pressable, Alert, TextInput, ScrollView} from "react-native";
 import {MenuBar} from "../components/MenuBar.tsx"
@@ -25,13 +23,14 @@ import {TextStyles} from "../styles/text.tsx"
 const greenPlus = require("../../../../../res/icons-mdpi/green_plus.png");
 const greenPlay = require("../../../../../res/icons-mdpi/green_play_arrow_filled.png");
 const greenPerson = require("../../../../../res/icons-mdpi/green_person.png");
+const whiteCircle = require("../../../../../res/icons-mdpi/gray_ellipse.png");
 
 const BlackThemeCreateGroup = () => {
     return (
         <View style={newStyles.background}>
             <Text style={[TextStyles.pageTitle, newStyles.title]}>Community Group</Text>
             <Pressable style={newStyles.createButtonContainer} onPress={()=>{
-                Alert.alert("create group")
+                Alert.alert("create group");
             }}>
                 <Text style={TextStyles.whiteText2}>Create</Text>
             </Pressable>
@@ -75,34 +74,31 @@ const BlackThemeCreateGroup = () => {
                     <Image style={newStyles.membersListIcon} resizeMode="cover" source={greenPerson} />
                     <Text style={[TextStyles.whiteText1, newStyles.membersListText]}>Members</Text>
 
-                    <View style={newStyles.memberButtonContainer}>
-                        <ScrollView>
-                            <MemberButton/>
-                            <MemberButton/>
-                            <MemberButton/>
-                            <MemberButton/>
-                            <MemberButton/>
-                            <MemberButton/>
-                            <MemberButton/>
-                            <MemberButton/>
-                        </ScrollView>
-                    </View>
+                    <ScrollView style={newStyles.memberButtonContainer} contentContainerStyle={newStyles.memberContainerContent}>
+                        <MemberButton/>
+                        <MemberButton/>
+                        <MemberButton/>
+                        <MemberButton/>
+                        <MemberButton/>
+                        <MemberButton/>
+                        <MemberButton/>
+                        <MemberButton/>
+                    </ScrollView>
+
       			</View>
+
     		</View>
     )
 };
 
 const MemberButton = () => {
     return (
-        <View>
             <Pressable style={newStyles.memberButton} onPress={() => {
                     Alert.alert("member button")
                 }}>
-                <Image style={newStyles.memberButtonIcon}/>
-                <Text styles={[newStyles.memberButtonText, TextStyles.whiteText1]}>Name</Text>
-                <Text styles={newStyles.invitedStatusText}></Text>
+                <Image style={newStyles.memberButtonIcon} source={whiteCircle}/>
+                <Text style={[newStyles.memberButtonText, TextStyles.whiteText2]}>Name</Text>
             </Pressable>
-        </View>
     );
 }
 
@@ -197,33 +193,39 @@ const newStyles = StyleSheet.create({
     },
     memberButtonContainer: {
 //         justifyContent: "center",
-        top: 400,
-        height: 400,
+        top: 480,
+        height: 210,
         width: 400,
         flex: 1,
+        position: "absolute",
     },
     memberButton: {
-//         height: 71,
-    	width: 400,
+        height: 45,
+    	width: 380,
     	borderRadius: 16,
     	left: 7,
     	backgroundColor: "#1e1c1d",
     	position: "relative",
-        paddingVertical: 5
-
+    },
+    memberContainerContent: {
+        justifyContent: "center",
+        gap: 10,
+        alignItems: "center"
     },
     memberButtonIcon: {
-        height: 50,
-    	width: 54,
-    	left: 34,
+        height: 32,
+    	width: 32,
+    	left: 10,
+    	top: 5,
     	position: "absolute"
     },
     memberButtonText: {
-        height: 12,
-    	width: 63,
+//      height: 12,
+//     	width: 63,
 //     	fontSize: 16,
-    	left: 109,
-    	textAlign: "center",
+        left: 55,
+        top: 10,
+    	textAlign: "left",
 //     	color: "#fff",
 //     	fontFamily: "Inter-Regular",
     	position: "absolute"
