@@ -1,1 +1,0 @@
-/home/Ifryx/StudyHub/android/app/build/intermediates/cxx/Debug/302z1s4a/obj/arm64-v8a

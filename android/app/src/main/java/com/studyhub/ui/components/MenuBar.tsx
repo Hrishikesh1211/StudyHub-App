@@ -1,77 +1,58 @@
 import * as React from "react";
 import {Image, StyleSheet, Text, Pressable, View, FlatList, ImageBackground} from "react-native";
-import {useNavigation} from "@react-navigation/native";
-const homeIcon = require("../../../../../res/icons-mdpi/white_home.png")
-const gameIcon = require("../../../../../res/icons-mdpi/white_box.png")
-const addIcon = require("../../../../../res/icons-mdpi/green_add_button.png")
-const chatIcon = require("../../../../../res/icons-mdpi/white_chat_bubble.png")
-const profileIcon = require("../../../../../res/icons-mdpi/white_person.png")
+import { useNavigation } from "@react-navigation/native";
+
+const homeIcon = require("../../../../../res/icons-mdpi/white_home.png");
+const gameIcon = require("../../../../../res/icons-mdpi/white_box.png");
+const addIcon = require("../../../../../res/icons-mdpi/green_add_button.png");
+const chatIcon = require("../../../../../res/icons-mdpi/white_chat_bubble.png");
+const profileIcon = require("../../../../../res/icons-mdpi/white_person.png");
 
 export const MenuBar = () => {
     const nav = useNavigation();
 
     return (
         <View style={styles.container}>
-            <Pressable style={styles.homeIcon} onPress={() => {
-                nav.navigate("Home")
-            }}>
-                <Image source={homeIcon}/>
-                <Text>Home</Text>
+            <Pressable style={styles.iconContainer} onPress={() => nav.navigate("Home")} accessibilityLabel="Home">
+                <Image source={homeIcon} />
+                <Text style={styles.iconText}>Home</Text>
             </Pressable>
-            <Pressable style={styles.gameIcon}>
-                <Image source={gameIcon}/>
-                <Text>Games</Text>
+            <Pressable style={styles.iconContainer} onPress={() => nav.navigate("Games")} accessibilityLabel="Games">
+                <Image source={gameIcon} />
+                <Text style={styles.iconText}>Games</Text>
             </Pressable>
-            <Pressable style={styles.groupIcon} onPress={() => {
-                nav.navigate("CreateGroup")
-            }}>
-                <Image source={addIcon}/>
+            <Pressable style={styles.iconContainer} onPress={() => nav.navigate("Create Group")} accessibilityLabel="Create Group">
+                <Image source={addIcon} />
             </Pressable>
-            <Pressable style={styles.chatIcon} onPress={() => {
-                nav.navigate("Chats")
-            }}>
-                <Image source={chatIcon}/>
-                <Text>Chats</Text>
+            <Pressable style={styles.iconContainer} onPress={() => nav.navigate("Chats")} accessibilityLabel="Chats">
+                <Image source={chatIcon} style={styles.icon} />
+                <Text style={styles.iconText}>Chats</Text>
             </Pressable>
-            <Pressable style={styles.profileIcon} onPress={() => {
-                nav.navigate("Profile")
-            }}>
-                <Image source={profileIcon}/>
-                <Text>Profile</Text>
+            <Pressable style={styles.iconContainer} onPress={() => nav.navigate("Profile")} accessibilityLabel="Profile">
+                <Image source={profileIcon} />
+                <Text style={styles.iconText}>Profile</Text>
             </Pressable>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
-     container: {
-//        flex: 1,
-
-    	backgroundColor: "#282828",
-        flexDirection: "row",
+    container: {
         backgroundColor: "#282828",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        bottom: 0,
+        width: '100%',
         alignItems: "center",
-//         justifyContent: "space-between"
-     },
-     ImageBackground: {
-//        flex: 1,
-       resizeMode: "cover",
-       width: "100%",
-       alignItems: "center",
-     },
-    homeIcon: {
-        left: 30
+        paddingVertical: 10,
+        position: "absolute"
     },
-    gameIcon: {
-        left: 60
+    iconContainer: {
+        alignItems: "center",
     },
-    groupIcon: {
-        left: 90
-    },
-    chatIcon: {
-        left: 120
-    },
-    profileIcon: {
-        left: 150
+    iconText: {
+        color: "#fff",
+        fontSize: 12,
     }
+
 });

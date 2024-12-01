@@ -1,3 +1,30 @@
+import firestore from '@react-native-firebase/firestore';
+
+const sendMessageToPerson = async (chatId, message) => {
+    try {
+        await firestore().collection('Chats').doc(chatId).collection('Messages').add({
+            text: message.text,
+            sender: message.sender,
+            createdAt: firestore.FieldValue.serverTimestamp(),
+        });
+        console.log('Message sent successfully!');
+    } catch (error) {
+        console.error('Error sending message:', error);
+    }
+};
+
+const fetchSinglePersonMessages = (chatId, setMessages) => {
+    return firestore()
+        .collection('Chats')
+        .doc(chatId)
+        .collection('Messages')
+        .orderBy('createdAt', 'asc')
+        .onSnapshot((querySnapshot) => {
+            const messages = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setMessages(messages);
+        });
+};
+
 import * as React from "react";
 import {Image, StyleSheet, Text, View, Pressable} from "react-native";
 
@@ -777,3 +804,4 @@ const styles = StyleSheet.create({
 });
 
 export default BlackThemeSingleOpenChat;
+

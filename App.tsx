@@ -17,6 +17,7 @@ import BlackThemeCreateGroup from './android/app/src/main/java/com/studyhub/ui/s
 import BlackThemeSingleChats from './android/app/src/main/java/com/studyhub/ui/screens/SingleChats.tsx';
 import BlackThemeStartPage from './android/app/src/main/java/com/studyhub/ui/screens/StartPage.tsx';
 import BlackThemeEditProfile from './android/app/src/main/java/com/studyhub/ui/screens/edit_profile.tsx';
+import BlackThemeSingleOpenChat from './android/app/src/main/java/com/studyhub/ui/screens/single_person_chat.tsx';
 
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button } from 'react-native';
 
@@ -57,12 +58,13 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 
 const Stack = createNativeStackNavigator({
     screens: {
-        Home: BlackThemeHomePage,
-        Profile: BlackThemeProfile,
-        CreateGroup: BlackThemeCreateGroup,
-        Chats: BlackThemeSingleChats,
-        Start: BlackThemeStartPage,
-        EditProfile: BlackThemeEditProfile
+        "Home": BlackThemeHomePage,
+        "Profile": BlackThemeProfile,
+        "Create Group": BlackThemeCreateGroup,
+        "Chats": BlackThemeSingleChats,
+        "Start": BlackThemeStartPage,
+        "Edit Profile": BlackThemeEditProfile,
+        "Message User": BlackThemeSingleOpenChat
     },
     initialRouteName: "Start"
   });
@@ -75,6 +77,7 @@ function App(): React.JSX.Element {
 //                 console.log('user',user);
 //             });
 //       }, [])
+
 
   const isDarkMode = useColorScheme() === 'dark';
 
