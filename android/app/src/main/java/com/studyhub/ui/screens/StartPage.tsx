@@ -7,6 +7,8 @@ import { useState }  from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
+//import { NativeModules } from 'react-native';
+//const { RNTwitterSignIn } = NativeModules;
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -23,57 +25,69 @@ const BlackThemeStartPage = () => {
               webClientId: '662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com',
           });
 
-    async function onFacebookButtonPress() {
-      const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+      /*RNTwitterSignIn.init('TWITTER_CONSUMER_KEY', 'TWITTER_CONSUMER_SECRET').then(() =>
+        console.log('Twitter SDK initialized'),
+      );*/
 
-      if (result.isCancelled) {
-        throw 'User cancelled the login process';
-      }
+  /* async function onTwitterButtonPress(): Promise<any> {
+       const { authToken, authTokenSecret }: { authToken: string; authTokenSecret: string } = await RNTwitterSignIn.logIn();
 
-      const data = await AccessToken.getCurrentAccessToken();
+       const twitterCredential: any = auth.TwitterAuthProvider.credential(authToken, authTokenSecret);
 
-      if (!data) {
-        throw 'Something went wrong obtaining access token';
-      }
+       return auth().signInWithCredential(twitterCredential);
+   }*/
 
-      const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+async function onFacebookButtonPress(): Promise<any> {
+  const result: { isCancelled: boolean } = await LoginManager.logInWithPermissions(['public_profile', 'email']);
 
-      return auth().signInWithCredential(facebookCredential);
+  if (result.isCancelled) {
+    throw 'User cancelled the login process';
+  }
+
+  const data: { accessToken: string } | null = await AccessToken.getCurrentAccessToken();
+
+  if (!data) {
+    throw 'Something went wrong obtaining access token';
+  }
+
+  const facebookCredential: any = auth.FacebookAuthProvider.credential(data.accessToken);
+
+  return auth().signInWithCredential(facebookCredential);
+}
+
+
+async function onAppleButtonPress(): Promise<any> {
+    const appleAuthRequestResponse: appleAuth.AppleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
+    });
+
+    if (!appleAuthRequestResponse.identityToken) {
+        Alert.alert("Apple Sign-In failed - issue with token");
     }
 
+    const { identityToken, nonce }: { identityToken: string; nonce: string } = appleAuthRequestResponse;
+    const appleCredential: firebase.auth.AuthCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
 
-    async function onAppleButtonPress() {
-        const appleAuthRequestResponse = await appleAuth.performRequest({
-            requestedOperation: appleAuth.Operation.LOGIN,
-            requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
-        });
+    return auth().signInWithCredential(appleCredential);
+}
 
-        if(!appleAuthRequestResponse.identityToken) {
-            Alert.alert("Apple Sign-In failed - issue with token");
-        }
+async function onGoogleButtonPress(): Promise<any> {
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
 
-        const { identityToken, nonce } = appleAuthRequestResponse;
-        const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
-
-        return auth().signInWithCredential(appleCredential);
+    const signInResult: { data?: { idToken?: string; token: string } } = await GoogleSignin.signIn();
+    let idToken: string | undefined = signInResult.data?.idToken;
+    if (!idToken) {
+        idToken = signInResult.idToken;
+    }
+    if (!idToken) {
+        throw new Error('No ID token found');
     }
 
-    async function onGoogleButtonPress() {
-        await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    const googleCredential: any = auth.GoogleAuthProvider.credential(signInResult.data.token);
 
-          const signInResult = await GoogleSignin.signIn();
-          idToken = signInResult.data?.idToken;
-          if (!idToken) {
-            idToken = signInResult.idToken;
-          }
-          if (!idToken) {
-            throw new Error('No ID token found');
-          }
-
-          const googleCredential = auth.GoogleAuthProvider.credential(signInResult.data.token);
-
-          return auth().signInWithCredential(googleCredential);
-    }
+    return auth().signInWithCredential(googleCredential);
+}
 
     const SignIn = async () => {
         setLoading(true);
@@ -91,23 +105,6 @@ const BlackThemeStartPage = () => {
                 }
        }
 
-   const signUp = async () => {
-           setLoading(true);
-           try {
-               const response = await auth().createUserWithEmailAndPassword(username,password);
-               console.log(response);
-               alert('Check your emails!');
-               if (response.user) {
-                   nav.navigate("Home");
-               }
-           } catch (error: any) {
-               console.log(error);
-               alert('User info taken: ' + error.message);
-               } finally {
-                       setLoading(false);
-
-                   }
-          }
 
   	return (
         <View style={newStyles.background}>
@@ -133,7 +130,7 @@ const BlackThemeStartPage = () => {
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={facebookIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.xButton]}  onPress={() => {
-                    Alert.alert("x");
+                    //onTwitterButtonPress.then(() => nav.navigate("Home"))
                 }}>
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={xIcon} />
                 </Pressable>
@@ -143,7 +140,6 @@ const BlackThemeStartPage = () => {
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={appleIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
-                total.innerHTML = `Total Price: \$${totalPrice}`;
                     onGoogleButtonPress().then(() =>  nav.navigate("Home"))
                 }}>
                     <Image style={newStyles.socialIcon} resizeMode="cover" source={googleIcon} />
@@ -155,7 +151,7 @@ const BlackThemeStartPage = () => {
                                :
                                <View>
                                 <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                                                 signUp();
+                                                 nav.navigate("CreateAcc");
                                             }}>
                                                 <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Create Account</Text>
                                 </Pressable>

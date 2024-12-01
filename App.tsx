@@ -62,7 +62,8 @@ const Stack = createNativeStackNavigator({
         CreateGroup: BlackThemeCreateGroup,
         Chats: BlackThemeSingleChats,
         Start: BlackThemeStartPage,
-        EditProfile: BlackThemeEditProfile
+        EditProfile: BlackThemeEditProfile,
+        CreateAcc: CreateAccount
     },
     initialRouteName: "Start"
   });
