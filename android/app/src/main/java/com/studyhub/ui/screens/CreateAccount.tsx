@@ -1,49 +1,62 @@
 import * as React from "react";
-import {Text, StyleSheet, View, Pressable, Image,
-    TextInput, Alert, KeyboardAvoidingView, ActivityIndicator} from "react-native";
-import { useNavigation, } from '@react-navigation/native';
-import {TextStyles} from "../styles/text.tsx";
-import { useState }  from 'react';
-
+import { Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoidingView, ActivityIndicator } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import { TextStyles } from "../styles/text.tsx";
+import { useState } from 'react';
+import auth from '@react-native-firebase/auth'; // Ensure this import is correct
+const atIcon = require("../../../../../res/icons-mdpi/green_at_sign.png");
+const lockIcon = require("../../../../../res/icons-mdpi/green_lock.png");
 
 const CreateAccount = () => {
     const nav = useNavigation();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState('');
+    const [loading, setLoading] = useState(false); // Changed to boolean
+
     const signUp = async () => {
-                 setLoading(true);
-                 try {
-                     const response = await auth().createUserWithEmailAndPassword(username,password);
-                     console.log(response);
-                     alert('Check your emails!');
-                     if (response.user) {
-                         nav.navigate("Home");
-                     }
-                 } catch (error: any) {
-                     console.log(error);
-                     alert('User info taken: ' + error.message);
-                     } finally {
-                             setLoading(false);
+        setLoading(true);
+        try {
+            const response = await auth().createUserWithEmailAndPassword(username, password);
+            console.log(response);
+            alert('Check your emails!');
+            if (response.user) {
+                nav.navigate("Home");
+            }
+        } catch (error) {
+            console.log(error);
+            alert('User info taken: ' + error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-                         }
-                }
-            return (
-                <View style={newStyles.background}>
-                            <Text style={[newStyles.titleText, TextStyles.appTitle]}>StudyHub</Text>
+    return (
+        <View style={newStyles.background}>
+            <Text style={[newStyles.titleText, TextStyles.appTitle]}>StudyHub</Text>
 
-                            <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
-                                <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
-                                <TextInput value={username} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Username"
-                                onChangeText={(text) => setUsername(text)}></TextInput>
-                            </View>
-                            <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
-                                <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
-                                <TextInput secureTextEntry={true} value={password} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Password"
-                                onChangeText={(text) => setPassword(text)}></TextInput>
-                            </View>
-                );
-            };
+            <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
+                <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
+                <TextInput
+                    value={username}
+                    style={[newStyles.credentialText, TextStyles.whiteText1]}
+                    placeholder="Username"
+                    onChangeText={(text) => setUsername(text)}
+                />
+            </View>
+            <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
+                <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
+                <TextInput
+                    secureTextEntry={true}
+                    value={password}
+                    style={[newStyles.credentialText, TextStyles.whiteText1]}
+                    placeholder="Password"
+                    onChangeText={(text) => setPassword(text)}
+                />
+            </View>
+        </View>
+    );
+};
+
 const newStyles = StyleSheet.create({
     background: {
         backgroundColor: "#000000cc",
@@ -186,4 +199,5 @@ const newStyles = StyleSheet.create({
    		position: "absolute"
     }
 });
+
 export default CreateAccount;

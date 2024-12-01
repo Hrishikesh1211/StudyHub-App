@@ -17,6 +17,7 @@ import BlackThemeCreateGroup from './android/app/src/main/java/com/studyhub/ui/s
 import BlackThemeSingleChats from './android/app/src/main/java/com/studyhub/ui/screens/SingleChats.tsx';
 import BlackThemeStartPage from './android/app/src/main/java/com/studyhub/ui/screens/StartPage.tsx';
 import BlackThemeEditProfile from './android/app/src/main/java/com/studyhub/ui/screens/edit_profile.tsx';
+import CreateAccount from './android/app/src/main/java/com/studyhub/ui/screens/CreateAccount.tsx';
 
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Button } from 'react-native';
 
