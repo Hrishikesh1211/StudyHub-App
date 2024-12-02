@@ -19,29 +19,32 @@ const CreateAccount = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const addUserToFirestore = async (username: string, password: string,
-        email: string, phoneNumber: string, firstName: firstName, lastName: lastName): Promise<void> => {
-      try {
-        await firestore().collection('users').doc(user.id).set({
-          username: username,
-          password: password,
-          phoneNumber: phoneNumber,
-          email: email,
-          createdAt: firestore.FieldValue.serverTimestamp(),
-        });
-        console.log('User added successfully!');
-      } catch (error) {
-        console.error('Error adding user: ', error);
-      }
-    };
-
-    const signUp = async () => {
+    const signUp = async (username: string, password: string,
+        email: string, phoneNumber: string, firstName: firstName, lastName: lastName) => {
         setLoading(true);
         try {
             const response = await auth().createUserWithEmailAndPassword(email, password);
+            const userId = response.user.uid;
             console.log(response);
             alert('Check your emails!');
             if (response.user) {
+                 try {
+                        await firestore().collection('Users').doc(userId).set({
+                          Username: username,
+                          firstName: firstName,
+                          lastName: lastName,
+                          Password: password,
+                          phoneNumber: phoneNumber,
+                          Email: email,
+                          //AppleID: appleID,
+                          //Facebook: facebook,
+                          //X: x,
+                          createdAt: firestore.FieldValue.serverTimestamp(),
+                        });
+                        console.log('User added successfully!');
+                      } catch (error) {
+                        console.error('Error adding user: ', error);
+                      }
                 nav.navigate("Home");
             }
         } catch (error) {
@@ -69,6 +72,24 @@ const handleInputChange = (input: string) => {
                     onChangeText={(text) => setUsername(text)}
                 />
             </View>
+            <Text style={[newStyles.firstNameText, TextStyles.whiteText1]}> First Name: </Text>
+                        <View style={[newStyles.credentialContainer, newStyles.firstNameContainer]}>
+                            <TextInput
+                                value={firstName}
+                                style={[newStyles.credentialText, TextStyles.whiteText1]}
+                                placeholder="First Name"
+                                onChangeText={(text) => setFirstName(text)}
+                            />
+                        </View>
+            <Text style={[newStyles.lastNameText, TextStyles.whiteText1]}> Last Name: </Text>
+                        <View style={[newStyles.credentialContainer, newStyles.lastNameContainer]}>
+                            <TextInput
+                                value={lastName}
+                                style={[newStyles.credentialText, TextStyles.whiteText1]}
+                                placeholder="Last Name"
+                                onChangeText={(text) => setLastName(text)}
+                            />
+                        </View>
             <Text style={[newStyles.passwordText, TextStyles.whiteText1]}> Password: </Text>
             <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
                 <TextInput
@@ -76,7 +97,7 @@ const handleInputChange = (input: string) => {
                     value={password}
                     style={[newStyles.credentialText, TextStyles.whiteText1]}
                     placeholder="Password"
-                    onChangeText={(text) =>  setPassword(password) }
+                    onChangeText={(text) =>  setPassword(text)}
                 />
             </View>
             <Text style={[newStyles.confirmPasswordText, TextStyles.whiteText1]}> Confirm Password: </Text>
@@ -113,7 +134,8 @@ const handleInputChange = (input: string) => {
                                                    :
                                                    <View>
                                                     <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                                                                     addUserToFirestore().then(() => signUp())
+                                                                     signUp(username, password,
+                                                                             email, phoneNumber, firstName, lastName)
                                                                 }}>
                                                                     <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Create Account</Text>
                                                     </Pressable>
@@ -133,33 +155,53 @@ const newStyles = StyleSheet.create({
 //         overflow: "hidden",
     },
     usernameText: {
-        top: 180,
+        top: 105,
         left: 60
     },
+    usernameContainer: {
+        top: 135
+    },
+    firstNameText: {
+        top: 160,
+        left: 60
+        },
+    firstNameContainer: {
+            top: 210
+        },
+    lastNameText: {
+             top: 210,
+             left: 60
+            },
+        lastNameContainer: {
+                top: 285
+            },
     passwordText: {
-            top: 245,
+            top:260,
             left: 60
         },
+    passwordContainer: {
+        top: 360
+       },
     confirmPasswordText: {
-             top: 300,
+             top:315,
              left: 60
         },
     confirmPasswordContainer: {
-            top: 375
+            top:440
         },
     emailText: {
-            top:355,
+            top:365,
             left: 60
         },
     emailContainer: {
-            top: 455
+            top:515
         },
     phoneNumberText: {
-            top:410,
+            top:415,
             left: 60
         },
     phoneNumberContainer: {
-            top:535
+            top:590
         },
     confirmButtonContainer: {
         shadowColor: "rgba(0, 0, 0, 0.25)",
@@ -177,15 +219,9 @@ const newStyles = StyleSheet.create({
         overflow: "hidden",
     },
     signUpContainer: {
-        top: 575,
+        top: 490,
     	backgroundColor: "#0aa55a",
         left: 104,
-    },
-    signInContainer: {
-        top: 700,
-        top: 700,
-    	backgroundColor: "#707070",
-    	left: 104,
     },
     buttonText: {
         top: 18,
@@ -210,12 +246,6 @@ const newStyles = StyleSheet.create({
     	position: "absolute",
     	overflow: "hidden"
     },
-    usernameContainer: {
-        top: 210
-    },
-    passwordContainer: {
-        top: 295
-    },
     credentialText: {
 //         height: 23,
         top: 5,
@@ -227,53 +257,8 @@ const newStyles = StyleSheet.create({
 //     	fontSize: 15,
     	position: "absolute"
     },
-    credentialIcon: {
-        top: 13,
-        left: 10,
-        position: "absolute"
-    },
-    socialText: {
-        top: 480,
-    	width: 255,
-    	left: 115,
-   		fontFamily: "Inter-Regular",
-//    		height: 21,
-   		textAlign: "center",
-//    		color: "#fff",
-//    		lineHeight: 22,
-//    		letterSpacing: 0,
-//    		fontSize: 15,
-   		position: "relative"
-    },
-    socialButton: {
-        height: 56,
-    	width: 56,
-    	backgroundColor: "#000",
-    	borderRadius: 20,
-    	top: 500,
-    	position: "absolute"
-    },
-    facebookButton: {
-        left: 80
-    },
-    xButton: {
-        left: 150
-    },
-    appleButton: {
-        left: 220
-    },
-    googleButton: {
-        left: 290
-    },
-    socialIcon: {
-    	height: 40,
-   		width: 40,
-   		left: 7,
-   		top: 7,
-   		position: "relative"
-    },
     titleText: {
-        top: 100,
+        top: 25,
     	left: 85,
 //     	fontSize: 40,
 //    		fontFamily: "InstrumentSans-Bold",
