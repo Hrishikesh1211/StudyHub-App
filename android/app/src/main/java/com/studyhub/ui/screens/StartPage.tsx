@@ -151,7 +151,7 @@ async function onGoogleButtonPress(): Promise<any> {
                                :
                                <View>
                                 <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                                                 nav.navigate("CreateAcc");
+                                                 nav.navigate("Create Account");
                                             }}>
                                                 <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Sign Up</Text>
                                 </Pressable>
