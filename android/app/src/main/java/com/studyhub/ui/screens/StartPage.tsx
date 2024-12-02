@@ -18,7 +18,7 @@ const lockIcon = require("../../../../../res/icons-mdpi/green_lock.png");
 
 const BlackThemeStartPage = () => {
     const nav = useNavigation();
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
       GoogleSignin.configure({
@@ -92,7 +92,7 @@ async function onGoogleButtonPress(): Promise<any> {
     const SignIn = async () => {
         setLoading(true);
         try {
-            const response = await auth().signInWithEmailAndPassword(username,password);
+            const response = await auth().signInWithEmailAndPassword(email,password);
             console.log(response);
             if (response.user) {
                 nav.navigate("Home");
@@ -112,8 +112,8 @@ async function onGoogleButtonPress(): Promise<any> {
 
             <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
                 <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
-                <TextInput value={username} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Username"
-                onChangeText={(text) => setUsername(text)}></TextInput>
+                <TextInput value={email} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Email"
+                onChangeText={(text) => setEmail(text)}></TextInput>
             </View>
             <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
                 <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
@@ -153,7 +153,7 @@ async function onGoogleButtonPress(): Promise<any> {
                                 <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
                                                  nav.navigate("CreateAcc");
                                             }}>
-                                                <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Create Account</Text>
+                                                <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Sign Up</Text>
                                 </Pressable>
 
                                 <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
