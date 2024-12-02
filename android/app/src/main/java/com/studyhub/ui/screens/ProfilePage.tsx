@@ -78,7 +78,7 @@ const BlackThemeProfile = () => {
                 </View>
 
                 <Pressable style={[newStyles.buttonContainer, newStyles.otherButton]}onPress={() => {
-                    nav.navigate("EditProfile")
+                    nav.navigate("Edit Profile")
                 }}>
                     <Image style={newStyles.personIcon} resizeMode="cover" source={blackPerson} />
                     <Text style={[newStyles.buttonText, TextStyles.whiteText2]}>Profile Settings</Text>

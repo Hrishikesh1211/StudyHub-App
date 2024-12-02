@@ -21,7 +21,7 @@ export const MenuBar = () => {
                 <Image source={gameIcon} />
                 <Text style={styles.iconText}>Games</Text>
             </Pressable>
-            <Pressable style={styles.iconContainer} onPress={() => nav.navigate("CreateGroup")} accessibilityLabel="Create Group">
+            <Pressable style={styles.iconContainer} onPress={() => nav.navigate("Create Group")} accessibilityLabel="Create Group">
                 <Image source={addIcon} />
             </Pressable>
             <Pressable style={styles.iconContainer} onPress={() => nav.navigate("Chats")} accessibilityLabel="Chats">
@@ -41,9 +41,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#282828",
         flexDirection: "row",
         justifyContent: "space-around",
-
+        bottom: 0,
+        width: '100%',
         alignItems: "center",
         paddingVertical: 10,
+        position: "absolute"
     },
     iconContainer: {
         alignItems: "center",
