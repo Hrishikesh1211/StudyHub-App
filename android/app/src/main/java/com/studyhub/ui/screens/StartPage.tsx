@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoidingView, ActivityIndicator} from "react-native";
-import { useNavigation, } from '@react-navigation/native
+import { useNavigation, } from '@react-navigation/native'
 import auth from '@react-native-firebase/auth';
 import {TextStyles} from "../styles/text.tsx"
 import { useState }  from 'react';
@@ -93,23 +93,23 @@ const BlackThemeStartPage = () => {
                 <Pressable style={[newStyles.socialButton, newStyles.facebookButton]} onPress={() => {
                     Alert.alert("facebook");
                 }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={facebookIcon} />
+                    <Image resizeMode="cover" source={facebookIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.xButton]}  onPress={() => {
                     Alert.alert("x");
                 }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={xIcon} />
+                    <Image resizeMode="cover" source={xIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.appleButton]} onPress={() => {
                     Alert.alert("apple");
                 }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={appleIcon} />
+                    <Image resizeMode="cover" source={appleIcon} />
                 </Pressable>
                 <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
                 total.innerHTML = `Total Price: \$${totalPrice}`;
                     onGoogleButtonPress().then(() =>  nav.navigate("Home"))
                 }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={googleIcon} />
+                    <Image resizeMode="cover" source={googleIcon} />
                 </Pressable>
             </View>
 
@@ -124,7 +124,8 @@ const BlackThemeStartPage = () => {
                                 </Pressable>
 
                                 <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                                     SignIn()
+                                     SignIn();
+                                     nav.navigate("Home");
                                 }}>
                                     <Text style={[TextStyles.whiteText1, newStyles.buttonText]}> Sign In</Text>
                                 </Pressable>
@@ -234,7 +235,9 @@ const newStyles = StyleSheet.create({
     	backgroundColor: "#000",
     	borderRadius: 20,
     	top: 500,
-    	position: "absolute"
+    	position: "absolute",
+    	justifyContent: "center",
+    	alignItems: "center"
     },
     facebookButton: {
         left: 80
@@ -247,13 +250,6 @@ const newStyles = StyleSheet.create({
     },
     googleButton: {
         left: 290
-    },
-    socialIcon: {
-    	height: 40,
-   		width: 40,
-   		left: 7,
-   		top: 7,
-   		position: "relative"
     },
     titleText: {
         top: 100,

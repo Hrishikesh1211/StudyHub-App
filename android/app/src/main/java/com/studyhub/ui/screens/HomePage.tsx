@@ -11,18 +11,20 @@ const BlackThemeHomePage = () => {
     return (
         <View style={styles.blackThemeHomePage}>
             <Text style={[newStyles.pageTitle, TextStyles.pageTitle]}>My Groups</Text>
-            <ScrollView>
-                <GroupButton/>
-                <GroupButton/>
-                <GroupButton/>
-                <GroupButton/>
-                <GroupButton/>
-                <GroupButton/>
-                <GroupButton/>
-                <GroupButton/>
-            </ScrollView>
-            <MenuBar/>
+            <View style={newStyles.groupContainer}>
+                <ScrollView contentContainerStyle={newStyles.groupContainerContent}>
+                    <GroupButton/>
+                    <GroupButton/>
+                    <GroupButton/>
+                    <GroupButton/>
+                    <GroupButton/>
+                    <GroupButton/>
+                    <GroupButton/>
+                    <GroupButton/>
+                </ScrollView>
+            </View>
 
+            <MenuBar/>
         </View>
     )
 };
@@ -75,9 +77,14 @@ const newStyles = StyleSheet.create({
 //     	lineHeight: 22,
     	position: "absolute"
     },
-    groupButton: {
-        left: 25,
+    groupContainer: {
         top: 100,
+        height: 625,
+    },
+    groupContainerContent: {
+        alignItems: "center",
+    },
+    groupButton: {
         paddingVertical: 5,
     },
     buttonContainer: {
@@ -153,7 +160,6 @@ const newStyles = StyleSheet.create({
 //         lineHeight: 22,
         position: "relative"
     }
-
 })
 
 const oldpage = () => {
