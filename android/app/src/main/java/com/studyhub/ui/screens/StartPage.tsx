@@ -5,6 +5,8 @@ import auth from '@react-native-firebase/auth';
 import {TextStyles} from "../styles/text.tsx"
 import { useState }  from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
+//icon assets
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -22,6 +24,8 @@ const BlackThemeStartPage = () => {
           });
 
     async function onGoogleButtonPress() {
+
+        try{
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
 
           const signInResult = await GoogleSignin.signIn();
@@ -34,9 +38,16 @@ const BlackThemeStartPage = () => {
           }
 
           const googleCredential = auth.GoogleAuthProvider.credential(signInResult.data.token);
+          await auth().signInWithCredential(googleCredential);
+          nav.navigate("Home");
 
-          return auth().signInWithCredential(googleCredential);
-    }
+          } catch (error) {
+                console.error(error);
+                alert('Google Sign-In failed: ' + error.message);
+              }
+            };
+          //return auth().signInWithCredential(googleCredential);
+
 
     const SignIn = async () => {
         setLoading(true);
@@ -52,7 +63,7 @@ const BlackThemeStartPage = () => {
             } finally {
                     setLoading(false);
                 }
-       }
+       };
 
    const signUp = async () => {
            setLoading(true);
@@ -70,7 +81,13 @@ const BlackThemeStartPage = () => {
                        setLoading(false);
 
                    }
-          }
+          };
+
+      const SocialButton = ({ icon, onPress }) => (
+          <Pressable style={styles.socialButton} onPress={onPress}>
+            <Image style={styles.socialIcon} resizeMode="cover" source={icon} />
+          </Pressable>
+        );
 
   	return (
         <View style={newStyles.background}>
