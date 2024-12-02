@@ -12,6 +12,7 @@ const updateUserProfile = async (userId, profileData) => {
 import * as React from "react";
 import {ScrollView, Image, StyleSheet, Text, View, Pressable, TextInput, Alert} from "react-native";
 import {TextStyles} from "../styles/text.tsx";
+import {useNavigation} from "@react-navigation/native";
 
 const grayEllipse = require("../../../../../res/icons-mdpi/gray_ellipse.png");
 const greenAt = require("../../../../../res/icons-mdpi/green_at_sign.png");
@@ -26,6 +27,8 @@ const greenPhone = require("../../../../../res/icons-mdpi/green_phone.png");
 const lockIcon = require("../../../../../res/icons-mdpi/green_lock.png");
 
 const BlackThemeEditProfile = () => {
+    const nav = useNavigation();
+
 	return (
 		<View style={newStyles.background}>
 
@@ -81,7 +84,9 @@ const BlackThemeEditProfile = () => {
                 <View>
                     <Text style={newStyles.editHeader}>Membership</Text>
                     <View style={newStyles.socialContainer}>
-                        <Pressable style={newStyles.membershipButton} onPress={()=>{}}>
+                        <Pressable style={newStyles.membershipButton} onPress={()=>{
+                            nav.navigate("Membership");
+                        }}>
                             <Text style={newStyles.editHeader}>Buy</Text>
                         </Pressable>
                         <Pressable style={newStyles.membershipButton} onPress={()=>{}}>

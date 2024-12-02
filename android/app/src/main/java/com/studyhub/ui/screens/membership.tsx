@@ -1,5 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, View, Image, Pressable } from "react-native";
+const greenEllipse = require("../../../../../res/icons-mdpi/green_ellipse.png")
+const whiteCheck = require("../../../../../res/icons-mdpi/white_check.png")
 
 const BlackThemeMembership = () => {
   const handleBackPress = () => {
@@ -12,6 +14,7 @@ const BlackThemeMembership = () => {
 
   return (
     <View style={styles.container}>
+    {/*}
       <Pressable style={styles.backButton} onPress={handleBackPress}>
         <Image
           style={styles.icon}
@@ -19,6 +22,7 @@ const BlackThemeMembership = () => {
           source={require("./assets/white-back-arrow.png")}
         />
       </Pressable>
+      */}
 
       <Text style={styles.heading}>Choose Your Plan</Text>
 
@@ -27,7 +31,7 @@ const BlackThemeMembership = () => {
           <Image
             style={styles.ellipseIcon}
             resizeMode="contain"
-            source={require("./assets/green-ellipse.png")}
+            source={greenEllipse}
           />
           <Text style={styles.iconText}>1</Text>
         </View>
@@ -44,7 +48,7 @@ const BlackThemeMembership = () => {
           <Image
             style={styles.ellipseIcon}
             resizeMode="contain"
-            source={require("./assets/green-ellipse.png")}
+            source={greenEllipse}
           />
           <Text style={styles.iconText}>2</Text>
         </View>
@@ -57,7 +61,7 @@ const BlackThemeMembership = () => {
         <Image
           style={styles.checkIcon}
           resizeMode="contain"
-          source={require("./assets/white-check.png")}
+          source={whiteCheck}
         />
       </View>
 
