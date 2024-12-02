@@ -44,6 +44,12 @@ const BlackThemeSingleChats = () => {
                     <UserButton/>
                     <UserButton/>
                     <UserButton/>
+                    <UserButton/>
+                    <UserButton/>
+                    <UserButton/>
+                    <UserButton/>
+                    <UserButton/>
+                    <UserButton/>
                 </ScrollView>
 
       			<Image style={[styles.blackThemeSingleChatsChild, styles.grayEllipseIconLayout]} resizeMode="cover" source="Frame 11.png" />
@@ -81,7 +87,10 @@ const newStyles = StyleSheet.create({
     },
     userListContainer: {
         top: 150,
+        height: 650,
+        width: "100%",
         left: 0,
+        position: "absolute"
     },
     userListContent: {
         flexDirection: "column",
@@ -91,9 +100,8 @@ const newStyles = StyleSheet.create({
     userButtonContainer: {
 //         top: 152,
         height: 100,
-    	width: 390,
+    	width: 385,
     	borderRadius: 20,
-//     	left: 19,
     	backgroundColor: "#282828",
     	position: "relative",
     	overflow: "hidden",
