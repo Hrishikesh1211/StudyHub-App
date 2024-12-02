@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import * as React from "react";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Text, StyleSheet, Image, Pressable, View, ScrollView} from "react-native";
 import {useNavigation} from '@react-navigation/native';
 import {TextStyles} from "../styles/text.tsx";
@@ -59,12 +59,18 @@ const BlackThemeSingleChats = () => {
 const UserButton = () => {
     const [online, setOnline] = useState(false);
     const nav = useNavigation();
+
+    useEffect(() => {
+        setOnline(Math.random() < 0.5);
+    })
+
     return (
         <Pressable style={newStyles.userButtonContainer} onPress={()=>{
             nav.navigate("Message User");
         }}>
+
             <Text style={[TextStyles.whiteText1, newStyles.usernameText]}>John Man</Text>
-            <Image style={newStyles.onlineIndicatorIcon} resizeMode="cover" source={Math.random() < 0.5 ? onlineIcon : offlineIcon} />
+            <Image style={newStyles.onlineIndicatorIcon} resizeMode="cover" source={online ? onlineIcon : offlineIcon} />
             <Image style={newStyles.profilePicture} resizeMode="cover" source={grayEllipse} />
             <Text style={[TextStyles.grayText2, newStyles.lastSentText]}>last message sent by other</Text>
         </Pressable>
