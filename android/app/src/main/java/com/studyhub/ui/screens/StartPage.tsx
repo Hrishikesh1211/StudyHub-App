@@ -9,6 +9,8 @@ import { appleAuth } from '@invertase/react-native-apple-authentication';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 //import { NativeModules } from 'react-native';
 //const { RNTwitterSignIn } = NativeModules;
+        
+//icon assets
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
 const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
@@ -89,86 +91,83 @@ async function onGoogleButtonPress(): Promise<any> {
     return auth().signInWithCredential(googleCredential);
 }
 
-    const SignIn = async () => {
-        setLoading(true);
-        try {
-            const response = await auth().signInWithEmailAndPassword(email,password);
-            console.log(response);
-            if (response.user) {
-                nav.navigate("Home");
-            }
-        } catch (error: any) {
-            console.log(error);
-            alert('Sign in failed: ' + error.message);
-            } finally {
-                    setLoading(false);
-                }
-       }
+const SignIn = async () => {
+    setLoading(true);
+    try {
+        const response = await auth().signInWithEmailAndPassword(email,password);
+        console.log(response);
+        if (response.user) {
+            nav.navigate("Home");
+        }
+    } catch (error: any) {
+        console.log(error);
+        alert('Sign in failed: ' + error.message);
+    } finally {
+        setLoading(false);
+  }
+}
 
+return (
+    <View style={newStyles.background}>
+        <Text style={[newStyles.titleText, TextStyles.appTitle]}>StudyHub</Text>
 
-  	return (
-        <View style={newStyles.background}>
-            <Text style={[newStyles.titleText, TextStyles.appTitle]}>StudyHub</Text>
-
-            <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
-                <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
-                <TextInput value={email} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Email"
-                onChangeText={(text) => setEmail(text)}></TextInput>
-            </View>
-            <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
-                <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
-                <TextInput secureTextEntry={true} value={password} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Password"
-                onChangeText={(text) => setPassword(text)}></TextInput>
-            </View>
-
-            <Text style={[newStyles.socialText, TextStyles.whiteText1]}>Log In With Social Media</Text>
-
-            <View>
-                <Pressable style={[newStyles.socialButton, newStyles.facebookButton]} onPress={() => {
-                    onFacebookButtonPress().then(() => nav.navigate("Home"))
-                }}>
-                    <Image resizeMode="cover" source={facebookIcon} />
-                </Pressable>
-                <Pressable style={[newStyles.socialButton, newStyles.xButton]}  onPress={() => {
-                    //onTwitterButtonPress.then(() => nav.navigate("Home"))
-                }}>
-                    <Image resizeMode="cover" source={xIcon} />
-                </Pressable>
-                <Pressable style={[newStyles.socialButton, newStyles.appleButton]} onPress={() => {
-                    onAppleButtonPress().then(() => nav.navigate("Home"))
-                }}>
-                    <Image resizeMode="cover" source={appleIcon} />
-                </Pressable>
-                <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
-                    onGoogleButtonPress().then(() =>  nav.navigate("Home"))
-                }}>
-                    <Image resizeMode="cover" source={googleIcon} />
-                </Pressable>
-            </View>
-
-            <KeyboardAvoidingView behavior="padding">
-                { loading ? <ActivityIndicator size="large" color="#0000ff"></ActivityIndicator>
-                               :
-                               <View>
-                                <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                                                 nav.navigate("Create Account");
-                                            }}>
-                                                <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Sign Up</Text>
-                                </Pressable>
-
-                                <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                                     SignIn();
-                                     nav.navigate("Home");
-                                }}>
-                                    <Text style={[TextStyles.whiteText1, newStyles.buttonText]}> Sign In</Text>
-                                </Pressable>
-                                </View>
-                }
-            </KeyboardAvoidingView>
+        <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
+            <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
+            <TextInput value={email} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Email"
+            onChangeText={(text) => setEmail(text)}></TextInput>
         </View>
-    )
+        <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
+            <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
+            <TextInput secureTextEntry={true} value={password} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Password"
+            onChangeText={(text) => setPassword(text)}></TextInput>
+        </View>
 
-};
+        <Text style={[newStyles.socialText, TextStyles.whiteText1]}>Log In With Social Media</Text>
+
+        <View>
+            <Pressable style={[newStyles.socialButton, newStyles.facebookButton]} onPress={() => {
+                onFacebookButtonPress().then(() => nav.navigate("Home"))
+            }}>
+                <Image resizeMode="cover" source={facebookIcon} />
+            </Pressable>
+            <Pressable style={[newStyles.socialButton, newStyles.xButton]}  onPress={() => {
+                //onTwitterButtonPress.then(() => nav.navigate("Home"))
+            }}>
+                <Image resizeMode="cover" source={xIcon} />
+            </Pressable>
+            <Pressable style={[newStyles.socialButton, newStyles.appleButton]} onPress={() => {
+                onAppleButtonPress().then(() => nav.navigate("Home"))
+            }}>
+                <Image resizeMode="cover" source={appleIcon} />
+            </Pressable>
+            <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
+                onGoogleButtonPress().then(() =>  nav.navigate("Home"))
+            }}>
+                <Image resizeMode="cover" source={googleIcon} />
+            </Pressable>
+        </View>
+
+        <KeyboardAvoidingView behavior="padding">
+            { loading ? <ActivityIndicator size="large" color="#0000ff"></ActivityIndicator>
+                           :
+                           <View>
+                            <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
+                                             nav.navigate("Create Account");
+                                        }}>
+                                            <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Sign Up</Text>
+                            </Pressable>
+
+                            <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
+                                 SignIn();
+                                 nav.navigate("Home");
+                            }}>
+                                <Text style={[TextStyles.whiteText1, newStyles.buttonText]}> Sign In</Text>
+                            </Pressable>
+                            </View>
+            }
+        </KeyboardAvoidingView>
+    </View>
+)};
 
 const newStyles = StyleSheet.create({
     background: {
