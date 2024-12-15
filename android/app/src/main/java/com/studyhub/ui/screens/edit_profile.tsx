@@ -1,5 +1,3 @@
-
-
 import firestore from '@react-native-firebase/firestore';
 
 const updateUserProfile = async (userId, profileData) => {
@@ -11,15 +9,313 @@ const updateUserProfile = async (userId, profileData) => {
     }
 };
 
-
-// Existing content of EditProfile.tsx
 import * as React from "react";
-import {ScrollView, Image, StyleSheet, Text, View, Pressable} from "react-native";
+import {ScrollView, Image, StyleSheet, Text, View, Pressable, TextInput, Alert} from "react-native";
+import {TextStyles} from "../styles/text.tsx";
+import {useNavigation} from "@react-navigation/native";
+
+const grayEllipse = require("../../../../../res/icons-mdpi/gray_ellipse.png");
+const greenAt = require("../../../../../res/icons-mdpi/green_at_sign.png");
+const greenPerson = require("../../../../../res/icons-mdpi/green_person.png");
+const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
+const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
+const xIcon = require("../../../../../res/icons-mdpi/white_x.png");
+const appleIcon = require("../../../../../res/icons-mdpi/white_apple.png");
+const listIcon = require("../../../../../res/icons-mdpi/green_list.png");
+const greenMail = require("../../../../../res/icons-mdpi/green_mail.png");
+const greenPhone = require("../../../../../res/icons-mdpi/green_phone.png");
+const lockIcon = require("../../../../../res/icons-mdpi/green_lock.png");
 
 const BlackThemeEditProfile = () => {
+    const nav = useNavigation();
 
-  	return (
-    		<ScrollView style={styles.blackThemeEditProfile}>
+	return (
+		<View style={newStyles.background}>
+
+			<ScrollView style={newStyles.scrollContainer} contentContainerStyle={newStyles.scrollContainerContent}>
+			    <View style={newStyles.screenHeaderContainer}>
+                    <Image style={newStyles.screenHeaderPicture} resizeMode="cover" source={grayEllipse} />
+                    <TextInput placeholder="Profile Name" placeholderTextColor="#868686" style={newStyles.screenHeaderText}></TextInput>
+                    <Image style={styles.plusIcon} resizeMode="cover" source="Plus.png" />
+                </View>
+
+			    <View style={newStyles.settingHeaderContainer}>
+                    <Text style={newStyles.pageTitle}>Profile Settings</Text>
+                    <View style={{flexDirection: "row"}}>
+                        <Image style={newStyles.profileInfoHeaderIcon} resizeMode="cover" source={listIcon} />
+                        <Text style={newStyles.profileInfoHeader}>Profile info</Text>
+                    </View>
+				</View>
+
+				<EditBox headerText="Full Name" icon={greenPerson}/>
+				<EditBox headerText="Username" icon={greenAt}/>
+
+				<View style={newStyles.bioEditBox}>
+				    <TextInput placeholder="Profile Bio" placeholderTextColor="#868686" style={[newStyles.bioText, TextStyles.whiteText2]}></TextInput>
+				</View>
+
+				<View>
+					<Text style={newStyles.editHeader}>Link Social Media</Text>
+					<View style={newStyles.socialContainer}>
+						<Pressable style={newStyles.socialButton} onPress={() => {
+							Alert.alert("facebook")
+						}}>
+							<Image source={facebookIcon}/>
+						</Pressable>
+						<Pressable style={newStyles.socialButton} onPress={() => {
+							Alert.alert("twitter")
+						}}>
+							<Image source={xIcon}/>
+						</Pressable>
+						<Pressable style={newStyles.socialButton} onPress={() => {
+							Alert.alert("apple")
+						}}>
+							<Image source={appleIcon}/>
+						</Pressable>
+						<Pressable style={newStyles.socialButton} onPress={() => {
+							Alert.alert("google")
+						}}>
+							<Image source={googleIcon}/>
+						</Pressable>
+					</View>
+                </View>
+
+
+                <View>
+                    <Text style={newStyles.editHeader}>Membership</Text>
+                    <View style={newStyles.socialContainer}>
+                        <Pressable style={newStyles.membershipButton} onPress={()=>{
+                            nav.navigate("Membership");
+                        }}>
+                            <Text style={newStyles.editHeader}>Buy</Text>
+                        </Pressable>
+                        <Pressable style={newStyles.membershipButton} onPress={()=>{}}>
+                            <Text style={newStyles.editHeader}>Change</Text>
+                        </Pressable>
+                        <Pressable style={newStyles.membershipButton} onPress={()=>{}}>
+                            <Text style={newStyles.editHeader}>Cancel</Text>
+                        </Pressable>
+                    </View>
+                </View>
+
+                <View style={newStyles.settingHeaderContainer}>
+                    <View style={{flexDirection: "row"}}>
+                        <Image resizeMode="cover" source={listIcon} />
+                        <Text style={newStyles.profileInfoHeader}>Security</Text>
+                    </View>
+				</View>
+
+                <EditBox headerText="Email" icon={greenMail}/>
+                <EditBox headerText="Phone Number" icon={greenPhone}/>
+                <EditBox headerText="Password" icon={lockIcon}/>
+                <EditBox headerText="Confirm Password" icon={lockIcon}/>
+
+			</ScrollView>
+		</View>
+	)
+}
+
+const EditBox = ({headerText, icon}) => {
+    return (
+        <View style={newStyles.editContainer}>
+            <Text style={newStyles.editHeader}>{headerText}</Text>
+            <View style={newStyles.editTextBox}>
+                <Image style={newStyles.editIcon} resizeMode="cover" source={icon} />
+                <TextInput placeholder={headerText} placeholderTextColor="#868686" style={TextStyles.whiteText1}></TextInput>
+            </View>
+        </View>
+    );
+}
+
+const newStyles = StyleSheet.create({
+    background: {
+        backgroundColor: "#282828",
+    	flex: 1,
+    	height: '100%',
+    	overflow: "hidden",
+    	width: "100%"
+    },
+    scrollContainer: {
+        top: 0,
+        height: '99%',
+        width: '100%',
+//         flex: 1,
+        position: "absolute",
+    },
+    scrollContainerContent: {
+        alignItems: "center",
+        gap: 15
+    },
+    screenHeaderContainer: {
+        top: 0,
+    	left: 0,
+    	backgroundColor: "#202c2a",
+    	width: 430,
+    	height: 96,
+    	borderRadius: 20,
+    	overflow: "hidden"
+    },
+    screenHeaderPicture: {
+        top: 20,
+    	left: 79,
+    	width: 60,
+    	height: 60,
+//     	position: "absolute"
+    },
+    screenHeaderText: {
+        width: 184,
+//         height: 35,
+        left: 150,
+        top: 32,
+        position: "absolute",
+        textAlign: "left",
+        color: "#fff",
+        fontFamily: "Inter-Regular",
+        fontSize: 20
+    },
+    settingHeaderContainer: {
+        width: 365,
+        paddingTop: 30
+    },
+    pageTitle: {
+//         top: 116,
+    	width: 157,
+    	height: 31,
+    	textAlign: "left",
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    	fontSize: 20,
+//         left: 21,
+//     	position: "absolute"
+    },
+    profileInfoHeader: {
+//         top: 147,
+//     	left: 58,
+    	height: 18,
+    	width: 81,
+    	fontSize: 15,
+    	textAlign: "left",
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+//     	position: "absolute"
+    },
+    profileInfoHeaderIcon: {
+//         top: 144,
+    	height: 24,
+    	width: 24,
+//     	left: 21,
+//         position: "absolute"
+    },
+    editContainer: {
+        flexDirection: "column"
+    },
+    editHeader: {
+//         top: 200,
+//     	left: 22,
+//     	position: "absolute",
+//     	width: 78,
+    	fontSize: 15,
+    	textAlign: "left",
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    	height: 24
+    },
+    editTextBox: {
+//         top: 224,
+//     	left: 22,
+//     	position: "absolute",
+    	height: 56,
+    	width: 365,
+    	backgroundColor: "#000",
+    	borderRadius: 10,
+    	flexDirection: "row",
+    	alignItems: "center",
+    	paddingHorizontal: 10,
+    	gap: 10
+    },
+    editIcon: {
+//     	width: 24,
+//     	height: 24,
+    },
+    bioEditBox: {
+//         top: 384,
+    	width: 365,
+    	backgroundColor: "#000",
+    	borderRadius: 10,
+//     	left: 21,
+    	height: 96,
+//     	position: "absolute"
+    },
+    bioText: {
+//         top: 389,
+//     	left: 33,
+    	width: 344,
+    	height: 85,
+    	color: "#5a5858",
+    	fontSize: 15,
+    	textAlign: "left",
+    	fontFamily: "Inter-Regular",
+//     	position: "absolute"
+    },
+    socialContainer: {
+        width: 365,
+        flexDirection: "row",
+        justifyContent: "space-evenly"
+    },
+    socialText: {
+//         top: 496,
+//         left: 0,
+    	width: 365,
+    	fontSize: 15,
+    	textAlign: "left",
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    	height: 24
+    },
+    socialButton: {
+        width: 56,
+//     	top: 523,
+    	height: 56,
+    	backgroundColor: "#000",
+    	borderRadius: 20,
+    	justifyContent: "center",
+    	alignItems: "center",
+    	position: "relative"
+    },
+    membershipContainer: {
+        flexDirection: "row"
+    },
+    membershipHeader: {
+//         top: 592,
+    	width: 99,
+//     	left: 21,
+//     	position: "absolute",
+    	fontSize: 15,
+    	textAlign: "left",
+    	color: "#fff",
+    	fontFamily: "Inter-Regular",
+    	height: 24
+    },
+    membershipButton: {
+//         top: 617,
+    	height: 42,
+    	width: 110,
+    	backgroundColor: "#000",
+    	borderRadius: 10,
+    	justifyContent: "center",
+    	alignItems: "center"
+//     	left: 22,
+//     	position: "absolute"
+    },
+    membershipButtonText: {
+
+    },
+
+});
+
+const OldPage = () => {
+    return (
+        <ScrollView style={styles.blackThemeEditProfile}>
       			<View style={[styles.arrowBackParent, styles.atSignIconPosition]}>
         				<Image style={[styles.arrowBackIcon, styles.listIconLayout]} resizeMode="cover" source="arrow_back.png" />
         				<Image style={styles.grayEllipseIcon} resizeMode="cover" source="Gray Ellipse.png" />
@@ -133,7 +429,8 @@ const BlackThemeEditProfile = () => {
       			<Image style={[styles.socialIcons4, styles.socialLayout]} resizeMode="cover" source="Social Icons.png" />
       			<Image style={[styles.facebookIcon, styles.socialLayout]} resizeMode="cover" source="Facebook.png" />
       			<Image style={[styles.facebookIcon, styles.socialLayout]} resizeMode="cover" source="Facebook.png" />
-    		</ScrollView>);
+    	</ScrollView>
+    )
 };
 
 const styles = StyleSheet.create({

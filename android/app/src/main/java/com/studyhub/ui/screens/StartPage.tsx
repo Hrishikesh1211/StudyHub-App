@@ -1,11 +1,15 @@
 import * as React from "react";
 import {Text, StyleSheet, View, Pressable, Image, TextInput, Alert, KeyboardAvoidingView, ActivityIndicator} from "react-native";
-import { useNavigation, } from '@react-navigation/native
+import { useNavigation, } from '@react-navigation/native'
 import auth from '@react-native-firebase/auth';
 import {TextStyles} from "../styles/text.tsx"
 import { useState }  from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
+import { appleAuth } from '@invertase/react-native-apple-authentication';
+import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
+//import { NativeModules } from 'react-native';
+//const { RNTwitterSignIn } = NativeModules;
+        
 //icon assets
 const googleIcon = require("../../../../../res/icons-mdpi/white_google.png");
 const facebookIcon = require("../../../../../res/icons-mdpi/white_facebook.png");
@@ -16,142 +20,154 @@ const lockIcon = require("../../../../../res/icons-mdpi/green_lock.png");
 
 const BlackThemeStartPage = () => {
     const nav = useNavigation();
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState('');
       GoogleSignin.configure({
               webClientId: '662070165912-2sarng7t2rikd2ebjvp6j52rf1t4u5oe.apps.googleusercontent.com',
           });
 
-    async function onGoogleButtonPress() {
+      /*RNTwitterSignIn.init('TWITTER_CONSUMER_KEY', 'TWITTER_CONSUMER_SECRET').then(() =>
+        console.log('Twitter SDK initialized'),
+      );*/
 
-        try{
-        await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+  /* async function onTwitterButtonPress(): Promise<any> {
+       const { authToken, authTokenSecret }: { authToken: string; authTokenSecret: string } = await RNTwitterSignIn.logIn();
 
-          const signInResult = await GoogleSignin.signIn();
-          idToken = signInResult.data?.idToken;
-          if (!idToken) {
-            idToken = signInResult.idToken;
-          }
-          if (!idToken) {
-            throw new Error('No ID token found');
-          }
+       const twitterCredential: any = auth.TwitterAuthProvider.credential(authToken, authTokenSecret);
 
-          const googleCredential = auth.GoogleAuthProvider.credential(signInResult.data.token);
-          await auth().signInWithCredential(googleCredential);
-          nav.navigate("Home");
+       return auth().signInWithCredential(twitterCredential);
+   }*/
 
-          } catch (error) {
-                console.error(error);
-                alert('Google Sign-In failed: ' + error.message);
-              }
-            };
-          //return auth().signInWithCredential(googleCredential);
+async function onFacebookButtonPress(): Promise<any> {
+  const result: { isCancelled: boolean } = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+
+  if (result.isCancelled) {
+    throw 'User cancelled the login process';
+  }
+
+  const data: { accessToken: string } | null = await AccessToken.getCurrentAccessToken();
+
+  if (!data) {
+    throw 'Something went wrong obtaining access token';
+  }
+
+  const facebookCredential: any = auth.FacebookAuthProvider.credential(data.accessToken);
+
+  return auth().signInWithCredential(facebookCredential);
+}
 
 
-    const SignIn = async () => {
-        setLoading(true);
-        try {
-            const response = await auth().signInWithEmailAndPassword(username,password);
-            console.log(response);
-            if (response.user) {
-                nav.navigate("Home");
-            }
-        } catch (error: any) {
-            console.log(error);
-            alert('Sign in failed: ' + error.message);
-            } finally {
-                    setLoading(false);
-                }
-       };
+async function onAppleButtonPress(): Promise<any> {
+    const appleAuthRequestResponse: appleAuth.AppleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
+    });
 
-   const signUp = async () => {
-           setLoading(true);
-           try {
-               const response = await auth().createUserWithEmailAndPassword(username,password);
-               console.log(response);
-               alert('Check your emails!');
-               if (response.user) {
-                   nav.navigate("Home");
-               }
-           } catch (error: any) {
-               console.log(error);
-               alert('User info taken: ' + error.message);
-               } finally {
-                       setLoading(false);
+    if (!appleAuthRequestResponse.identityToken) {
+        Alert.alert("Apple Sign-In failed - issue with token");
+    }
 
-                   }
-          };
+    const { identityToken, nonce }: { identityToken: string; nonce: string } = appleAuthRequestResponse;
+    const appleCredential: firebase.auth.AuthCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
 
-      const SocialButton = ({ icon, onPress }) => (
-          <Pressable style={styles.socialButton} onPress={onPress}>
-            <Image style={styles.socialIcon} resizeMode="cover" source={icon} />
-          </Pressable>
-        );
+    return auth().signInWithCredential(appleCredential);
+}
 
-  	return (
-        <View style={newStyles.background}>
-            <Text style={[newStyles.titleText, TextStyles.appTitle]}>StudyHub</Text>
+async function onGoogleButtonPress(): Promise<any> {
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
 
-            <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
-                <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
-                <TextInput value={username} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Username"
-                onChangeText={(text) => setUsername(text)}></TextInput>
-            </View>
-            <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
-                <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
-                <TextInput secureTextEntry={true} value={password} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Password"
-                onChangeText={(text) => setPassword(text)}></TextInput>
-            </View>
+    const signInResult: { data?: { idToken?: string; token: string } } = await GoogleSignin.signIn();
+    let idToken: string | undefined = signInResult.data?.idToken;
+    if (!idToken) {
+        idToken = signInResult.idToken;
+    }
+    if (!idToken) {
+        throw new Error('No ID token found');
+    }
 
-            <Text style={[newStyles.socialText, TextStyles.whiteText1]}>Log In With Social Media</Text>
+    const googleCredential: any = auth.GoogleAuthProvider.credential(signInResult.data.token);
 
-            <View>
-                <Pressable style={[newStyles.socialButton, newStyles.facebookButton]} onPress={() => {
-                    Alert.alert("facebook");
-                }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={facebookIcon} />
-                </Pressable>
-                <Pressable style={[newStyles.socialButton, newStyles.xButton]}  onPress={() => {
-                    Alert.alert("x");
-                }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={xIcon} />
-                </Pressable>
-                <Pressable style={[newStyles.socialButton, newStyles.appleButton]} onPress={() => {
-                    Alert.alert("apple");
-                }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={appleIcon} />
-                </Pressable>
-                <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
-                total.innerHTML = `Total Price: \$${totalPrice}`;
-                    onGoogleButtonPress().then(() =>  nav.navigate("Home"))
-                }}>
-                    <Image style={newStyles.socialIcon} resizeMode="cover" source={googleIcon} />
-                </Pressable>
-            </View>
+    return auth().signInWithCredential(googleCredential);
+}
 
-            <KeyboardAvoidingView behavior="padding">
-                { loading ? <ActivityIndicator size="large" color="#0000ff"></ActivityIndicator>
-                               :
-                               <View>
-                                <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                                                 signUp();
-                                            }}>
-                                                <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Create Account</Text>
-                                </Pressable>
+const SignIn = async () => {
+    setLoading(true);
+    try {
+        const response = await auth().signInWithEmailAndPassword(email,password);
+        console.log(response);
+        if (response.user) {
+            nav.navigate("Home");
+        }
+    } catch (error: any) {
+        console.log(error);
+        alert('Sign in failed: ' + error.message);
+    } finally {
+        setLoading(false);
+  }
+}
 
-                                <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
-                                     SignIn()
-                                }}>
-                                    <Text style={[TextStyles.whiteText1, newStyles.buttonText]}> Sign In</Text>
-                                </Pressable>
-                                </View>
-                }
-            </KeyboardAvoidingView>
+return (
+    <View style={newStyles.background}>
+        <Text style={[newStyles.titleText, TextStyles.appTitle]}>StudyHub</Text>
+
+        <View style={[newStyles.credentialContainer, newStyles.usernameContainer]}>
+            <Image style={newStyles.credentialIcon} resizeMode="cover" source={atIcon} />
+            <TextInput value={email} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Email"
+            onChangeText={(text) => setEmail(text)}></TextInput>
         </View>
-    )
+        <View style={[newStyles.credentialContainer, newStyles.passwordContainer]}>
+            <Image style={newStyles.credentialIcon} resizeMode="cover" source={lockIcon} />
+            <TextInput secureTextEntry={true} value={password} style={[newStyles.credentialText, TextStyles.whiteText1]} placeholder="Password"
+            onChangeText={(text) => setPassword(text)}></TextInput>
+        </View>
 
-};
+        <Text style={[newStyles.socialText, TextStyles.whiteText1]}>Log In With Social Media</Text>
+
+        <View>
+            <Pressable style={[newStyles.socialButton, newStyles.facebookButton]} onPress={() => {
+                onFacebookButtonPress().then(() => nav.navigate("Home"))
+            }}>
+                <Image resizeMode="cover" source={facebookIcon} />
+            </Pressable>
+            <Pressable style={[newStyles.socialButton, newStyles.xButton]}  onPress={() => {
+                //onTwitterButtonPress.then(() => nav.navigate("Home"))
+            }}>
+                <Image resizeMode="cover" source={xIcon} />
+            </Pressable>
+            <Pressable style={[newStyles.socialButton, newStyles.appleButton]} onPress={() => {
+                onAppleButtonPress().then(() => nav.navigate("Home"))
+            }}>
+                <Image resizeMode="cover" source={appleIcon} />
+            </Pressable>
+            <Pressable style={[newStyles.socialButton, newStyles.googleButton]} onPress={() => {
+                onGoogleButtonPress().then(() =>  nav.navigate("Home"))
+            }}>
+                <Image resizeMode="cover" source={googleIcon} />
+            </Pressable>
+        </View>
+
+        <KeyboardAvoidingView behavior="padding">
+            { loading ? <ActivityIndicator size="large" color="#0000ff"></ActivityIndicator>
+                           :
+                           <View>
+                            <Pressable style={[newStyles.signUpContainer, newStyles.confirmButtonContainer]} onPress={()=>{
+                                             nav.navigate("Create Account");
+                                        }}>
+                                            <Text style={[TextStyles.whiteText1, newStyles.buttonText]}>Sign Up</Text>
+                            </Pressable>
+
+                            <Pressable style={[newStyles.signInContainer, newStyles.confirmButtonContainer]} onPress={()=>{
+                                 SignIn();
+                                 nav.navigate("Home");
+                            }}>
+                                <Text style={[TextStyles.whiteText1, newStyles.buttonText]}> Sign In</Text>
+                            </Pressable>
+                            </View>
+            }
+        </KeyboardAvoidingView>
+    </View>
+)};
 
 const newStyles = StyleSheet.create({
     background: {
@@ -251,7 +267,9 @@ const newStyles = StyleSheet.create({
     	backgroundColor: "#000",
     	borderRadius: 20,
     	top: 500,
-    	position: "absolute"
+    	position: "absolute",
+    	justifyContent: "center",
+    	alignItems: "center"
     },
     facebookButton: {
         left: 80
@@ -264,13 +282,6 @@ const newStyles = StyleSheet.create({
     },
     googleButton: {
         left: 290
-    },
-    socialIcon: {
-    	height: 40,
-   		width: 40,
-   		left: 7,
-   		top: 7,
-   		position: "relative"
     },
     titleText: {
         top: 100,
